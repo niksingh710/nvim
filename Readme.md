@@ -9,6 +9,13 @@ Highly inspired by the lunarvim config.......
 
 checkout them by `:Telescope keymaps` or by pressing `<leader> + sk`
 
+## INSTALL
+
+```
+mv ~/.config/nvim ~/.config/nvim.bak
+git clone https://github.com/niksingh710/nvim ~/.config/nvim
+```
+
 ## Keymaps
 
 can you write the keymaps from the old Readme file?
