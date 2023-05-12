@@ -2,3 +2,4 @@
 ./nvim/session/*
 ./nvim/session
 *session*
+./lazy-lock.json
