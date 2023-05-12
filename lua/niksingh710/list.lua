@@ -33,10 +33,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-
       "mrjones2014/nvim-ts-rainbow",
       "drybalka/tree-climber.nvim",
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
       { "folke/twilight.nvim",    config = true },
       { "windwp/nvim-ts-autotag", config = true },
