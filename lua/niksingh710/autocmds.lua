@@ -10,3 +10,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
 	pattern = "*",
 })
+
+vim.cmd([[autocmd CursorHold * silent! lua vim.lsp.buf.clear_references()]])

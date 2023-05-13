@@ -163,6 +163,11 @@ if persistence then
 	})
 	local mappings = {
 		["<leader>"] = {
+			["v"] = {
+				name = "split",
+				v = { "<cmd>vsplit<cr>", "Vertical Split" },
+				s = { "<cmd>split<cr>", "Horizonatal Split" },
+			},
 			["S"] = {
 				name = "Session",
 				d = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
@@ -183,3 +188,9 @@ vim.g.firenvim_config = {
 		},
 	},
 }
+
+if vim.fn.exists(":ASToggle") ~= 0 then
+	map("n", {
+		["<leader>A"] = { "<cmd>ASToggle<cr>", "Zen Mode" },
+	})
+end

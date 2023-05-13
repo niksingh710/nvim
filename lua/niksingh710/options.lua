@@ -69,6 +69,8 @@ o.iskeyword:append("-")
 o.listchars:append("space:·")
 
 vim.g.floating_window_options = {
-  border = "single",
+  border = "rounded",
   winblend = 10,
 }
+vim.opt.completeopt:append("noinsert")
+vim.g.lsp_async_completion = true

@@ -35,7 +35,7 @@ return {
     dependencies = {
       "mrjones2014/nvim-ts-rainbow",
       "drybalka/tree-climber.nvim",
-      "nvim-treesitter/nvim-treesitter-refactor",
+      "nvim-treesitter/nvim-treesitter-textobjects",
       { "folke/twilight.nvim",    config = true },
       { "windwp/nvim-ts-autotag", config = true },
     },
@@ -115,25 +115,10 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
       "f3fora/cmp-spell",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
       "David-Kunz/cmp-npm",
       "tamago324/cmp-zsh",
       "Shougo/deol.nvim",
       -- "tzachar/cmp-ai",
-      {
-        "codota/tabnine-nvim",
-        build = "./dl_binaries.sh",
-        config = function()
-          require("tabnine").setup({
-            exclude_filetypes = { "TelescopePrompt" },
-          })
-        end,
-      },
-      {
-        "tzachar/cmp-tabnine",
-        build = "./install.sh",
-        dependencies = "hrsh7th/nvim-cmp",
-      },
     },
   },
   {
@@ -156,7 +141,6 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   { "jose-elias-alvarez/null-ls.nvim" },
-  "RRethy/vim-illuminate",
   "lukas-reineke/indent-blankline.nvim",
   "goolord/alpha-nvim",
   "axieax/urlview.nvim",
@@ -252,4 +236,5 @@ return {
       vim.fn["firenvim#install"](0)
     end,
   },
+  "Pocco81/auto-save.nvim",
 }
