@@ -31,4 +31,5 @@ require("niksingh710.lsp.lspsaga")
 require("niksingh710.lsp.cmp")
 require("niksingh710.lsp.null-ls")
 require("niksingh710.lsp")
+require("niksingh710.gitsigns")
 vim.keymap.set("i", "<esc>", "<esc>", { noremap = true, silent = true }) --fall back protections

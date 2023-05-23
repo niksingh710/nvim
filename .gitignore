@@ -3,3 +3,4 @@
 ./nvim/session
 *session*
 ./lazy-lock.json
+lazy-lock.json
