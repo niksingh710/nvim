@@ -1,125 +1,136 @@
 local treesitter = srequire("nvim-treesitter.configs")
 if not treesitter then
-  return
+    return
 end
 
 treesitter.setup({
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vimdoc", "vim" },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-    config = {
-      -- Languages that have a single comment style
-      typescript = "// %s",
-      css = "/* %s */",
-      scss = "/* %s */",
-      html = "<!-- %s -->",
-      svelte = "<!-- %s -->",
-      vue = "<!-- %s -->",
-      json = "",
+    -- Add languages to be installed here that you want installed for treesitter
+    ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vimdoc", "vim" },
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+        config = {
+            -- Languages that have a single comment style
+            typescript = "// %s",
+            css = "/* %s */",
+            scss = "/* %s */",
+            html = "<!-- %s -->",
+            svelte = "<!-- %s -->",
+            vue = "<!-- %s -->",
+            json = "",
+        },
     },
-  },
-  textsubjects = {
-    enable = false,
-    keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-big" },
-  },
-  playground = {
-    enable = true,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,  -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-  },
-  -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = true,
-  refactor = {
-    highlight_definitions = false,
-  },
+    textsubjects = {
+        enable = false,
+        keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-big" },
+    },
+    playground = {
+        enable = true,
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+        max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    },
+    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    auto_install = true,
+    refactor = {
+        highlight_definitions = false,
+    },
 
-  highlight = { enable = true },
-  indent = {
-    enable = true,
-    -- disable = { "python" }
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<C-n>",
-      node_incremental = "<C-n>",
-      scope_incremental = "<C-s-s>",
-      node_decremental = "<C-p>",
+    highlight = {
+        enable = true,
+        -- additional_vim_regex_highlighting = { "latex" },
+        use_languagetree = false,
+        -- disable = function(_, buf)
+        --     local max_filesize = 100 * 1024 -- 100 KB
+        --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        --     if ok and stats and stats.size > max_filesize then
+        --         return true
+        --     end
+        -- end,
     },
-  },
-  textobjects = {
-    select = {
-      enable = false,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["aa"] = "@parameter.outer",
-        ["ia"] = "@parameter.inner",
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
+    indent = {
+        enable = true,
+        -- disable = { "python" }
     },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<C-l>",
+            node_incremental = "<C-l>",
+            scope_incremental = "<C-s-s>",
+            node_decremental = "<C-p>",
+        },
     },
-    --swap = {
-    -- enable = true,
-    --swap_next = {
-    -- ['<leader>a'] = '@parameter.inner',
-    --},
-    --swap_previous = {
-    -- ['<leader>A'] = '@parameter.inner',
-    --},
-    -- },
-  },
+    textobjects = {
+        select = {
+            enable = false,
+            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["aa"] = "@parameter.outer",
+                ["ia"] = "@parameter.inner",
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+            },
+        },
+        move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+                ["]m"] = "@function.outer",
+                ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer",
+            },
+        },
+        --swap = {
+        -- enable = true,
+        --swap_next = {
+        -- ['<leader>a'] = '@parameter.inner',
+        --},
+        --swap_previous = {
+        -- ['<leader>A'] = '@parameter.inner',
+        --},
+        -- },
+    },
 })
-vim.cmd([[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable                     " Disable folding at startup.
-]])
+-- vim.cmd([[
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+-- set nofoldenable                     " Disable folding at startup.
+-- ]])
 
 local tree = srequire("tree-climber")
 if not tree then
-  return
+    return
 end
 local mappings = {
-  ["<a-H>"] = { tree.goto_parent, "Parent node" },
-  ["<a-L>"] = { tree.goto_child, "Child node" },
-  ["<a-J>"] = { tree.goto_next, "Next node" },
-  ["<a-K>"] = { tree.goto_prev, "Previous node" },
-  ["<c-s-h>"] = tree.highlight_node,
+    ["<a-H>"] = { tree.goto_parent, "Parent node" },
+    ["<a-L>"] = { tree.goto_child, "Child node" },
+    ["<a-J>"] = { tree.goto_next, "Next node" },
+    ["<a-K>"] = { tree.goto_prev, "Previous node" },
+    ["<c-s-h>"] = tree.highlight_node,
 }
 local mappingsV = {
-  ["H"] = { tree.goto_parent, "Parent node" },
-  ["L"] = { tree.goto_child, "Child node" },
-  ["J"] = { tree.goto_next, "Next node" },
-  ["K"] = { tree.goto_prev, "Previous node" },
-  ["<c-s-h>"] = tree.highlight_node,
+    ["H"] = { tree.goto_parent, "Parent node" },
+    ["L"] = { tree.goto_child, "Child node" },
+    ["J"] = { tree.goto_next, "Next node" },
+    ["K"] = { tree.goto_prev, "Previous node" },
+    ["<c-s-h>"] = tree.highlight_node,
 }
 map("n", mappings)
 map("x", mappingsV)

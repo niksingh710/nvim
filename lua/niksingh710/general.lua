@@ -2,30 +2,30 @@
 
 local urlview = srequire("urlview")
 if urlview then
-	urlview.setup({
-		default_action = "system",
-	})
-	map("n", {
-		["<leader>"] = {
-			["U"] = {
-				name = "Url Handler",
-				["o"] = { "<Cmd>UrlView buffer<CR>", "Urlview!!" },
-				["c"] = { "<Cmd>UrlView buffer action=clipboard<CR>", "Urlview!!" },
-			},
-		},
-	}, true)
+  urlview.setup({
+    default_action = "system",
+  })
+  map("n", {
+    ["<leader>"] = {
+      ["U"] = {
+        name = "Url Handler",
+        ["o"] = { "<Cmd>UrlView buffer<CR>", "Browser!!" },
+        ["c"] = { "<Cmd>UrlView buffer action=clipboard<CR>", "Clipboard!!" },
+      },
+    },
+  }, true)
 end
 
 if vim.fn.exists(":Twilight") ~= 0 then
-	map("n", {
-		["<leader>T"] = { "<cmd>Twilight<cr>", "Twilight" },
-	})
+  map("n", {
+    ["<leader>T"] = { "<cmd>Twilight<cr>", "Twilight" },
+  })
 end
 
 if vim.fn.exists(":ZenMode") ~= 0 then
-	map("n", {
-		["<leader>Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
-	})
+  map("n", {
+    ["<leader>Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
+  })
 end
 
 -- local notifyvisual = srequire("notify")
@@ -106,32 +106,32 @@ end
 -- end
 local lastplace = srequire("nvim-lastplace")
 if lastplace then
-	lastplace.setup({
-		lastplace_ignore_buftype = { "quickfix", "nofile", "help", "NvimTree", "alpha" },
-		lastplace_ignore_filetype = {
-			"gitcommit",
-			"gitrebase",
-			"svn",
-			"hgcommit",
-		},
-		lastplace_open_folds = true,
-	})
+  lastplace.setup({
+    lastplace_ignore_buftype = { "quickfix", "nofile", "help", "NvimTree", "alpha" },
+    lastplace_ignore_filetype = {
+      "gitcommit",
+      "gitrebase",
+      "svn",
+      "hgcommit",
+    },
+    lastplace_open_folds = true,
+  })
 end
 
 local neoscroll = srequire("neoscroll")
 if neoscroll then
-	neoscroll.setup({
-		-- All these keys will be mapped to their corresponding default scrolling animation
-		mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
-		hide_cursor = true, -- Hide cursor while scrolling
-		stop_eof = true, -- Stop at <EOF> when scrolling downwards
-		use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-		respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-		cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-		easing_function = nil, -- Default easing function
-		pre_hook = nil, -- Function to run before the scrolling animation starts
-		post_hook = nil, -- Function to run after the scrolling animation ends
-	})
+  neoscroll.setup({
+    -- All these keys will be mapped to their corresponding default scrolling animation
+    mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+    hide_cursor = true,        -- Hide cursor while scrolling
+    stop_eof = true,           -- Stop at <EOF> when scrolling downwards
+    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = nil,     -- Default easing function
+    pre_hook = nil,            -- Function to run before the scrolling animation starts
+    post_hook = nil,           -- Function to run after the scrolling animation ends
+  })
 end
 
 -- local gotopreview = srequire("goto-preview")
@@ -157,40 +157,40 @@ end
 -- end
 local persistence = srequire("persistence")
 if persistence then
-	persistence.setup({
-		dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
-		options = { "buffers", "curdir", "tabpages", "winsize" },
-	})
-	local mappings = {
-		["<leader>"] = {
-			["v"] = {
-				name = "split",
-				v = { "<cmd>vsplit<cr>", "Vertical Split" },
-				s = { "<cmd>split<cr>", "Horizonatal Split" },
-			},
-			["S"] = {
-				name = "Session",
-				d = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
-				["."] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
-				Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
-			},
-		},
-	}
+  persistence.setup({
+    dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
+    options = { "buffers", "curdir", "tabpages", "winsize" },
+  })
+  local mappings = {
+    ["<leader>"] = {
+      ["v"] = {
+        name = "split",
+        v = { "<cmd>vsplit<cr>", "Vertical Split" },
+        s = { "<cmd>split<cr>", "Horizonatal Split" },
+      },
+      ["S"] = {
+        name = "Session",
+        d = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+        ["."] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+        Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
+      },
+    },
+  }
 
-	map("n", mappings, true)
+  map("n", mappings, true)
 end
 
 vim.g.firenvim_config = {
-	localSettings = {
-		[".*"] = {
-			takeover = "never",
-			cmdline = "firenvim",
-		},
-	},
+  localSettings = {
+    [".*"] = {
+      takeover = "never",
+      cmdline = "firenvim",
+    },
+  },
 }
 
 if vim.fn.exists(":ASToggle") ~= 0 then
-	map("n", {
-		["<leader>A"] = { "<cmd>ASToggle<cr>", "Zen Mode" },
-	})
+  map("n", {
+    ["<leader>A"] = { "<cmd>ASToggle<cr>", "Zen Mode" },
+  })
 end
