@@ -76,7 +76,7 @@ gitsigns.setup({
     end, { expr = true })
 
     map("n", {
-      ["<leader>G"] = {
+      ["<leader>g"] = {
         name = "Git signs",
         ["s"] = { gs.stage_hunk, "Stage Hunk" },
         ["r"] = { gs.reset_hunk, "Reset Hunk" },
