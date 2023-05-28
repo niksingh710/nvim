@@ -5,3 +5,5 @@
 ./lazy-lock.json
 *lazy-lock.json*
 lazy-lock.json
+name.lua
+lua/niksingh710/name.lua
