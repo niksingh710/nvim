@@ -171,13 +171,13 @@ mason_lsp.setup_handlers({
   end,
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info= " " }
 if icons.diagnostics then
   signs = {
     Error = icons.diagnostics.Error,
     Warn = icons.diagnostics.Warning,
     Hint = icons.diagnostics.Hint,
-    Info = icons.diagnostics.Info,
+    Info = icons.diagnostics.Information,
   }
 end
 for type, icon in pairs(signs) do
