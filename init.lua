@@ -21,6 +21,7 @@ require("niksingh710.telescope")
 require("niksingh710.nvim-tree")
 require("niksingh710.treesitter")
 require("niksingh710.indentline")
+require("niksingh710.neorg")
 
 require("niksingh710.alpha")
 

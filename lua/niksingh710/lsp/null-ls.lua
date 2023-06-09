@@ -42,6 +42,7 @@ null_ls.setup({
     null_ls.builtins.formatting.goimports_reviser,
     null_ls.builtins.formatting.golines,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.shfmt,
     -- null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.prettier,
@@ -52,6 +53,8 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.flake8,
+    null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.diagnostics.ruff,
     -- null_ls.builtins.diagnostics.pylsp,
 
     null_ls.builtins.completion.spell,

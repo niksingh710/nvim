@@ -38,4 +38,4 @@ This much should get you going and extra is all what you discover (fire.nvim) �
 ## 🗒️NOTE
 
 As i have COPILOT access i have added it as a plugin in [list.lua](./nvim/lua/niksingh710/list.lua)
-if you want to disable it comment it out in thae file
+if you want to disable it comment it out in that file

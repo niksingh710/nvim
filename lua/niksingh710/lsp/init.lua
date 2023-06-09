@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
       name = "Goto",
       ["d"] = { "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", "Definition" },
       ["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration" },
-      ["r"] = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Goto References" },
+      ["r"] = { "<cmd>Telescope lsp_references theme=dropdown<cr>", "Goto References" },
       ["I"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation" },
       ["t"] = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition" },
       ["l"] = {
@@ -136,6 +136,14 @@ if not mason then
   return
 end
 mason.setup({
+  ensure_installed = {
+    -- "debugpy",
+    "black",
+    "pyright",
+    "mypy",
+    "ruff",
+    "jq",
+  },
   ui = {
     border = "rounded",
   },
@@ -171,7 +179,7 @@ mason_lsp.setup_handlers({
   end,
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info= " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 if icons.diagnostics then
   signs = {
     Error = icons.diagnostics.Error,

@@ -38,21 +38,20 @@ telescope.setup({
       },
     },
     file_ignore_patterns = {
-      "./node_modules/*",
-      "node_modules",
-      "^node_modules/*",
-      "node_modules/*",
-
-      "./git/*",
-
-      "./tmp/*",
-      "tmp",
-      "^tmp/*",
-      "tmp/*",
+      -- "./node_modules/*",
+      -- "node_modules",
+      -- "^node_modules/*",
+      -- "node_modules/*",
+      --
+      -- "./git/*",
+      --
+      -- "./tmp/*",
+      -- "tmp",
+      -- "^tmp/*",
+      -- "tmp/*",
     },
   },
 })
-
 telescope.load_extension("fzf")
 
 map("n", {
@@ -60,7 +59,7 @@ map("n", {
     ["s"] = {
       name = "Search",
       ["d"] = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
-      ["f"] = { "<cmd>Telescope find_files<cr>", "Search Find files" },
+      ["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Search Find files" },
       ["r"] = { "<cmd>Telescope oldfiles<cr>", "Search Recent files" },
       ["k"] = { "<cmd>Telescope keymaps<cr>", "Search Keymaps" },
       ["s"] = { "<cmd>Telescope builtin<cr>", "Search Telescope" },
@@ -70,6 +69,7 @@ map("n", {
       ["t"] = { "<cmd>TodoTelescope theme=<cr>", "Fuzzy Buffer Search" },
       ["b"] = { "<cmd>Telescope buffers<cr>", "Search Buffers" },
       ["c"] = { "<cmd>Telescope commands<cr>", "Search Commands" },
+      ["C"] = { "<cmd>Cheatsheet<cr>", "Search Cheatsheet" },
       ["m"] = { "<cmd>Telescope marks<cr>", "Search Marks" },
       ["o"] = { "<cmd>Telescope vim_options<cr>", "Search Vim Options" },
       ["p"] = { "<cmd>Telescope projects<cr>", "Search Projects" },

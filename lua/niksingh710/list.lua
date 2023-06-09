@@ -1,7 +1,25 @@
 return {
   "folke/tokyonight.nvim",
   "folke/which-key.nvim",
-  { "folke/zen-mode.nvim",      config = true },
+  "ThePrimeagen/vim-be-good",
+  "DaikyXendo/nvim-material-icon",
+  {
+    "sudormrfbin/cheatsheet.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+  },
+  -- { "echasnovski/mini.animate", version = false }, -- For Animations
+  { "folke/zen-mode.nvim", config = true },
+  { "mbbill/undotree" },
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
+  },
+
   -- {
   -- 	"folke/noice.nvim",
   -- 	dependencies = {
@@ -9,7 +27,7 @@ return {
   -- 		-- { "rcarriga/nvim-notify" },
   -- 	},
   -- },
-  { "folke/todo-comments.nvim", config = true },
+  { "folke/todo-comments.nvim",                 config = true },
   "christoomey/vim-tmux-navigator",
   {
     "nvim-telescope/telescope.nvim",
@@ -30,8 +48,9 @@ return {
       "mrjones2014/nvim-ts-rainbow",
       "drybalka/tree-climber.nvim",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      { "folke/twilight.nvim",    config = true },
-      { "windwp/nvim-ts-autotag", config = true },
+      { "nvim-treesitter/nvim-treesitter-context" },
+      { "folke/twilight.nvim",                    config = true },
+      { "windwp/nvim-ts-autotag",                 config = true },
     },
     build = ":TSUpdate",
   },
@@ -152,7 +171,7 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   "goolord/alpha-nvim",
   "axieax/urlview.nvim",
-  { "nvimdev/hlsearch.nvim", event = "BufRead", config = true },
+  { "nvimdev/hlsearch.nvim",          event = "BufRead", config = true },
   "ellisonleao/glow.nvim",
   {
     "iamcco/markdown-preview.nvim",
@@ -174,9 +193,6 @@ return {
   {
     "ggandor/leap.nvim",
     name = "leap",
-    dependencies = {
-      { "ggandor/flit.nvim", config = true },
-    },
     config = function()
       require("leap").add_default_mappings()
     end,
@@ -244,6 +260,20 @@ return {
       vim.fn["firenvim#install"](0)
     end,
   },
+  { "xiyaowong/transparent.nvim" },
+  "marko-cerovac/material.nvim",
+  "tiagovla/tokyodark.nvim",
+  "nyoom-engineering/oxocarbon.nvim",
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
   -- { "lukas-reineke/lsp-format.nvim", config = true },
   -- "Pocco81/auto-save.nvim",
   "imsnif/kdl.vim",
@@ -252,4 +282,15 @@ return {
   "lewis6991/gitsigns.nvim",
   -- "uZer/pywal16.nvim",
   -- { "Deep-Six/pywal-lush",   dependencies = { "rktjmp/lush.nvim" } },
+  -- Debuggers
+  -- {
+  --   "mfussenegger/nvim-dap-python",
+  --   ft = "python",
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --     {"theHamsta/nvim-dap-virtual-text",config = true},
+  --     {"rcarriga/nvim-dap-ui",config = true},
+  --     {"nvim-telescope/telescope-dap.nvim",config = true},
+  --   },
+  -- },
 }

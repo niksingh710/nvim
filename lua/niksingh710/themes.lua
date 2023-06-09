@@ -1,18 +1,32 @@
 ---@diagnostic disable: undefined-field
-local theme = srequire("tokyonight")
-if not theme then
-  Theme = "auto"
-  return nil
+local trans = srequire("transparent")
+if trans then
+  trans.setup({
+    extra_groups = {
+      -- "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+      "NvimTreeNormal", -- NvimTree
+    },
+    lualine_style = "default",
+    -- lualine_style = "stealth",
+  })
 end
-Theme = "tokyonight"
-theme.setup({
-  transparent = true,
-  styles = {
-    sidebars = "transparent",
-    floats = "transparent",
-  },
-})
-vim.cmd([[colorscheme tokyonight]])
+
+-- local theme = srequire("material")
+-- if not theme then
+--   return nil
+-- end
+--
+-- -- vim.g.material_style = "deep ocean"
+-- vim.g.material_style = "deep ocean"
+-- vim.g.material_disable_background = true
+-- vim.g.material_italic_comments = false
+
+vim.g.tokyodark_transparent_background = true
+vim.g.tokyodark_enable_italic_comment = true
+vim.g.tokyodark_enable_italic = true
+vim.g.tokyodark_color_gamma = "1.0"
+
+vim.cmd([[colorscheme tokyodark]])
 
 local statusline_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
 local cursorline_hl = vim.api.nvim_get_hl_by_name("CursorLine", true)

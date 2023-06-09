@@ -17,7 +17,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
   dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-  dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+  dashboard.button("Q", "  Quit Neovim", ":qa<CR>"),
   dashboard.button(".", "  Last Session", "<cmd>lua require('persistence').load({ last = true })<cr>"),
   dashboard.button("d", "  Last Session of Dir", "<cmd>lua require('persistence').load()<cr>"),
 }
@@ -36,4 +36,4 @@ dashboard.opts.opts.noautocmd = true
 vim.cmd([[autocmd User AlphaReady echo 'ready']])
 alpha.setup(dashboard.opts)
 -- TODO: fix ready ready bug
--- map("n", { ["<leader>"] = { [";"] = { "<cmd>Alpha<CR>", "Dashboard" } } }, true)
+map("n", { ["<leader>"] = { [";"] = { "<cmd>Alpha<CR>", "Dashboard" } } }, true)

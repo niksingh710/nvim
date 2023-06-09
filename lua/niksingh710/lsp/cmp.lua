@@ -95,7 +95,6 @@ cmp.setup({
         cmp_tabnine = "[TabNine]",
       })[entry.source.name]
 
-
       if entry.source.name == "copilot" then
         vim_item.kind = icons.git.Octoface
         vim_item.kind_hl_group = "CmpItemKindCopilot"
@@ -132,12 +131,13 @@ cmp.setup({
   },
   sources = {
     { name = "copilot" },
-    { name = "luasnip" },
     { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "neorg" },
     { name = "nvim_lsp_document_symbol" },
     { name = "nvim_lsp_signature_help" },
     { name = "cmp_tabnine" },
-    { name = "buffer" },
     { name = "async_path" },
     { name = "emoji" },
     { name = "nerdfont" },

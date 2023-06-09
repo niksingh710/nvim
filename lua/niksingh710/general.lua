@@ -3,6 +3,12 @@
 local urlview = srequire("urlview")
 if urlview then
   urlview.setup({
+    default_title = "Links:",
+    -- Default picker to display links with
+    -- Options: "native" (vim.ui.select) or "telescope"
+    default_picker = "native",
+    -- Set the default protocol for us to prefix URLs with if they don't start with http/https
+    default_prefix = "https://",
     default_action = "system",
   })
   map("n", {
@@ -193,4 +199,39 @@ if vim.fn.exists(":ASToggle") ~= 0 then
   map("n", {
     ["<leader>A"] = { "<cmd>ASToggle<cr>", "Zen Mode" },
   })
+end
+
+-- local animate = srequire("mini.animate")
+-- if animate then
+--   animate.setup()
+-- end
+
+local web_devicons = srequire("nvim-web-devicons")
+if web_devicons then
+  local material_icon = srequire("nvim-material-icon")
+
+  if material_icon then
+    material_icon.setup({
+      -- your personnal icons can go here (to override)
+      -- you can specify color or cterm_color instead of specifying both of them
+      -- DevIcon will be appended to `name`
+      override = {
+        zsh = {
+          icon = "",
+          color = "#428850",
+          cterm_color = "65",
+          name = "Zsh",
+        },
+      },
+      -- globally enable different highlight colors per icon (default to true)
+      -- if set to false all icons will have the default icon's color
+      color_icons = true,
+      -- globally enable default icons (default to false)
+      -- will get overriden by `get_icons` option
+      default = true,
+    })
+    web_devicons.setup({
+      override = material_icon.get_icons(),
+    })
+  end
 end

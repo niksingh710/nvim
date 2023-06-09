@@ -3,7 +3,6 @@ local opts = {
   backup = false,
   cmdheight = 1,
   completeopt = { "menuone", "noselect" },
-  conceallevel = 0,
   fileencoding = "utf-8",
   hlsearch = true,
   pumheight = 10,
@@ -38,7 +37,7 @@ local opts = {
   splitright = true,
   foldmethod = "marker",
   list = false,
- softtabstop=4,
+  softtabstop = 4,
   termguicolors = true,
   syntax = "on",
   undofile = true,
@@ -55,6 +54,10 @@ local opts = {
   hidden = true,
   title = true,
   laststatus = 3,
+  conceallevel = 2,
+  autochdir = true,
+  wildoptions = "fuzzy",
+  cmdwinheight = 1,
   -- shell = "/usr/bin/bash",
 }
 
