@@ -1,7 +1,11 @@
 return {
   wk = {
     ["<leader>"] = {
-      ["o"] = { "<cmd>Lspsaga outline<cr>", "Outline" },
+      ["o"] = {
+        name = "Outline",
+        ["o"] = { "<cmd>Lspsaga outline<cr>", "Outline" },
+        ["p"] = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
+      },
       ["l"] = {
         name = "LSP",
         w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace Diagnostics" },

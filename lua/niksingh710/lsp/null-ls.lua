@@ -47,14 +47,14 @@ null_ls.setup({
     -- null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.black.with({
-      extra_args = { "--line-length=120", "--fast" },
+      extra_args = { "-l 120", "--fast", "--experimental-string-processing" },
     }),
 
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.flake8,
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.ruff,
+    -- null_ls.builtins.diagnostics.flake8,
+    null_ls.builtins.diagnostics.ruff.with({ extra_args = { "--extend-ignore=E501" } }),
+    -- null_ls.builtins.diagnostics.mypy.with({ command = { "python", "-m", "mypy" } }),
     -- null_ls.builtins.diagnostics.pylsp,
 
     null_ls.builtins.completion.spell,

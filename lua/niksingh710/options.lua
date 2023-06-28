@@ -53,8 +53,8 @@ local opts = {
   showcmd = false,
   hidden = true,
   title = true,
-  laststatus = 3,
-  conceallevel = 2,
+  laststatus = 2,
+  conceallevel = 3,
   autochdir = true,
   wildoptions = "fuzzy",
   cmdwinheight = 1,
@@ -78,3 +78,6 @@ vim.g.floating_window_options = {
 }
 vim.opt.completeopt:append("noinsert")
 vim.g.lsp_async_completion = true
+vim.cmd([[
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+]])

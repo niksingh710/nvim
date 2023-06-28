@@ -20,21 +20,25 @@ local normal = {
   ["<leader>a"] = { "gg0vG$", "Select All" },
   ["<s-h>"] = ":bprevious<cr>",
   ["<s-l>"] = ":bnext<cr>",
-  ["<c-a-k>"] = ":resize -2<cr>",
-  ["<c-a-j>"] = ":resize +2<cr>",
-  ["<c-a-l>"] = ":vertical resize -2<cr>",
-  ["<c-a-h>"] = ":vertical resize +2<cr>",
+  ["<c-a-j>"] = ":resize -1<cr>",
+  ["<c-a-k>"] = ":resize +1<cr>",
+  ["<c-a-l>"] = ":vertical resize -1<cr>",
+  ["<c-a-h>"] = ":vertical resize +1<cr>",
+  ["<leader>="] = { ":WindowsEqualize<cr>", "Equalize windows!" },
   ["<c-h>"] = "<c-w>h",
   ["<c-j>"] = "<c-w>j",
   ["<c-k>"] = "<c-w>k",
   ["<c-l>"] = "<c-w>l",
-  ["<leader>u"] = { ":UndotreeToggle<cr>", "Undo Tree"},
+  ["<leader>u"] = { ":UndotreeToggle<cr>", "Undo Tree" },
+  ["<leader><leader>"] = { filetypeSet, "Set Filetype" },
+  ["<c-a-=>"] = { "<C-a>", "Increase Number" },
+  ["<c-a-->"] = { "<C-x>", "Decrease Number" },
   -- highlight are in center
   ["n"] = "nzzzv",
   ["N"] = "Nzzzv",
   ["x"] = '"_x',
-  -- ["j"] = "jzz",
-  -- ["k"] = "kzz",
+  ["j"] = "gj",
+  ["k"] = "gk",
 }
 local visual = {
   ["<c-s>"] = "<esc>:w<cr>",
@@ -62,7 +66,6 @@ local visual = {
 map("i", insert)
 map("n", normal)
 map("x", visual)
-
 
 -- mapping for the vim command prompt
 vim.opt.wildcharm = ("\t"):byte()

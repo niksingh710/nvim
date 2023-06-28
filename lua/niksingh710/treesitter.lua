@@ -5,7 +5,7 @@ end
 
 treesitter.setup({
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vimdoc", "vim" },
+  ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vimdoc", "vim", "markdown", "markdown_inline"},
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

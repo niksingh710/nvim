@@ -3,6 +3,7 @@ map("n", {
     ["/"] = { "<plug>(comment_toggle_linewise_current)", "Comment" },
     ["l"] = {
       ["k"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Goto Previous diagnosticss" },
+      ["f"] = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
       ["j"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Goto Next diagnosticss" },
       ["i"] = { "<cmd>LspInfo<cr>", "Lsp Info" },
       ["d"] = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
@@ -27,7 +28,6 @@ local on_attach = function(client, bufnr)
       ["l"] = {
         name = "Lsp",
         ["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
-        ["f"] = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
       },
     },
     ["g"] = {
@@ -64,16 +64,27 @@ local servers = {
   gopls = {},
   rust_analyzer = {},
   tsserver = {},
-  pyright = {
-    python = {
-      analysis = {
-        typeCheckingMode = "off",
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        diagnosticMode = "workspace",
-      },
-    },
+  ruff_lsp = {
+    args = { "--extend-ignore=E501" },
   },
+  -- pylsp = {
+  --   plugins = {
+  --     ruff = {
+  --       enabled = true,
+  --       extendSelect = { "I" },
+  --     },
+  --   },
+  -- },
+  -- pyright = {
+  --   python = {
+  --     analysis = {
+  --       typeCheckingMode = "off",
+  --       autoSearchPaths = true,
+  --       useLibraryCodeForTypes = true,
+  --       diagnosticMode = "workspace",
+  --     },
+  --   },
+  -- },
   emmet_ls = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
     init_options = {
@@ -138,10 +149,10 @@ end
 mason.setup({
   ensure_installed = {
     -- "debugpy",
-    "black",
-    "pyright",
-    "mypy",
-    "ruff",
+    -- "black",
+    -- "pyright",
+    -- "mypy",
+    -- "ruff",
     "jq",
   },
   ui = {
@@ -171,11 +182,19 @@ end
 
 mason_lsp.setup_handlers({
   function(server_name)
-    lspconfig[server_name].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    })
+    if server_name == "ruff_lsp" then
+      lspconfig[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        init_options = { settings = servers[server_name] },
+      })
+    else
+      lspconfig[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+      })
+    end
   end,
 })
 
@@ -192,3 +211,4 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+

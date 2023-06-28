@@ -1,8 +1,8 @@
 return {
-  "folke/tokyonight.nvim",
   "folke/which-key.nvim",
   "ThePrimeagen/vim-be-good",
   "DaikyXendo/nvim-material-icon",
+  "vimwiki/vimwiki",
   {
     "sudormrfbin/cheatsheet.nvim",
     dependencies = {
@@ -11,7 +11,27 @@ return {
       { "nvim-lua/plenary.nvim" },
     },
   },
-  -- { "echasnovski/mini.animate", version = false }, -- For Animations
+  {
+    "tomiis4/Hypersonic.nvim",
+    cmd = "Hypersonic",
+    config = true,
+  },
+  {
+    "anuvyklack/windows.nvim",
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require("windows").setup()
+    end,
+  },
+  -- { "edluffy/specs.nvim" },
+  "nvim-treesitter/playground",
+  -- { "echasnovski/mini.animate", version = false, config = true },
   { "folke/zen-mode.nvim", config = true },
   { "mbbill/undotree" },
   {
@@ -20,19 +40,19 @@ return {
     dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
   },
 
-  -- {
-  -- 	"folke/noice.nvim",
-  -- 	dependencies = {
-  -- 		"MunifTanjim/nui.nvim",
-  -- 		-- { "rcarriga/nvim-notify" },
-  -- 	},
-  -- },
+  -- lazy.nvim
+
   { "folke/todo-comments.nvim",                 config = true },
   "christoomey/vim-tmux-navigator",
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.1",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "jvgrootveld/telescope-zoxide" },
+      { "cljoly/telescope-repo.nvim" },
+      -- { "AckslD/nvim-neoclip.lua",     config = true },
+    },
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
   {
@@ -59,7 +79,23 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim",       config = true },
+      {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        config = function()
+          require("fidget").setup({
+            text = {
+              spinner = "moon",
+            },
+            window = {
+              relative = "win", -- where to anchor, either "win" or "editor"
+              blend = 20, -- &winblend for the window
+              zindex = nil, -- the zindex value for the window
+              border = "none", -- style of border for the fidget window
+            },
+          })
+        end,
+      },
       "folke/neodev.nvim",
     },
   },
@@ -68,6 +104,7 @@ return {
     "zbirenbaum/copilot-cmp",
     dependencies = {
       "zbirenbaum/copilot.lua",
+      "lukas-reineke/cmp-under-comparator",
       config = function()
         require("copilot").setup({
           -- suggestion = { enabled = false },
@@ -132,8 +169,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-emoji",
-      "chrisgrieser/cmp-nerdfont",
       -- "hrsh7th/cmp-path",
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-cmdline",
@@ -141,7 +176,7 @@ return {
       { "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
-      "f3fora/cmp-spell",
+      -- "f3fora/cmp-spell",
       "David-Kunz/cmp-npm",
       "tamago324/cmp-zsh",
       "Shougo/deol.nvim",
@@ -185,34 +220,95 @@ return {
     "ethanholz/nvim-lastplace",
     event = "BufRead",
   },
-
+  {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({})
+      map("i", {
+        ["<c-.>"] = "<cmd>IconPickerInsert<cr>",
+      })
+      map("n", {
+        ["<leader>si"] = { "<cmd>IconPickerYank<cr>", "Icon Picker Yank" },
+      })
+    end,
+  },
   {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
   },
+
+  -- {
+  -- 	"ggandor/leap.nvim",
+  -- 	name = "leap",
+  -- 	config = function()
+  -- 		require("leap").add_default_mappings()
+  -- 	end,
+  -- },
   {
-    "ggandor/leap.nvim",
-    name = "leap",
-    config = function()
-      require("leap").add_default_mappings()
-    end,
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          -- default options: exact mode, multi window, all directions, with a backdrop
+          require("flash").jump({
+            search = {
+              mode = function(str)
+                return "\\<" .. str
+              end,
+            },
+          })
+        end,
+        desc = "flash",
+      },
+      {
+        "s",
+        mode = { "n", "o", "x" },
+        function()
+          -- show labeled treesitter nodes around the cursor
+          require("flash").treesitter()
+        end,
+        desc = "flash treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          -- jump to a remote location to execute the operator
+          require("flash").remote()
+        end,
+        desc = "remote flash",
+      },
+      {
+        "R",
+        mode = { "n", "o", "x" },
+        function()
+          -- show labeled treesitter nodes around the search matches
+          require("flash").treesitter_search()
+        end,
+        desc = "treesitter search",
+      },
+    },
   },
   {
     "glepnir/lspsaga.nvim",
-    event = "LspAttach",
+    event = "lspattach",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
-      --Please make sure you install markdown and markdown_inline parser
+      --please make sure you install markdown and markdown_inline parser
       { "nvim-treesitter/nvim-treesitter" },
     },
   },
   {
     "nacro90/numb.nvim",
-    event = "BufRead",
+    event = "bufread",
     config = function()
       require("numb").setup({
-        show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+        show_numbers = true, -- enable 'number' for the window while peeking
+        show_cursorline = true, -- enable 'cursorline' for the window while peeking
       })
     end,
   },
@@ -220,39 +316,43 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "css", "scss", "html", "javascript" }, {
-        RGB = true,  -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        RRGGBBAA = true, -- #RRGGBBAA hex codes
-        rgb_fn = true, -- CSS rgb() and rgba() functions
-        hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = true,  -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        rgb = true,  -- #rgb hex codes
+        rrggbb = true, -- #rrggbb hex codes
+        rrggbbaa = true, -- #rrggbbaa hex codes
+        rgb_fn = true, -- css rgb() and rgba() functions
+        hsl_fn = true, -- css hsl() and hsla() functions
+        css = true,  -- enable all css features: rgb_fn, hsl_fn, names, rgb, rrggbb
+        css_fn = true, -- enable all css *functions*: rgb_fn, hsl_fn
       })
     end,
   },
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "bufreadpre", -- this will only start session saving when an actual file was opened
+  --   lazy = true,
+  -- },
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    lazy = true,
+    "olimorris/persisted.nvim",
+    config = true,
   },
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup({
-        api_key_cmd = "echo $OPENAI_API_KEY",
-      })
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
+  -- {
+  --   "jackmort/chatgpt.nvim",
+  --   event = "verylazy",
+  --   config = function()
+  --     require("chatgpt").setup({
+  --       api_key_cmd = "echo $openai_api_key",
+  --     })
+  --   end,
+  --   dependencies = {
+  --     "muniftanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
   {
     "glacambre/firenvim",
-    -- Lazy load firenvim
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    -- lazy load firenvim
+    -- explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
     cond = not not vim.g.started_by_firenvim,
     build = function()
       ---@diagnostic disable-next-line: assign-type-mismatch
@@ -260,10 +360,6 @@ return {
       vim.fn["firenvim#install"](0)
     end,
   },
-  { "xiyaowong/transparent.nvim" },
-  "marko-cerovac/material.nvim",
-  "tiagovla/tokyodark.nvim",
-  "nyoom-engineering/oxocarbon.nvim",
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -293,4 +389,75 @@ return {
   --     {"nvim-telescope/telescope-dap.nvim",config = true},
   --   },
   -- },
+  {
+    "stevearc/oil.nvim",
+    opts = {
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["<C-s>"] = "actions.select_vsplit",
+        ["<C-h>"] = "actions.select_split",
+        ["<C-t>"] = "actions.select_tab",
+        ["<C-p>"] = "actions.preview",
+        ["<C-c>"] = "actions.close",
+        ["<C-l>"] = "actions.refresh",
+        ["<s-h>"] = "actions.parent",
+        ["<s-l>"] = "actions.select",
+        ["<cr>"] = "actions.select",
+        ["s-<CR>"] = "actions.open_cwd",
+        ["`"] = "actions.cd",
+        ["~"] = "actions.tcd",
+        ["g."] = "actions.toggle_hidden",
+      },
+    },
+  },
+  {
+    "itchyny/calendar.vim",
+    config = function()
+      vim.cmd([[
+      let g:calendar_google_calendar = 1
+      let g:calendar_google_task = 1
+      source ~/.cache/calendar.vim/credentials.vim
+      ]])
+      map("n", { ["<leader>C"] = { ":Calendar<CR>", "Calender" } })
+    end,
+  },
+  -- Themes
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  "nyoom-engineering/oxocarbon.nvim",
+  "folke/tokyonight.nvim",
+  "xiyaowong/transparent.nvim",
+  {
+    "marko-cerovac/material.nvim",
+    opts = {
+      plugins = { -- Uncomment the plugins that you use to highlight them
+        -- Available plugins:
+        "dap",
+        "dashboard",
+        "gitsigns",
+        "hop",
+        "indent-blankline",
+        "lspsaga",
+        "mini",
+        "neogit",
+        "neorg",
+        "nvim-cmp",
+        "nvim-navic",
+        "nvim-tree",
+        "nvim-web-devicons",
+        "sneak",
+        "telescope",
+        "trouble",
+        "which-key",
+      },
+    },
+  },
+  "tiagovla/tokyodark.nvim",
+  {
+    "oncomouse/lushwal.nvim",
+    cmd = { "LushwalCompile" },
+    dependencies = {
+      { "rktjmp/lush.nvim" },
+      { "rktjmp/shipwright.nvim" },
+    },
+  },
 }

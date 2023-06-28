@@ -16,10 +16,9 @@ end
 --   return nil
 -- end
 --
--- -- vim.g.material_style = "deep ocean"
--- vim.g.material_style = "deep ocean"
--- vim.g.material_disable_background = true
--- vim.g.material_italic_comments = false
+vim.g.material_style = "deep ocean"
+vim.g.material_disable_background = true
+vim.g.material_italic_comments = false
 
 vim.g.tokyodark_transparent_background = true
 vim.g.tokyodark_enable_italic_comment = true

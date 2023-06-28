@@ -1,5 +1,4 @@
 -- This executes at end
-
 local urlview = srequire("urlview")
 if urlview then
   urlview.setup({
@@ -161,29 +160,36 @@ end
 -- 	}
 -- 	map("n", mapping, true)
 -- end
-local persistence = srequire("persistence")
-if persistence then
-  persistence.setup({
-    dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
-    options = { "buffers", "curdir", "tabpages", "winsize" },
-  })
-  local mappings = {
-    ["<leader>"] = {
-      ["v"] = {
-        name = "split",
-        v = { "<cmd>vsplit<cr>", "Vertical Split" },
-        s = { "<cmd>split<cr>", "Horizonatal Split" },
-      },
-      ["S"] = {
-        name = "Session",
-        d = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
-        ["."] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
-        Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
-      },
+-- local persistence = srequire("persistence")
+-- if persistence then
+--   persistence.setup({
+--     dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
+--     options = { "buffers", "curdir", "tabpages", "winsize" },
+--   })
+local mappings = {
+  ["<leader>"] = {
+    ["v"] = {
+      name = "split",
+      v = { "<cmd>vsplit<cr>", "Vertical Split" },
+      s = { "<cmd>split<cr>", "Horizonatal Split" },
     },
-  }
+    ["S"] = {
+      name = "Session",
+      d = { ":SessionLoad<cr>", "Restore last session for current dir" },
+      ["."] = { ":SessionLoadLast<cr>", "Restore last session" },
+      q = { ":SessionDelete<cr>:quit!<cr>", "Quit without saving session" },
+      l = { ":Telescope persisted<cr>", "Telescope for persisted Session" },
+    },
+  },
+}
 
-  map("n", mappings, true)
+map("n", mappings, true)
+
+local hypersonic = srequire("hypersonic")
+if hypersonic then
+  map("v", {
+    ["<leader>h"] = { ":Hypersonic<cr>", "Hypersonic" },
+  })
 end
 
 vim.g.firenvim_config = {
@@ -197,14 +203,9 @@ vim.g.firenvim_config = {
 
 if vim.fn.exists(":ASToggle") ~= 0 then
   map("n", {
-    ["<leader>A"] = { "<cmd>ASToggle<cr>", "Zen Mode" },
+    ["<leader>A"] = { "<cmd>ASToggle<cr>", "Auto Save Toggle" },
   })
 end
-
--- local animate = srequire("mini.animate")
--- if animate then
---   animate.setup()
--- end
 
 local web_devicons = srequire("nvim-web-devicons")
 if web_devicons then
@@ -235,3 +236,21 @@ if web_devicons then
     })
   end
 end
+
+-- require('specs').setup{
+--     show_jumps  = true,
+--     min_jump = 30,
+--     popup = {
+--         delay_ms = 0, -- delay before popup displays
+--         inc_ms = 10, -- time increments used for fade/resize effects
+--         blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+--         width = 10,
+--         winhl = "PMenu",
+--         fader = require('specs').linear_fader,
+--         resizer = require('specs').shrink_resizer
+--     },
+--     ignore_filetypes = {},
+--     ignore_buftypes = {
+--         nofile = true,
+--     },
+-- }

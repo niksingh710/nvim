@@ -17,9 +17,13 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
   dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+  dashboard.button("C", "  Calendar", "<cmd>Calendar<cr>"),
+  -- dashboard.button(".", "  Last Session", "<cmd>lua require('persistence').load({ last = true })<cr>"),
+  dashboard.button(".", "  Last Session", ":SessionLoadLast<cr>"),
+  -- dashboard.button("d", "  Last Session of Dir", "<cmd>lua require('persistence').load()<cr>"),
+  dashboard.button("d", "  Last Session of Dir", ":SessionLoad<cr>"),
+  dashboard.button("l", "  Session List", ":Telescope persisted<cr>"),
   dashboard.button("Q", "  Quit Neovim", ":qa<CR>"),
-  dashboard.button(".", "  Last Session", "<cmd>lua require('persistence').load({ last = true })<cr>"),
-  dashboard.button("d", "  Last Session of Dir", "<cmd>lua require('persistence').load()<cr>"),
 }
 
 dashboard.section.footer.val = "Welcome Nikhil!!"

@@ -24,6 +24,12 @@ telescope.setup({
       case_mode = "smart_case",             -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
+    repo = {},
+    neoclip = {},
+    zoxide = {
+      -- the default case_mode is "smart_case"
+      case_mode = "smart_case",             -- or "ignore_case" or "respect_case"
+    },
   },
   defaults = {
     mappings = {
@@ -53,26 +59,33 @@ telescope.setup({
   },
 })
 telescope.load_extension("fzf")
+telescope.load_extension("zoxide")
+telescope.load_extension("repo")
+telescope.load_extension("persisted")
+-- telescope.load_extension("neoclip")
 
 map("n", {
   ["<leader>"] = {
     ["s"] = {
       name = "Search",
       ["d"] = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
+      ["D"] = { "<cmd>Telescope zoxide list<cr>", "change dir to zoxide" },
       ["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Search Find files" },
       ["r"] = { "<cmd>Telescope oldfiles<cr>", "Search Recent files" },
+      ["R"] = { "<cmd>Telescope repo repo<cr>", "Search Git repos" },
       ["k"] = { "<cmd>Telescope keymaps<cr>", "Search Keymaps" },
       ["s"] = { "<cmd>Telescope builtin<cr>", "Search Telescope" },
       ["g"] = { "<cmd>Telescope live_grep<cr>", "Search Live Grep" },
       ["h"] = { "<cmd>Telescope help_tags<cr>", "Search Help Tags" },
       ["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy Buffer Search" },
-      ["t"] = { "<cmd>TodoTelescope theme=<cr>", "Fuzzy Buffer Search" },
+      ["t"] = { "<cmd>TodoTelescope theme=<cr>", "Todo Search" },
       ["b"] = { "<cmd>Telescope buffers<cr>", "Search Buffers" },
       ["c"] = { "<cmd>Telescope commands<cr>", "Search Commands" },
       ["C"] = { "<cmd>Cheatsheet<cr>", "Search Cheatsheet" },
       ["m"] = { "<cmd>Telescope marks<cr>", "Search Marks" },
       ["o"] = { "<cmd>Telescope vim_options<cr>", "Search Vim Options" },
       ["p"] = { "<cmd>Telescope projects<cr>", "Search Projects" },
+      ["P"] = { "<cmd>Telescope persisted<cr>", "Search Projects" },
       ["q"] = { "<cmd>Telescope quickfix<cr>", "Search Quickfix" },
       ["l"] = { "<cmd>Telescope loclist<cr>", "Search Location List" },
     },

@@ -18,7 +18,7 @@ local opts = {
     border = "rounded",
   },
   install = {
-    colorscheme = { "material", "tokyonight" },
+    colorscheme = { "tokyodark", "catppuccin", "material", "tokyonight" },
   },
 }
 return {
