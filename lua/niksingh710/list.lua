@@ -4,6 +4,18 @@ return {
   "DaikyXendo/nvim-material-icon",
   "vimwiki/vimwiki",
   {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
+    },
+  },
+  {
     "sudormrfbin/cheatsheet.nvim",
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
@@ -34,11 +46,11 @@ return {
   -- { "echasnovski/mini.animate", version = false, config = true },
   { "folke/zen-mode.nvim", config = true },
   { "mbbill/undotree" },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
-  },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   build = ":Neorg sync-parsers",
+  --   dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
+  -- },
 
   -- lazy.nvim
 
@@ -79,23 +91,23 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      {
-        "j-hui/fidget.nvim",
-        tag = "legacy",
-        config = function()
-          require("fidget").setup({
-            text = {
-              spinner = "moon",
-            },
-            window = {
-              relative = "win", -- where to anchor, either "win" or "editor"
-              blend = 20, -- &winblend for the window
-              zindex = nil, -- the zindex value for the window
-              border = "none", -- style of border for the fidget window
-            },
-          })
-        end,
-      },
+      -- {
+      --   "j-hui/fidget.nvim",
+      --   branch = "legacy",
+      --   config = function()
+      --     require("fidget").setup({
+      --       text = {
+      --         spinner = "moon",
+      --       },
+      --       window = {
+      --         relative = "win", -- where to anchor, either "win" or "editor"
+      --         blend = 20, -- &winblend for the window
+      --         zindex = nil, -- the zindex value for the window
+      --         border = "none", -- style of border for the fidget window
+      --       },
+      --     })
+      --   end,
+      -- },
       "folke/neodev.nvim",
     },
   },
@@ -103,38 +115,40 @@ return {
   {
     "zbirenbaum/copilot-cmp",
     dependencies = {
-      "zbirenbaum/copilot.lua",
       "lukas-reineke/cmp-under-comparator",
-      config = function()
-        require("copilot").setup({
-          -- suggestion = { enabled = false },
-          panel = { enabled = false },
-          filetypes = {
-            yaml = true,
-            markdown = true,
-            help = true,
-            gitcommit = true,
-            gitrebase = true,
-            hgcommit = true,
-            svn = true,
-            cvs = true,
-            ["."] = true,
-          },
-          suggestion = {
-            enabled = true,
-            auto_trigger = true,
-            debounce = 75,
-            keymap = {
-              accept = "<c-l>",
-              next = "<c-]>",
-              prev = "<c-[>",
-              dismiss = "<C-e>",
+      {
+        "zbirenbaum/copilot.lua",
+        config = function()
+          require("copilot").setup({
+            -- suggestion = { enabled = false },
+            panel = { enabled = false },
+            filetypes = {
+              yaml = true,
+              markdown = true,
+              help = true,
+              gitcommit = true,
+              gitrebase = true,
+              hgcommit = true,
+              svn = true,
+              cvs = true,
+              ["."] = true,
             },
-          },
-        })
-      end,
-      -- cmd = "Copilot",
-      -- event = "InsertEnter",
+            suggestion = {
+              enabled = true,
+              auto_trigger = true,
+              debounce = 75,
+              keymap = {
+                accept = "<c-l>",
+                next = "<c-]>",
+                prev = "<c-[>",
+                dismiss = "<C-e>",
+              },
+            },
+          })
+        end,
+        -- cmd = "Copilot",
+        -- event = "InsertEnter",
+      },
     },
     config = function()
       require("copilot_cmp").setup()
@@ -187,7 +201,6 @@ return {
     "stevearc/dressing.nvim",
     config = true,
   },
-
   {
     "windwp/nvim-autopairs",
     config = true,
@@ -333,7 +346,21 @@ return {
   -- },
   {
     "olimorris/persisted.nvim",
-    config = true,
+    config = function()
+      local rtimedir = os.getenv("XDG_RUNTIME_DIR")
+      require("persisted").setup({
+        should_autosave = function()
+          -- do not autosave if the alpha dashboard is the current filetype
+          if vim.bo.filetype == "alpha" then
+            return false
+          end
+          return true
+        end,
+        ignored_dirs = {
+          rtimedir .. "/firenvim",
+        },
+      })
+    end,
   },
   -- {
   --   "jackmort/chatgpt.nvim",

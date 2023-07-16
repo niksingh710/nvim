@@ -30,6 +30,7 @@ local lspkind = srequire("lspkind")
 if not lspkind then
   return
 end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -130,12 +131,12 @@ cmp.setup({
     duplicates_default = 0,
   },
   sources = {
-    { name = "nvim_lsp",                priority = 1000 },
     { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lsp" },
     { name = "nvim_lsp_document_symbol" },
     { name = "nvim_lsp_signature_help" },
     { name = "ruff_lsp" },
-    { name = "buffer" },
     { name = "copilot" },
     { name = "neorg" },
     { name = "cmp_tabnine" },

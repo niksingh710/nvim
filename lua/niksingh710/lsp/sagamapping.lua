@@ -9,7 +9,7 @@ return {
       ["l"] = {
         name = "LSP",
         w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace Diagnostics" },
-        d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostics" },
+        d = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Line Diagnostics" },
         a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
       },
     },
@@ -19,7 +19,7 @@ return {
       h = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
       R = { "<cmd>Lspsaga rename ++project<CR>", "Rename" },
       t = { "<cmd>Lspsaga goto_type_definition<CR>", "Type Definations" },
-      -- l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostics" },
+      l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostics" },
       ["p"] = {
         name = "Peek",
         d = { "<cmd>Lspsaga peek_definition<CR>", "Definations" },
