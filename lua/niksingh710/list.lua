@@ -44,7 +44,7 @@ return {
   -- { "edluffy/specs.nvim" },
   "nvim-treesitter/playground",
   -- { "echasnovski/mini.animate", version = false, config = true },
-  { "folke/zen-mode.nvim", config = true },
+  { "folke/zen-mode.nvim",      config = true },
   { "mbbill/undotree" },
   -- {
   --   "nvim-neorg/neorg",
@@ -54,7 +54,7 @@ return {
 
   -- lazy.nvim
 
-  { "folke/todo-comments.nvim",                 config = true },
+  { "folke/todo-comments.nvim", config = true },
   "christoomey/vim-tmux-navigator",
   {
     "nvim-telescope/telescope.nvim",
@@ -91,23 +91,23 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      -- {
-      --   "j-hui/fidget.nvim",
-      --   branch = "legacy",
-      --   config = function()
-      --     require("fidget").setup({
-      --       text = {
-      --         spinner = "moon",
-      --       },
-      --       window = {
-      --         relative = "win", -- where to anchor, either "win" or "editor"
-      --         blend = 20, -- &winblend for the window
-      --         zindex = nil, -- the zindex value for the window
-      --         border = "none", -- style of border for the fidget window
-      --       },
-      --     })
-      --   end,
-      -- },
+      {
+        "j-hui/fidget.nvim",
+        branch = "legacy",
+        config = function()
+          require("fidget").setup({
+            text = {
+              spinner = "moon",
+            },
+            window = {
+              relative = "win", -- where to anchor, either "win" or "editor"
+              blend = 20, -- &winblend for the window
+              zindex = nil, -- the zindex value for the window
+              border = "none", -- style of border for the fidget window
+            },
+          })
+        end,
+      },
       "folke/neodev.nvim",
     },
   },
@@ -219,7 +219,7 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   "goolord/alpha-nvim",
   "axieax/urlview.nvim",
-  { "nvimdev/hlsearch.nvim",          event = "BufRead", config = true },
+  { "nvimdev/hlsearch.nvim", event = "BufRead",   config = true },
   "ellisonleao/glow.nvim",
   {
     "iamcco/markdown-preview.nvim",
@@ -320,7 +320,7 @@ return {
     event = "bufread",
     config = function()
       require("numb").setup({
-        show_numbers = true, -- enable 'number' for the window while peeking
+        show_numbers = true,    -- enable 'number' for the window while peeking
         show_cursorline = true, -- enable 'cursorline' for the window while peeking
       })
     end,
@@ -329,13 +329,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "css", "scss", "html", "javascript" }, {
-        rgb = true,  -- #rgb hex codes
-        rrggbb = true, -- #rrggbb hex codes
+        rgb = true,      -- #rgb hex codes
+        rrggbb = true,   -- #rrggbb hex codes
         rrggbbaa = true, -- #rrggbbaa hex codes
-        rgb_fn = true, -- css rgb() and rgba() functions
-        hsl_fn = true, -- css hsl() and hsla() functions
-        css = true,  -- enable all css features: rgb_fn, hsl_fn, names, rgb, rrggbb
-        css_fn = true, -- enable all css *functions*: rgb_fn, hsl_fn
+        rgb_fn = true,   -- css rgb() and rgba() functions
+        hsl_fn = true,   -- css hsl() and hsla() functions
+        css = true,      -- enable all css features: rgb_fn, hsl_fn, names, rgb, rrggbb
+        css_fn = true,   -- enable all css *functions*: rgb_fn, hsl_fn
       })
     end,
   },
@@ -377,25 +377,22 @@ return {
   --   },
   -- },
   {
-    "glacambre/firenvim",
-    -- lazy load firenvim
-    -- explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    'glacambre/firenvim',
+
+    -- Lazy load firenvim
+    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
     cond = not not vim.g.started_by_firenvim,
     build = function()
-      ---@diagnostic disable-next-line: assign-type-mismatch
       require("lazy").load({ plugins = "firenvim", wait = true })
       vim.fn["firenvim#install"](0)
     end,
+    lazy = false,
   },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
+    config = true,
   },
   -- { "lukas-reineke/lsp-format.nvim", config = true },
   -- "Pocco81/auto-save.nvim",
@@ -449,7 +446,7 @@ return {
     end,
   },
   -- Themes
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
   "nyoom-engineering/oxocarbon.nvim",
   "folke/tokyonight.nvim",
   "xiyaowong/transparent.nvim",
