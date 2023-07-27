@@ -21,6 +21,7 @@ return {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
+      { "ElPiloto/telescope-vimwiki.nvim" },
     },
   },
   {
@@ -67,6 +68,7 @@ return {
     },
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -101,9 +103,9 @@ return {
             },
             window = {
               relative = "win", -- where to anchor, either "win" or "editor"
-              blend = 20, -- &winblend for the window
-              zindex = nil, -- the zindex value for the window
-              border = "none", -- style of border for the fidget window
+              blend = 20,       -- &winblend for the window
+              zindex = nil,     -- the zindex value for the window
+              border = "none",  -- style of border for the fidget window
             },
           })
         end,

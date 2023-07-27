@@ -18,29 +18,29 @@ telescope.setup({
   },
   extensions = {
     fzf = {
-      fuzzy = true,                         -- false will only do exact matching
-      override_generic_sorter = true,       -- override the generic sorter
-      override_file_sorter = true,          -- override the file sorter
-      case_mode = "smart_case",             -- or "ignore_case" or "respect_case"
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
     repo = {},
     neoclip = {},
     zoxide = {
       -- the default case_mode is "smart_case"
-      case_mode = "smart_case",             -- or "ignore_case" or "respect_case"
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
   },
   defaults = {
     mappings = {
       i = {
-        ["<c-q>"] = actions.send_selected_to_qflist + actions.open_qflist,         -- send selected to quickfixlist
+        ["<c-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
       },
       n = {
         ["q"] = actions.close,
         ["<s-j>"] = actions.preview_scrolling_down,
         ["<s-k>"] = actions.preview_scrolling_up,
-        ["<c-q>"] = actions.send_selected_to_qflist + actions.open_qflist,         -- send selected to quickfixlist
+        ["<c-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
       },
     },
     file_ignore_patterns = {
@@ -62,6 +62,7 @@ telescope.load_extension("fzf")
 telescope.load_extension("zoxide")
 telescope.load_extension("repo")
 telescope.load_extension("persisted")
+telescope.load_extension("vimwiki")
 -- telescope.load_extension("neoclip")
 
 map("n", {
@@ -88,6 +89,11 @@ map("n", {
       ["P"] = { "<cmd>Telescope persisted<cr>", "Search Projects" },
       ["q"] = { "<cmd>Telescope quickfix<cr>", "Search Quickfix" },
       ["l"] = { "<cmd>Telescope loclist<cr>", "Search Location List" },
+      ["w"] = {
+        name = "vimwikki",
+        ["w"] = { "<cmd>Telescope vimwiki<cr>", "Search vimwiki files" },
+        ["g"] = { "<cmd>Telescope vimwiki live_grep<cr>", "Search vimwiki files" },
+      },
     },
   },
 }, true)
