@@ -1,4 +1,5 @@
 -- Options for general vim settings and a few advance one with neovim support
+-- These options are available throughout the config 
 local opts = {
   backup = false,
   cmdheight = 1,
@@ -19,7 +20,6 @@ local opts = {
   linebreak = true,
   scrolloff = 8,
   sidescrolloff = 8,
-  -- guifont = "monospace:h17",
   whichwrap = "bs<>[]hl",
   relativenumber = true,
   number = true,
@@ -37,7 +37,8 @@ local opts = {
   splitbelow = true,
   splitright = true,
   foldmethod = "marker",
-  list = false,
+  foldenable = false,
+  list = true,
   softtabstop = 2,
   termguicolors = true,
   syntax = "on",
@@ -50,7 +51,7 @@ local opts = {
   fillchars = { eob = " " },
   spell = false,
   spelllang = { "en_us" },
-  shortmess = "csCFSW",
+  shortmess = "csCFW",
   showcmd = false,
   hidden = true,
   title = true,
@@ -59,7 +60,6 @@ local opts = {
   autochdir = true,
   wildoptions = "fuzzy",
   cmdwinheight = 1,
-  -- shell = "/usr/bin/bash",
 }
 
 local o = vim.opt
@@ -68,10 +68,13 @@ for k, v in pairs(opts) do
   vim.opt[k] = v
 end
 
+vim.opt.wildcharm = ("\t"):byte()     -- so that tab key can be remapped
+
 o.clipboard:append("unnamedplus")
 -- o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.iskeyword:append("-")
 o.listchars:append("space:·")
+o.fillchars:append('fold:•')
 
 vim.g.floating_window_options = {
   border = "rounded",
@@ -79,6 +82,8 @@ vim.g.floating_window_options = {
 }
 vim.opt.completeopt:append("noinsert")
 vim.g.lsp_async_completion = true
+
+-- They should only contain a plugin property if the property is not dependent on plugin
 vim.cmd([[
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 ]])

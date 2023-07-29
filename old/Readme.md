@@ -5,33 +5,6 @@ Highly inspired by the lunarvim config.......
 ![img](./assets/ss.png)
 ![img](./assets/ss1.png)
 
-## Override
-
-This is a dir that can be crated under `lua/` 
-This may contain a file structure like this
-
-`~/.config/nvim/lua/override/`
-
-```lua
-return {
-  file = false, -- if this is true then config.lua in ~/.config/nvim/lua/override/ will be sourced
-  name = "Nikhil Singh", -- name to be shown on alpha
-  plugins = { 
-    enable = true, -- make it false if you want to disable plugins and only wanna work with default 
-    list = {
-      -- put plugins name to disable e.g folke/which-key.nvim = `which_key = false`
-      -- which_key = true,
-      -- dressing = false,
-      -- telescope = false,,
-      copilot = true, -- these are recomended to disable
-      copilot_cmp = true,
-      calender = true,
-    }
-  },
-}
-```
-
-
 # My keymaps are intutive and easy to remember
 
 checkout them by `:Telescope keymaps` or by pressing `<leader> + sk`

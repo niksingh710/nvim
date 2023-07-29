@@ -1,35 +1,37 @@
 vim.loader.enable()
-require("niksingh710.utils")   -- Loads the utility functions required in the whole config
-require("niksingh710.icons")   -- Loads the utility functions required in the whole config
-require("niksingh710.colors")  -- Loads the utility functions required in the whole config
 
-require("niksingh710.options") -- Loads options for neovim e.g set number ... etc
-require("niksingh710.mappings")
-require("niksingh710.autocmds")
-
-local list = srequire("niksingh710.list") -- Storing plugins array in global variable
-if not list then
-  return
+status, override = pcall(require, "override")
+if not status then
+  override = {}
 end
-require("niksingh710.plugins").load(list)
-require("niksingh710.themes") -- The theme is from a plugin
 
-require("niksingh710.whichkey")
-require("niksingh710.bufferline")
-require("niksingh710.lualine")
-require("niksingh710.telescope")
-require("niksingh710.nvim-tree")
-require("niksingh710.treesitter")
-require("niksingh710.indentline")
+-- icons stole from lunarvim!!
+require "niksingh710.core"
 
-require("niksingh710.alpha")
+if override.plugins.enable then
+  require "niksingh710.plugins"
+end
 
-require("niksingh710.markdown")
-require("niksingh710.general")
+if override.file then
+  require "override.config"
+end
 
-require("niksingh710.lsp.lspsaga")
-require("niksingh710.lsp.cmp")
-require("niksingh710.lsp.null-ls")
-require("niksingh710.lsp")
-require("niksingh710.gitsigns")
-vim.keymap.set("i", "<esc>", "<esc>", { noremap = true, silent = true }) --fall back protections
+--[[
+-- Make Sure if you create lua/override/init.lua or lua/override.lua it should have this format
+-- here you can disable plugins you don't feel to use or plugins all together if you want minimal config
+return {
+  theme = "habamax",
+  name = "niksingh710",      -- default value of alpha greet message
+  file = true,               -- if this variable is true then you can use load your configs from `config.lua` in override dir
+  plugins = {
+    enable = true,
+    list = {
+      -- put plugins name to disable e.g folke/which-key.nvim = which_key
+      -- Remember if a plugin is required by other plugin it will stay enabled
+      which_key = false, -- btw if disabled which key may loose mappign for multiple plugins
+      dressing = flase,
+    }
+  },
+}
+]]--
+

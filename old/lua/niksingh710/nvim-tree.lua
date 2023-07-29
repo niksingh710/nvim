@@ -48,6 +48,10 @@ end
 
 nvtree.setup({
 	on_attach = mapping,
+
+
+
+
 	auto_reload_on_write = false,
 	disable_netrw = false,
 	hijack_cursor = false,
@@ -93,7 +97,7 @@ nvtree.setup({
 		root_folder_label = ":t",
 		indent_width = 2,
 		indent_markers = {
-			enable = false,
+			enable = true,
 			inline_arrows = true,
 			icons = {
 				corner = "└",

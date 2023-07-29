@@ -7,3 +7,6 @@
 lazy-lock.json
 name.lua
 lua/niksingh710/name.lua
+lua/override/*
+lua/override
+*override*
