@@ -49,7 +49,7 @@ mlspconfig.setup_handlers({
 -- -- ======= Markdown
 -- linters.markdown = { 'markdownlint' }
 -- linters.go = { 'golangcilint' }
--- linters.python = { 'ruff' } 
+-- linters.python = { 'ruff' }
 -- }}}
 
 local M = {}
@@ -60,7 +60,14 @@ local formatters = {}
 
 servers.clangd = {}
 
-servers.gopls = {}
+servers.gopls = {
+  completeUnimported = true,
+  usePlaceholders = true,
+  analyses = {
+    unusedparams = true,
+    shadow = true,
+  },
+}
 
 servers.rust_analyzer = {}
 
@@ -74,7 +81,7 @@ servers.emmet_ls = {
     "css",
     "sass",
     "scss",
-    "less"
+    "less",
   },
   init_options = {
     html = {
@@ -117,7 +124,7 @@ servers.lua_ls = {
 }
 
 -- Right now null-ls is being used
-formatters.goimports= {}
+formatters.goimports = {}
 formatters.golines = {}
 formatters.gofumpt = {}
 formatters.stylua = {}
@@ -129,12 +136,11 @@ formatters.black = {
 }
 
 linters.eslint = {}
-linters.golangci_lint = {}
 linters.shellcheck = {}
 linters.ruff = {
   extra_args = {
-    "--extended-ignore=E501"
-  }
+    "--extended-ignore=E501",
+  },
 }
 
 M.servers = servers

@@ -1,4 +1,3 @@
--- TODO: Format the file
 local nvstatus, nvtree = pcall(require, "nvim-tree")
 if not nvstatus then
 	return
@@ -62,22 +61,22 @@ nvtree.setup({
 	on_attach = mapping,
 
 	auto_reload_on_write = false,
-	disable_netrw = false,
-	hijack_cursor = false,
+	disable_netrw = true,
+	hijack_cursor = true,
 	hijack_netrw = true,
 	hijack_unnamed_buffer_when_opening = false,
+
+	respect_buf_cwd = false,
 	root_dirs = {},
-	prefer_startup_root = false,
+	prefer_startup_root = true,
 	reload_on_bufenter = false,
-	remove_keymaps = false,
-	select_prompts = false,
 	view = {
 		adaptive_size = false,
 		centralize_selection = true,
 		width = 30,
 		hide_root_folder = false,
 		side = "left",
-		preserve_window_proportions = false,
+		preserve_window_proportions = true,
 		number = false,
 		relativenumber = false,
 		signcolumn = "yes",
@@ -95,9 +94,27 @@ nvtree.setup({
 		},
 	},
 
-	sort_by = "name",
+	sort = {
+		sorter = "name",
+		folders_first = true,
+	},
 	renderer = {
+		icons = {
+			git_placement = "after",
+			glyphs = {
+				git = {
+					unstaged = icons.git.FileUnstaged,
+					staged = icons.git.FileStaged,
+					unmerged = icons.git.FileUnmerged,
+					renamed = icons.git.FileRenamed,
+					untracked = icons.git.FileUntracked,
+					deleted = icons.git.FileDeleted,
+					ignored = icons.git.FileIgnored,
+				},
+			},
+		},
 		indent_markers = {
+
 			enable = true,
 			inline_arrows = true,
 			icons = {
@@ -108,11 +125,8 @@ nvtree.setup({
 			},
 		},
 
-		highlight_git = true,
+		highlight_git = false,
 		root_folder_label = ":t",
-		icons = {
-			git_placement = "after",
-		},
 	},
 	diagnostics = {
 		enable = true,
@@ -124,11 +138,15 @@ nvtree.setup({
 			max = vim.diagnostic.severity.ERROR,
 		},
 		icons = {
-			hint = icons.diagnostics.BoldHint,
-			info = icons.diagnostics.BoldInformation,
-			warning = icons.diagnostics.BoldWarning,
-			error = icons.diagnostics.BoldError,
+			hint = " " .. icons.diagnostics.BoldHint,
+			info = " " .. icons.diagnostics.BoldInformation,
+			warning = " " .. icons.diagnostics.BoldWarning,
+			error = " " .. icons.diagnostics.BoldError,
 		},
+	},
+	system_open = {
+		cmd = "xdg-open",
+		args = {},
 	},
 	filters = {
 		custom = { "node_modules", "\\.cache" },
@@ -143,9 +161,8 @@ nvtree.setup({
 		},
 	},
 	sync_root_with_cwd = true,
-	respect_buf_cwd = true,
 	update_focused_file = {
-		enable = true,
-		update_root = true,
+		enable = false,
+		update_root = false,
 	},
 })

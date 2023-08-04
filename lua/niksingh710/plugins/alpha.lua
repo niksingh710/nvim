@@ -1,28 +1,37 @@
 local astatus, alpha = pcall(require, "alpha")
 if not astatus then
-  return
+	return
 end
 local dashboard = require("alpha.themes.dashboard")
 local name = override.name or "niksingh710"
 
 local btns = {
-  dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-  dashboard.button("L", "⚯  Language", ":e ~/.config/nvim/lua/niksingh710/languages.lua <CR>"),
+	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
 }
+
+if utils.check.file_exists(os.getenv("HOME") .. "/.config/nvim/lua/niksingh710/languages.lua") then
+	table.insert(btns, dashboard.button("L", "⚯  Language", ":e ~/.config/nvim/lua/niksingh710/languages.lua <CR>"))
+end
+if utils.check.file_exists(os.getenv("HOME") .. "/.config/hypr/hyprland.conf") then
+	table.insert(
+		btns,
+		dashboard.button("H", "〄  Hyprland lang", ":e ~/.config/hypr/hyprland.conf <CR>")
+	)
+end
 
 local tele, _ = pcall(require, "telescope")
 if tele then
-  table.insert(btns, dashboard.button("f", "  Find file", ":Telescope find_files <CR>"))
-  table.insert(btns, dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"))
-  table.insert(btns, dashboard.button("p", "  Find project", ":Telescope projects <CR>"))
-  table.insert(btns, dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"))
+	table.insert(btns, dashboard.button("f", "  Find file", ":Telescope find_files <CR>"))
+	table.insert(btns, dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"))
+	table.insert(btns, dashboard.button("p", "  Find project", ":Telescope projects <CR>"))
+	table.insert(btns, dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"))
 end
 local persis, _ = pcall(require, "persisted")
 if persis then
-  table.insert(btns, dashboard.button(".", "  Last Session", ":SessionLoadLast<cr>"))
-  table.insert(btns, dashboard.button("d", "  Last Session of Dir", ":SessionLoad<cr>"))
-  table.insert(btns, dashboard.button("l", "  Session List", ":Telescope persisted<cr>"))
+	table.insert(btns, dashboard.button(".", "  Last Session", ":SessionLoadLast<cr>"))
+	table.insert(btns, dashboard.button("d", "  Last Session of Dir", ":SessionLoad<cr>"))
+	table.insert(btns, dashboard.button("l", "  Session List", ":Telescope persisted<cr>"))
 end
 table.insert(btns, dashboard.button("Q", "  Quit Neovim", ":qa<CR>"))
 
@@ -44,17 +53,16 @@ utils.map("n", { ["<leader>;"] = { "<cmd>Alpha<CR>", "Dashboard" } })
 
 local toggle_bufferline = vim.api.nvim_create_augroup("ToggleBufferline", { clear = true })
 vim.api.nvim_create_autocmd("User", {
-  callback = function()
-    vim.o.showtabline = 0
-  end,
-  group = toggle_bufferline,
-  pattern = "AlphaReady",
+	callback = function()
+		vim.o.showtabline = 0
+	end,
+	group = toggle_bufferline,
+	pattern = "AlphaReady",
 })
 vim.api.nvim_create_autocmd("BufUnload", {
-  callback = function()
-    vim.o.showtabline = 2
-  end,
-  group = toggle_bufferline,
-  pattern = "*",
+	callback = function()
+		vim.o.showtabline = 2
+	end,
+	group = toggle_bufferline,
+	pattern = "*",
 })
-

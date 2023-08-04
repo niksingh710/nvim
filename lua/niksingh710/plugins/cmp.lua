@@ -20,6 +20,9 @@ end
 -- }}}
 
 local opts = {
+  completion = {
+    completeopt = "menu,menuone,noinsert",
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -29,8 +32,9 @@ local opts = {
   mapping = { -- {{{
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<s-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-    ["<s-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+
+    ["<c-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<c-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
@@ -41,7 +45,7 @@ local opts = {
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping({
       i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
+        if cmp.visible() or cmp.get_active_entry() then
           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
         else
           fallback()
@@ -51,7 +55,9 @@ local opts = {
       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
     }),
     ["<c-l>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_jumpable() then
+      if cmp.visible() and cmp.get_active_entry() then
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -66,6 +72,13 @@ local opts = {
         fallback()
       end
     end, { "i", "s" }),
+    -- ["<c-h>"] = cmp.mapping(function(fallback)
+    --   if luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
   },            -- }}}
   formatting = { --{{{
     fields = { "kind", "abbr", "menu" },
@@ -127,6 +140,7 @@ local opts = {
     { name = "async_path" },
     { name = "zsh" },
   },
+
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
@@ -149,6 +163,8 @@ if gcstatus then
   opts["mapping"]["<c-l>"] = cmp.mapping(function(fallback)
     if sugg.is_visible() then
       sugg.accept()
+    elseif cmp.visible() and cmp.get_active_entry() then
+      cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
     elseif luasnip.expand_or_jumpable() then
       luasnip.expand_or_jump()
     elseif has_words_before() then
