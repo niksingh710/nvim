@@ -6,6 +6,7 @@ M.setup = function()
   end
 
   lspsaga.setup({
+    code_action = { only_in_cursor = false },
     code_action_icon = " ",
     code_action_prompt = {
       enable = true,

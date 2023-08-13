@@ -32,6 +32,7 @@ mlspconfig.setup_handlers({
 --
 --https://github.com/mfussenegger/nvim-lint
 --https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+--https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 --For linters
 -- }}}
 
@@ -91,6 +92,10 @@ servers.emmet_ls = {
       },
     },
   },
+}
+servers.pkgbuild_language_server = {
+  cmd = { "pkgbuild-language-server", "--stdio" },
+  filetypes = { "PKGBUILD" },
 }
 
 servers.lua_ls = {

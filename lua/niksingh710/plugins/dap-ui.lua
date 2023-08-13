@@ -26,10 +26,6 @@ vim.fn.sign_define(
 	{ text = icons.ui.BoldArrowRight, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
 )
 
-vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = nil })
-vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef", bg = nil })
-vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379", bg = nil })
-
 utils.map("n", {
 	["<leader>dd"] = { "<cmd>:lua require('dap-ui').toggle()<cr>", "Toggle DAP UI" },
 	["<leader>db"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Break Point" },

@@ -36,7 +36,7 @@ local transparent_status, transparent = pcall(require, "transparent")
 if not transparent_status then
   return
 end
-
+vim.cmd([[TransparentEnable]])
 transparent.setup({
   extra_groups = {
     -- "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
