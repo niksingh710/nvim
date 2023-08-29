@@ -26,10 +26,6 @@ local opts = {
     },
     repo = {},
     neoclip = {},
-    zoxide = {
-      -- the default case_mode is "smart_case"
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-    },
   },
   defaults = {
     mappings = {
@@ -82,7 +78,6 @@ if utele then
     },
   }
 end
-
 
 telescope.setup(opts)
 local ps, _ = pcall(require, "persisted")

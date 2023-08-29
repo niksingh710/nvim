@@ -6,12 +6,14 @@ if not nvtree then
 	return
 end
 
-local function mapping(bufnr)
+local function attach_fn(bufnr)
 	local api = srequire("nvim-tree.api")
 	if not api then
 		return
 	end
-
+	api.events.subscribe(api.events.Event.FileCreated, function(file)
+		vim.cmd("edit " .. file.fname)
+	end)
 	local function opts(desc)
 		return {
 			desc = "nvim-tree: " .. desc,
@@ -36,6 +38,7 @@ local function mapping(bufnr)
 		["?"] = { api.tree.toggle_help, opts("Help") },
 		["C"] = { api.tree.change_root_to_node, opts("CD") },
 		["Z"] = { api.node.run.system, opts("Run System") },
+		["<cr>"] = { api.node.open.tab_drop, opts("Tab drop") },
 	}
 	api.config.mappings.default_on_attach(bufnr)
 	set("n", normal)
@@ -47,10 +50,7 @@ local function mapping(bufnr)
 end
 
 nvtree.setup({
-	on_attach = mapping,
-
-
-
+	on_attach = attach_fn,
 
 	auto_reload_on_write = false,
 	disable_netrw = false,

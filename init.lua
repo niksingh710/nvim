@@ -30,6 +30,10 @@ if override.file then
   require("override.config")
 end
 
+-- Example for configuring Neovim to load user-installed installed Lua rocks:
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
 --[[
 -- Make Sure if you create lua/override/init.lua or lua/override.lua it should have this format
 -- here you can disable plugins you don't feel to use or plugins all together if you want minimal config

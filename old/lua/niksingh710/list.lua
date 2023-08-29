@@ -103,9 +103,9 @@ return {
             },
             window = {
               relative = "win", -- where to anchor, either "win" or "editor"
-              blend = 20,       -- &winblend for the window
-              zindex = nil,     -- the zindex value for the window
-              border = "none",  -- style of border for the fidget window
+              blend = 20, -- &winblend for the window
+              zindex = nil, -- the zindex value for the window
+              border = "none", -- style of border for the fidget window
             },
           })
         end,
@@ -322,7 +322,7 @@ return {
     event = "bufread",
     config = function()
       require("numb").setup({
-        show_numbers = true,    -- enable 'number' for the window while peeking
+        show_numbers = true, -- enable 'number' for the window while peeking
         show_cursorline = true, -- enable 'cursorline' for the window while peeking
       })
     end,
@@ -331,13 +331,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "css", "scss", "html", "javascript" }, {
-        rgb = true,      -- #rgb hex codes
-        rrggbb = true,   -- #rrggbb hex codes
+        rgb = true,  -- #rgb hex codes
+        rrggbb = true, -- #rrggbb hex codes
         rrggbbaa = true, -- #rrggbbaa hex codes
-        rgb_fn = true,   -- css rgb() and rgba() functions
-        hsl_fn = true,   -- css hsl() and hsla() functions
-        css = true,      -- enable all css features: rgb_fn, hsl_fn, names, rgb, rrggbb
-        css_fn = true,   -- enable all css *functions*: rgb_fn, hsl_fn
+        rgb_fn = true, -- css rgb() and rgba() functions
+        hsl_fn = true, -- css hsl() and hsla() functions
+        css = true,  -- enable all css features: rgb_fn, hsl_fn, names, rgb, rrggbb
+        css_fn = true, -- enable all css *functions*: rgb_fn, hsl_fn
       })
     end,
   },
@@ -379,7 +379,7 @@ return {
   --   },
   -- },
   {
-    'glacambre/firenvim',
+    "glacambre/firenvim",
 
     -- Lazy load firenvim
     -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297

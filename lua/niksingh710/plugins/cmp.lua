@@ -56,7 +56,9 @@ local opts = {
     }),
     ["<c-CR>"] = cmp.mapping({
       i = function(fallback)
-        if cmp.visible() or cmp.get_active_entry() then
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif cmp.visible() or cmp.get_active_entry() then
           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
         else
           fallback()
@@ -65,9 +67,12 @@ local opts = {
       s = cmp.mapping.confirm({ select = true }),
       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
     }),
+
     ["<c-l>"] = cmp.mapping(function(fallback)
-      if cmp.visible() and cmp.get_active_entry() then
-        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      if cmp.visible() then
+        cmp.select_next_item()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- they way you will only jump inside the snippet region
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -76,13 +81,35 @@ local opts = {
         fallback()
       end
     end, { "i", "s" }),
+
     ["<c-h>"] = cmp.mapping(function(fallback)
-      if luasnip.jumpable(-1) then
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
     end, { "i", "s" }),
+    --
+    -- ["<c-l>"] = cmp.mapping(function(fallback)
+    --   if luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   elseif cmp.visible() and cmp.get_active_entry() then
+    --     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+    --   elseif has_words_before() then
+    --     cmp.complete()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
+    -- ["<c-h>"] = cmp.mapping(function(fallback)
+    --   if luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
     -- ["<c-h>"] = cmp.mapping(function(fallback)
     --   if luasnip.jumpable(-1) then
     --     luasnip.jump(-1)

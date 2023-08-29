@@ -16,8 +16,10 @@ if not apistatus then
 	return
 end
 
-local function mapping(bufnr)
-	--
+local function attach_fn(bufnr)
+	api.events.subscribe(api.events.Event.FileCreated, function(file)
+		vim.cmd("edit " .. file.fname)
+	end)
 	-- functions used to map {{{
 	local function opts(desc)
 		return {
@@ -58,7 +60,7 @@ local function mapping(bufnr)
 end
 
 nvtree.setup({
-	on_attach = mapping,
+	on_attach = attach_fn,
 
 	auto_reload_on_write = false,
 	disable_netrw = true,
