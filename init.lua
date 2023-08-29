@@ -1,33 +1,31 @@
 vim.loader.enable()
 
 override = {
-  file = false,
-  name = "Nikhil Singh",
-  plugins = {
-    enable = true,
-    list = {
-      -- put plugins name to disable e.g folke/which-key.nvim = which_key
-      -- which_key = true,
-      -- dressing = false,
-      -- telescope = false,,
-    },
-  },
+	file = false,
+	name = "Nikhil Singh",
+	plugins = {
+		enable = true,
+		list = {
+			-- put plugins name to disable e.g folke/which-key.nvim = which_key
+			-- which_key = true,
+			-- dressing = false,
+			-- telescope = false,,
+		},
+	},
 }
 
-status, override = pcall(require, "override")
-if not status then
-  override = {}
+if pcall(require, "override") then
+	override = require("override")
 end
-
 -- icons stole from lunarvim!!
 require("niksingh710.core")
 
 if override.plugins.enable then
-  require("niksingh710.plugins")
+	require("niksingh710.plugins")
 end
 
 if override.file then
-  require("override.config")
+	require("override.config")
 end
 
 -- Example for configuring Neovim to load user-installed installed Lua rocks:
