@@ -31,14 +31,6 @@ You've provided preview images for some of the plugins you've configured:
 
 ![lualine](./extra/assets/lualine.png)
 
-### Config and Plugins
-
-You mentioned that your config and plugins are organized into multiple files in the `lua` directory. This is a common and recommended approach for keeping your Neovim configuration clean and maintainable. Additionally, you've set your leader key as `<space>` and mentioned that you can access all keymaps using `<leader>sk`.
-
-If you have specific questions or need further assistance with your Neovim configuration, feel free to ask!`Leader = <space>`
-For gettings all keymaps `<leader>sk`
-Which key is also there.
-
 ## Keymaps
 
 can you write the keymaps from the old Readme file?
@@ -55,3 +47,20 @@ can you write the keymaps from the old Readme file?
 | `<leader> + sk` | Keymap Search        |
 
 This much should get you going and extra is all what you discover (fire.nvim) 
+
+## Configuration Structure
+
+The configuration and plugins are structured in an organized manner, with Lua scripts stored in the `lua` directory. This modular approach ensures a clean and maintainable Neovim setup.
+
+Feel free to explore and customize these scripts to tailor your Neovim environment to your preferences.
+
+If you have any questions or need further assistance with your Neovim configuration, please don't hesitate to reach out.
+
+
+[![License](https://img.shields.io/github/license/niksingh710/nvim?color=blue)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/network/members)
+[![GitHub repo size](https://img.shields.io/github/repo-size/niksingh710/nvim)](https://github.com/niksingh710/nvim)
+[![GitHub last commit](https://img.shields.io/github/last-commit/niksingh710/nvim)](https://github.com/niksingh710/nvim/commits/master)
+[![GitHub issues](https://img.shields.io/github/issues/niksingh710/nvim)](https://github.com/niksingh710/nvim/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/niksingh710/nvim)](https://github.com/niksingh710/nvim/pulls)
