@@ -26,18 +26,6 @@ local opts = {
 			},
 		},
 	},
-	file_ignore_patterns = {
-		".git/",
-		".cache",
-		"%.o",
-		"%.a",
-		"%.out",
-		"%.class",
-		"%.pdf",
-		"%.mkv",
-		"%.mp4",
-		"%.zip",
-	},
 }
 
 telescope.setup(opts)
@@ -52,7 +40,8 @@ if wstatus then
 		s = {
 			name = "Search",
 			d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
-			f = { "<cmd>Telescope find_files hidden=true<cr>", "Search Find files" },
+			f = { "<cmd>Telescope find_files <cr>", "Search Find files" },
+			F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files Hidden Also" },
 			r = { "<cmd>Telescope oldfiles<cr>", "Search Recent files" },
 			k = { "<cmd>Telescope keymaps<cr>", "Search Keymaps" },
 			s = { "<cmd>Telescope builtin<cr>", "Search Telescope" },
