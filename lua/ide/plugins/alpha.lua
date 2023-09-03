@@ -17,19 +17,19 @@ if utils.check.file_exists(os.getenv("HOME") .. "/.config/nvim/lua/ide/config.lu
 		dashboard.button(
 			"c",
 			"⚯  Quick Config",
-			":e ~/.config/nvim/lua/ide/config.lua <CR>"
+			":e ~/.config/nvim/lua/ide/config.lua <CR><esc>:lcd %:p:h<cr>"
 		)
 	)
 end
 
 if utils.check.file_exists(os.getenv("HOME") .. "/.config/nvim/lua/ide/plugins/list.lua") then
-	table.insert(btns, dashboard.button("L", "  Plugins List", ":e ~/.config/nvim/lua/ide/plugins/list.lua <CR>"))
+	table.insert(btns, dashboard.button("L", "  Plugins List", ":e ~/.config/nvim/lua/ide/plugins/list.lua <CR><esc>:lcd ~/.config/nvim/<cr>"))
 end
 
 if utils.check.file_exists(os.getenv("HOME") .. "/.config/hypr/hyprland.conf") then
 	table.insert(
 		btns,
-		dashboard.button("H", icons.ui.Target .. "  Hyprland lang", ":e ~/.config/hypr/hyprland.conf <CR>")
+		dashboard.button("H", icons.ui.Target .. "  Hyprland lang", ":e ~/.config/hypr/hyprland.conf <CR><esc>:lcd %:p:h<cr>")
 	)
 end
 

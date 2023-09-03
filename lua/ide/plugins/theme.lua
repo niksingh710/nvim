@@ -5,7 +5,7 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1.0"
 -- }}}
 
-local theme_status, tokyodark = pcall(require, "tokyodark")
+local theme_status, _ = pcall(require, "tokyodark")
 if theme_status then
 	vim.cmd("colorscheme tokyodark")
 end
@@ -21,7 +21,8 @@ if transparent_status then
 		lualine_style = "default",
 		-- lualine_style = "stealth",
 	})
-
+  transparent.clear_prefix("lualine")
+  transparent.clear_prefix("Bufferline")
 	if config.transparent then
 		vim.cmd("TransparentEnable")
 	end
@@ -30,7 +31,7 @@ end
 -- Telescope Material Theming using the palette from tokyodark
 if theme_status then
 	local colors = require("tokyodark.palette")
-
+  utils.iprint(colors)
 	local TelescopeColor = {
 		TelescopeMatching = { fg = colors.orange },
 		TelescopeSelection = { fg = colors.fg, bg = colors.bg1, bold = true },

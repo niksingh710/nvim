@@ -3,51 +3,70 @@ local cursorline_hl = vim.api.nvim_get_hl_by_name("CursorLine", true)
 vim.api.nvim_set_hl(0, "SLGreen", { fg = "#6CC644", bg = statusline_hl.background })
 vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = cursorline_hl.background })
 
-local theme = function()
-	local colors = {
-		darkgray = "#16161d",
-		gray = "#727169",
-		innerbg = nil,
-		outerbg = "#16161D",
-		normal = "#7e9cd8",
-		insert = "#98bb6c",
-		visual = "#ffa066",
-		replace = "#e46876",
-		command = "#e6c384",
-	}
-	return {
-		inactive = {
-			a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		visual = {
-			a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		replace = {
-			a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		normal = {
-			a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		insert = {
-			a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		command = {
-			a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerbg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-	}
-end
+-- Color defination{{{
+-- stylua: ignore
+local colors = {
+  bg       = '#202328',
+  fg       = '#bbc2cf',
+  yellow   = '#ECBE7B',
+  cyan     = '#008080',
+  darkblue = '#081633',
+  green    = '#98be65',
+  orange   = '#FF8800',
+  violet   = '#a9a1e1',
+  magenta  = '#c678dd',
+  blue     = '#51afef',
+  red      = '#ec5f67',
+}
+-- }}}
+
+-- custom transparent background if transparent.nvim fails {{{
+-- local theme = function()
+-- 	local colors = {
+-- 		darkgray = "#16161d",
+-- 		gray = "#727169",
+-- 		innerbg = nil,
+-- 		outerbg = "#16161D",
+-- 		normal = "#7e9cd8",
+-- 		insert = "#98bb6c",
+-- 		visual = "#ffa066",
+-- 		replace = "#e46876",
+-- 		command = "#e6c384",
+-- 	}
+-- 	return {
+-- 		inactive = {
+-- 			a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 		visual = {
+-- 			a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 		replace = {
+-- 			a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 		normal = {
+-- 			a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 		insert = {
+-- 			a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 		command = {
+-- 			a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
+-- 			b = { fg = colors.gray, bg = colors.outerbg },
+-- 			c = { fg = colors.gray, bg = colors.innerbg },
+-- 		},
+-- 	}
+-- end
+-- }}}
 
 local lok, lualine = pcall(require, "lualine")
 if not lok then
@@ -84,6 +103,32 @@ local components = {
 
 	mode = {
 		"mode",
+		color = function()
+			-- auto change color according to neovims mode{{{
+			local mode_color = {
+				n = colors.green,
+				i = colors.blue,
+				v = colors.magenta,
+				[""] = colors.magenta,
+				V = colors.magenta,
+				c = colors.magenta,
+				no = colors.red,
+				s = colors.orange,
+				S = colors.orange,
+				[""] = colors.orange,
+				ic = colors.yellow,
+				R = colors.violet,
+				Rv = colors.violet,
+				cv = colors.red,
+				ce = colors.red,
+				r = colors.cyan,
+				rm = colors.cyan,
+				["r?"] = colors.cyan,
+				["!"] = colors.red,
+				t = colors.red,
+			} -- }}}
+			return { fg = mode_color[vim.fn.mode()] }
+		end,
 		fmt = function()
 			return icons.misc.LualineFmt
 		end,
@@ -178,7 +223,7 @@ local components = {
 	copilot = function()
 		local lsp_clients = vim.lsp.get_active_clients()
 		local copilot_active = false
-    local str = ""
+		local str = ""
 		if next(lsp_clients) == nil then
 			return str
 		end
@@ -197,7 +242,7 @@ local components = {
 }
 
 local sections = {
-	lualine_a = { "mode" },
+	lualine_a = { components.mode },
 	lualine_b = { components.fileformat, "encoding", components.require_noice_fix },
 	lualine_c = { components.branch, components.diff },
 	lualine_x = { components.diagnostics, components.filetype, components.lsp },
@@ -209,7 +254,7 @@ local opts = {
 	options = {
 		icons_enabled = true,
 		-- theme = "auto",
-		theme = theme(),
+		theme = "auto",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },

@@ -95,14 +95,9 @@ M.close_buffer = function()
 	end
 end
 
-M.cwd_to_buf = function(bufnr)
-	local ntok, nvimtree_api = pcall(require, "nvim-tree.api")
-	if not ntok then
-		vim.notify("Nvimtree call Failed!!")
-		return
-	end
-
-	nvimtree_api.tree.find_file({ buf = bufnr, update_root = true, focus = true })
+M.set_curdir = function()
+	local curdir = vim.fn.expand("%:p:h")
+	vim.api.nvim_set_current_dir(curdir)
 end
 
 return M

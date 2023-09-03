@@ -26,6 +26,7 @@ local normal = {
 	["<s-l>"] = { ":bnext<cr>", "Buffer Next" },
 
 	["<leader>q"] = { ":quit!<cr>", "Quit!" },
+	["<leader><cr>"] = { utils.set_curdir, "Ch Dir!" },
 	-- ["<leader>c"] = { ":bd!<cr>", "Close!" },
 	["<leader>c"] = { "<cmd>lua utils.close_buffer()<cr>", "Close!" }, -- Custom fn to ensure if this is the last buffer then quit nvim
 	["<leader>h"] = { ":nohl<cr>", "No Highlight!" },

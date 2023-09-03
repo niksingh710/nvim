@@ -11,7 +11,7 @@ if wstatus then
 
 	if utils.check.vimcmd("UrlView") then
 		mapping.u.u = { "<cmd>UrlView buffer<cr>", "Search Links" }
-		mapping.u.c = { "<cmd>UrlView buffer action=clipboard<cr>", "Search Links" }
+		mapping.u.U = { "<cmd>UrlView buffer action=clipboard<cr>", "Copy Links" }
 	end
 
 	whichkey.register(mapping, opts)
