@@ -126,7 +126,17 @@ local opts = {
 				git = true,
 			},
 
-			glyphs = icons.nvtree_chad,
+			glyphs = {
+				git = {
+					unstaged = icons.git.FileUnstaged,
+					staged = icons.git.FileStaged,
+					unmerged = icons.git.FileUnmerged,
+					renamed = icons.git.FileRenamed,
+					untracked = icons.git.FileUntracked,
+					deleted = icons.git.FileDeleted,
+					ignored = icons.git.FileIgnored,
+				},
+			},
 		},
 	},
 }

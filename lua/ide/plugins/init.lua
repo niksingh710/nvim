@@ -16,6 +16,7 @@ require("ide.plugins.lualine")
 require("ide.plugins.noice")
 require("ide.plugins.firenvim")
 require("ide.plugins.copilot")
+require("ide.plugins.whichkey")
 
 -- require("ide.plugins.formatter")
 -- require("ide.plugins.linter")

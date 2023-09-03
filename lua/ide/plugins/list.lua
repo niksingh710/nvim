@@ -79,6 +79,16 @@ return {
 		-- },
 	},
 	{ --utils
+		{
+			"axieax/urlview.nvim",
+			lazy = false,
+			opts = {
+				default_title = "Links:",
+				default_picker = "native",
+				default_prefix = "https://",
+				default_action = "system",
+			},
+		},
 		{ "christoomey/vim-tmux-navigator", lazy = false },
 		{
 			"kevinhwang91/nvim-ufo",
