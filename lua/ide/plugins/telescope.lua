@@ -9,6 +9,26 @@ local opts = {
 
 	extensions = {
 
+		undo = {
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.5,
+			},
+			mappings = {
+				n = {
+					-- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
+					-- you want to replicate these defaults and use the following actions. This means
+					-- installing as a dependency of telescope in it's `requirements` and loading this
+					-- extension from there instead of having the separate plugin definition as outlined
+					-- above.
+					y = require("telescope-undo.actions").yank_additions,
+					d = require("telescope-undo.actions").yank_deletions,
+					["<cr>"] = require("telescope-undo.actions").restore,
+				},
+			},
+		},
+
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,
@@ -30,6 +50,9 @@ local opts = {
 
 telescope.setup(opts)
 telescope.load_extension("fzf")
+telescope.load_extension("project")
+telescope.load_extension("media_files")
+telescope.load_extension("undo")
 
 if wstatus then
 	opts = {
@@ -49,10 +72,13 @@ if wstatus then
 			h = { "<cmd>Telescope help_tags<cr>", "Search Help Tags" },
 			b = { "<cmd>Telescope buffers<cr>", "Search Buffers" },
 			c = { "<cmd>Telescope commands<cr>", "Search Commands" },
-			m = { "<cmd>Telescope marks<cr>", "Search Marks" },
+			u = { "<cmd>Telescope undo<cr>", "Undo" },
+			m = { "<cmd>Telescope marks<cr>", "Search in Media Mode" },
+			M = { "<cmd>Telescope media_files<cr>", "Search Marks" },
 			o = { "<cmd>Telescope vim_options<cr>", "Search Vim Options" },
 			q = { "<cmd>Telescope quickfix<cr>", "Search Quickfix" },
 			l = { "<cmd>Telescope loclist<cr>", "Search Location List" },
+			p = { "<cmd>Telescope projects<cr>", "Comment" },
 			t = { "<cmd>TodoTelescope<cr>", "Comment" },
 			["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy Buffer Search" },
 		},

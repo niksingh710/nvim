@@ -31,7 +31,6 @@ end
 -- Telescope Material Theming using the palette from tokyodark
 if theme_status then
 	local colors = require("tokyodark.palette")
-  utils.iprint(colors)
 	local TelescopeColor = {
 		TelescopeMatching = { fg = colors.orange },
 		TelescopeSelection = { fg = colors.fg, bg = colors.bg1, bold = true },

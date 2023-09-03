@@ -11,6 +11,8 @@ return {
 			build = ":TSUpdate",
 			dependencies = {
 				{ "windwp/nvim-ts-autotag", config = true },
+				{ "JoosepAlviste/nvim-ts-context-commentstring" },
+				"nvim-treesitter/nvim-treesitter-textobjects",
 				{
 					"lukas-reineke/indent-blankline.nvim",
 					opts = {
@@ -79,6 +81,15 @@ return {
 		-- },
 	},
 	{ --utils
+		{
+			"folke/zen-mode.nvim",
+			lazy = false,
+			opts = {
+				plugins = {
+					tmux = { enabled = true },
+				},
+			},
+		},
 
 		{
 			"itchyny/calendar.vim",
@@ -164,12 +175,35 @@ return {
 		},
 
 		{
+			"vimwiki/vimwiki",
+      lazy = false,
+		},
+
+		{
+			"3rd/image.nvim",
+			lazy = false,
+			opts = {
+				backend = "ueberzug",
+				max_width = 50,
+				max_height = 50,
+				integrations = {
+					markdown = {
+						only_render_image_at_cursor = true,
+					},
+				},
+			},
+		},
+
+		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.2",
 
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				{ "folke/todo-comments.nvim", config = true },
+				{ "nvim-telescope/telescope-project.nvim", lazy = false },
+				"nvim-telescope/telescope-media-files.nvim",
+				"debugloop/telescope-undo.nvim",
 				{
 					"nvim-telescope/telescope-fzf-native.nvim",
 					build = "make",

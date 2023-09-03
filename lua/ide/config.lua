@@ -11,8 +11,8 @@ M.mason_ensure = {
 	"emmet_ls",
 	"gopls",
 	"bashls",
-  "eslint",
-  "marksman",
+	"eslint",
+	"marksman",
 }
 
 -- Null-ls setup{{{ -- if ever felt need of linter
@@ -23,7 +23,7 @@ M.null_ls = {
 		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
 		goimports = {},
 		gofumpt = {},
-    jq = {},
+		jq = {},
 	},
 	linters = {
 		shellcheck = {},
@@ -32,13 +32,6 @@ M.null_ls = {
 -- }}}
 
 M.treesitter_ensure = {
-	"c",
-	"lua",
-	"vim",
-	"vimdoc",
-	"query",
-	"markdown",
-	"markdown_inline",
 	"astro",
 	"css",
 	"glimmer",
@@ -56,6 +49,17 @@ M.treesitter_ensure = {
 	"typescript",
 	"vim",
 	"vue",
+	"c",
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"markdown",
+	"markdown_inline",
+	"html",
+	"nix",
+	"php",
+	"python",
 	"go",
 }
 
@@ -65,9 +69,9 @@ M.colorizer = {
 		"javascript",
 		"lua",
 		"markdown",
-    "md",
-    "conf",
-    "tmux",
+		"md",
+		"conf",
+		"tmux",
 		html = { mode = "foreground" },
 		cmp_docs = { always_update = true },
 	},

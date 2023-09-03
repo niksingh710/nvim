@@ -22,7 +22,12 @@ git clone https://github.com/niksingh710/nvim ~/.config/nvim
 
 ```bash
 yay -S --needed \
-   neovim python-pynvim nodejs npm ripgrep fzf fd bat treesitter-cli
+   neovim python-pynvim nodejs npm ripgrep fzf fd bat treesitter-cli curl ueberzugpp imagemagick lua51
+```
+
+The below command makes sure you have magick installed that is required by [image.nvim](https://github.com/3rd/image.nvim)
+```bash
+luarocks --local --lua-version=5.1 install magick
 ```
 
 ### Preview

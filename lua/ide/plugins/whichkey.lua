@@ -14,5 +14,10 @@ if wstatus then
 		mapping.u.U = { "<cmd>UrlView buffer action=clipboard<cr>", "Copy Links" }
 	end
 
+	if utils.check.vimcmd("ZenMode") then
+		mapping.u.z = { "<cmd>ZenMode<cr>", "ZenMode" }
+	end
+
+
 	whichkey.register(mapping, opts)
 end

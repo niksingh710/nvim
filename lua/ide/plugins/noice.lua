@@ -13,10 +13,10 @@ local opts = {
 			enabled = false,
 		},
 		hover = {
-			enabled = false,
+			enabled = true,
 		},
 		signature = {
-			enabled = false,
+			enabled = true,
 		},
 	},
 	cmdline = {

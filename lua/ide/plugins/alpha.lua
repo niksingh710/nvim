@@ -7,7 +7,7 @@ local dashboard = require("alpha.themes.dashboard")
 
 local btns = {
 	dashboard.button("e", icons.ui.NewFile .. "  New file", ":ene <BAR> startinsert <CR>"),
-	dashboard.button("C", icons.ui.Gear .. "  Configuration", ":e $MYVIMRC <CR>"),
+	dashboard.button("C", icons.ui.Gear .. "  Configuration", ":e $MYVIMRC <CR><esc>:lcd %:p:h<cr>"),
 }
 
 if utils.check.file_exists(os.getenv("HOME") .. "/.config/nvim/lua/ide/config.lua") then
