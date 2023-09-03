@@ -1,3 +1,13 @@
+# Nvim
+
+[![License](https://img.shields.io/github/license/niksingh710/nvim?color=blue)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/network/members)
+[![GitHub repo size](https://img.shields.io/github/repo-size/niksingh710/nvim)](https://github.com/niksingh710/nvim)
+[![GitHub last commit](https://img.shields.io/github/last-commit/niksingh710/nvim)](https://github.com/niksingh710/nvim/commits/master)
+[![GitHub issues](https://img.shields.io/github/issues/niksingh710/nvim)](https://github.com/niksingh710/nvim/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/niksingh710/nvim)](https://github.com/niksingh710/nvim/pulls)
+
 ### Installation
 
 To install your Neovim configuration, you can follow these steps:
@@ -57,10 +67,3 @@ Feel free to explore and customize these scripts to tailor your Neovim environme
 If you have any questions or need further assistance with your Neovim configuration, please don't hesitate to reach out.
 
 
-[![License](https://img.shields.io/github/license/niksingh710/nvim?color=blue)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/niksingh710/nvim?style=social)](https://github.com/niksingh710/nvim/network/members)
-[![GitHub repo size](https://img.shields.io/github/repo-size/niksingh710/nvim)](https://github.com/niksingh710/nvim)
-[![GitHub last commit](https://img.shields.io/github/last-commit/niksingh710/nvim)](https://github.com/niksingh710/nvim/commits/master)
-[![GitHub issues](https://img.shields.io/github/issues/niksingh710/nvim)](https://github.com/niksingh710/nvim/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/niksingh710/nvim)](https://github.com/niksingh710/nvim/pulls)
