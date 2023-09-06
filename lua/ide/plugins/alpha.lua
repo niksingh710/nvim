@@ -29,9 +29,17 @@ end
 if utils.check.file_exists(os.getenv("HOME") .. "/.config/hypr/hyprland.conf") then
 	table.insert(
 		btns,
-		dashboard.button("H", icons.ui.Target .. "  Hyprland lang", ":e ~/.config/hypr/hyprland.conf <CR><esc>:lcd %:p:h<cr>")
+		dashboard.button("H", icons.ui.Target .. "  Hyprland Config", ":e ~/.config/hypr/hyprland.conf <CR><esc>:lcd %:p:h<cr>")
 	)
 end
+
+if utils.check.file_exists(os.getenv("HOME") .. "/.config/waybar/bars/top.json") then
+	table.insert(
+		btns,
+		dashboard.button("W", icons.ui.Ellipsis  .. "  waybar Config", ":e ~/.config/waybar/bars/top.json <CR><esc>:lcd %:p:h<cr>")
+	)
+end
+
 
 local tok, _ = pcall(require, "telescope")
 if tok then

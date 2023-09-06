@@ -16,8 +16,6 @@ if not snipok then
 	return
 end
 
-luasnip.config.setup({})
-
 -- vscode format
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
@@ -29,6 +27,8 @@ require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.snipmate_snip
 -- lua format
 require("luasnip.loaders.from_lua").load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = vim.g.lua_snippets_path or "" })
+
+luasnip.config.setup({})
 
 vim.api.nvim_create_autocmd("InsertLeave", {
 	callback = function()
@@ -44,6 +44,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 local mappings = {
 	["<C-k>"] = cmp.mapping.select_prev_item(),
 	["<C-j>"] = cmp.mapping.select_next_item(),
+	["<Tab>"] = cmp.config.disable,
+	["<S-Tab>"] = cmp.config.disable,
 
 	["<c-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 	["<c-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -178,13 +180,14 @@ local opts = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
+    { name = "path" },
+		{ name = "cmdline" },
 	},
 	mapping = mappings,
 }
 
 cmp.setup(opts)
+
 local aok, autopair = pcall(require, "autopair")
 if aok then
 	cmp.event:on("confirm_done", autopair.on_confirm_done())

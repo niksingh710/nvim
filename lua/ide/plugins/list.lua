@@ -28,7 +28,6 @@ return {
 		{
 			"neovim/nvim-lspconfig",
 			dependencies = {
-
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
@@ -37,6 +36,27 @@ return {
 				"L3MON4D3/LuaSnip",
 				"saadparwaiz1/cmp_luasnip",
 			},
+		},
+
+		{
+			"mfussenegger/nvim-dap",
+			dependencies = {
+				"jay-babu/mason-nvim-dap.nvim",
+
+				{ -- language specific
+					{ "leoluz/nvim-dap-go", ft = "go" }, --go
+				},
+			},
+		},
+
+		-- Golang features
+		{
+			"olexsmir/gopher.nvim",
+			ft = "go",
+			config = true,
+			build = function()
+				vim.cmd("silent! GoInstallDeps")
+			end,
 		},
 
 		{
@@ -176,22 +196,26 @@ return {
 
 		{
 			"vimwiki/vimwiki",
-      lazy = false,
+			lazy = false,
 		},
 
+		-- {
+		-- 	"3rd/image.nvim",
+		-- 	lazy = false,
+		-- 	opts = {
+		-- 		backend = "ueberzug",
+		-- 		max_width = 50,
+		-- 		max_height = 50,
+		-- 		integrations = {
+		-- 			markdown = {
+		-- 				only_render_image_at_cursor = true,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- },
 		{
-			"3rd/image.nvim",
+			"mbbill/undotree",
 			lazy = false,
-			opts = {
-				backend = "ueberzug",
-				max_width = 50,
-				max_height = 50,
-				integrations = {
-					markdown = {
-						only_render_image_at_cursor = true,
-					},
-				},
-			},
 		},
 
 		{
@@ -203,7 +227,7 @@ return {
 				{ "folke/todo-comments.nvim", config = true },
 				{ "nvim-telescope/telescope-project.nvim", lazy = false },
 				"nvim-telescope/telescope-media-files.nvim",
-				"debugloop/telescope-undo.nvim",
+				-- "debugloop/telescope-undo.nvim",
 				{
 					"nvim-telescope/telescope-fzf-native.nvim",
 					build = "make",
@@ -241,23 +265,35 @@ return {
 			},
 		},
 		{
-			"folke/noice.nvim",
-			event = "VeryLazy",
-			dependencies = {
-				"MunifTanjim/nui.nvim",
-				{
-					"rcarriga/nvim-notify",
-					config = function()
-						require("notify").setup({
-							background_colour = "#000000",
-							render = "compact",
-							stages = "fade_in_slide_out",
-							top_down = false,
-						})
-					end,
-				},
-			},
+			"rcarriga/nvim-notify",
+			config = function()
+				require("notify").setup({
+					background_colour = "#000000",
+					render = "compact",
+					stages = "fade_in_slide_out",
+					top_down = false,
+				})
+			end,
 		},
+
+		-- {
+		-- 	"folke/noice.nvim",
+		-- 	event = "VeryLazy",
+		-- 	dependencies = {
+		-- 		"MunifTanjim/nui.nvim",
+		-- 		{
+		-- 			"rcarriga/nvim-notify",
+		-- 			config = function()
+		-- 				require("notify").setup({
+		-- 					background_colour = "#000000",
+		-- 					render = "compact",
+		-- 					stages = "fade_in_slide_out",
+		-- 					top_down = false,
+		-- 				})
+		-- 			end,
+		-- 		},
+		-- 	},
+		-- },
 
 		{
 			"glacambre/firenvim",

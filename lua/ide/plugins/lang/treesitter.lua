@@ -4,7 +4,7 @@ if not tok then
 end
 
 local opts = {
-	ensure_installed = config.treesitter_ensure or {},
+	ensure_installed = config.ensure.treesitter or {},
 	auto_install = true,
 	highlight = {
 		enable = true,

@@ -48,8 +48,6 @@ local normal = {
 	["n"] = "nzzzv",
 	["N"] = "Nzzzv",
 	["x"] = '"_x',
-	["j"] = "gj",
-	["k"] = "gk",
 }
 
 local insert = { -- as these are insert mode mapping they don't need descriptions
@@ -76,8 +74,6 @@ local visual = {
 	["x"] = '"_x',
 	["p"] = '"_dP',
 	["P"] = '"_dP',
-	["j"] = "gj",
-	["k"] = "gk",
 
 	["<leader>y"] = '"+y',
 	["<leader>d"] = '"+d',
@@ -90,5 +86,15 @@ map("n", normal)
 map("i", insert)
 map("x", visual)
 
+local movement = {
+  ["j"] = "v:count ? 'j' : 'gj'",
+  ["k"] = "v:count ? 'k' : 'gk'",
+}
+
+map("n", movement, { expr = true })
+map("x", movement, { expr = true })
+
+vim.keymap.set("c", ":", "q:", {})
+vim.keymap.set("n", ":", "q:i", {})
 vim.keymap.set("c", "<c-j>", "<Tab>", {})
 vim.keymap.set("c", "<c-k>", "<s-Tab>", {})

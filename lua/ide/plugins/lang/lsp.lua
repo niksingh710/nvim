@@ -1,27 +1,3 @@
-local signs = {
-	Error = icons.diagnostics.BoldError,
-	Warn = icons.diagnostics.BoldWarning,
-	Hint = icons.diagnostics.BoldHint,
-	Info = icons.diagnostics.BoldInformation,
-}
-
-vim.diagnostic.config({
-	virtual_text = false,
-	underline = false,
-	signs = true,
-	severity_sort = true,
-	float = {
-		border = config.border or "rounded",
-		source = "always",
-		focusable = false,
-	},
-})
-
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 -- Requiring lsp Stuff {{{
 local lok, lspconfig = pcall(require, "lspconfig")
 if not lok then
@@ -29,11 +5,6 @@ if not lok then
 	return
 end
 
-local mok, mason = pcall(require, "mason")
-if not mok then
-	vim.notify("For some reason failed to Mason")
-	return
-end
 local mlok, mason_config = pcall(require, "mason-lspconfig")
 if not mlok then
 	vim.notify("For some reason failed to Mason Lsp Config")
@@ -48,6 +19,12 @@ end -- }}}
 
 local servers = config.servers or {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local cok, cmplsp = pcall(require, "cmp_nvim_lsp")
+if cok then
+	capabilities = cmplsp.default_capabilities(capabilities)
+end
+
 local on_init = function(client, _)
 	if client.server_capabilities then
 		client.server_capabilities.documentFormattingProvider = false
@@ -69,7 +46,7 @@ local on_attach = function(_, bufnr)
 	--- autocmd to show diagnostics on CursorHold
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
-		desc = "✨lsp show diagnostics on CursorHold",
+		desc = "lsp show diagnostics on CursorHold",
 		callback = function()
 			local hover_opts = {
 				focusable = false,
@@ -138,7 +115,6 @@ local on_attach = function(_, bufnr)
 		local mapping = {
 			i = {
 				name = "Info",
-				m = { "<cmd>Mason<cr>", "Mason" },
 				l = { "<cmd>LspInfo<cr>", "LspInfo" },
 			},
 			l = {
@@ -215,19 +191,13 @@ lspsaga.setup({
 		},
 	},
 })
-mason.setup({
-	ui = {
-		border = config.border or "rounded",
-	},
-})
-
 -- This loop will make sure that if i install a server manually then it get configured with default values
-for _, k in ipairs(mason_config.get_installed_servers()) do
+for _, k in ipairs(config.ensure.lsp or {}) do
 	if not servers[k] then
 		servers[k] = {}
 	end
 end
-for _, k in ipairs(config.mason_ensure or {}) do
+for _, k in ipairs(mason_config.get_installed_servers()) do
 	if not servers[k] then
 		servers[k] = {}
 	end
@@ -258,85 +228,3 @@ mason_config.setup_handlers({
 	end,
 })
 
-if wstatus then
-	local mapping = {
-		i = {
-			name = "Info",
-			m = { "<cmd>Mason<cr>", "Mason" },
-			l = { "<cmd>LspInfo<cr>", "LspInfo" },
-		},
-	}
-	local opts = {
-		prefix = "<leader>",
-	}
-
-	whichkey.register(mapping, opts)
-end
--- {{{
--- Null-ls require {{{
-local nok, null_ls = pcall(require, "null-ls")
-if not nok then
-	-- vim.notify("Failed to load null-ls")
-	return
-end
-
-local mnok, mnull_ls = pcall(require, "mason-null-ls")
-if not mnok then
-	-- vim.notify("Failed to load mason-null-ls")
-	return
-end
-
-local null_ensure = {}
-for key, _ in pairs(config.null_ls.formatters or {}) do
-	table.insert(null_ensure, key)
-end
--- }}}
-
-for key, _ in pairs(config.null_ls.linters or {}) do
-	table.insert(null_ensure, key)
-end
-
-local opts = {
-	ensure_installed = null_ensure,
-	automatic_installation = true,
-}
-
-local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
-
-local sources = {}
-for k, v in pairs(config.null_ls.formatters or {}) do
-	if #v > 0 then
-		table.insert(sources, formatting[k].with(v))
-	else
-		table.insert(sources, formatting[k])
-	end
-end
-
-for k, v in pairs(config.null_ls.linters or {}) do
-	if #v > 0 then
-		table.insert(sources, diagnostics[k].with(v))
-	else
-		table.insert(sources, diagnostics[k])
-	end
-end
-
-null_ls.setup({
-	sources = sources,
-})
-
-mnull_ls.setup(opts)
-
-if wstatus then
-	local mapping = {
-		i = {
-			name = "Info",
-			n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
-		},
-	}
-	opts = {
-		prefix = "<leader>",
-	}
-
-	whichkey.register(mapping, opts)
-end -- }}}

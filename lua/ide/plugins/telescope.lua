@@ -9,26 +9,6 @@ local opts = {
 
 	extensions = {
 
-		undo = {
-			side_by_side = true,
-			layout_strategy = "vertical",
-			layout_config = {
-				preview_height = 0.5,
-			},
-			mappings = {
-				n = {
-					-- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
-					-- you want to replicate these defaults and use the following actions. This means
-					-- installing as a dependency of telescope in it's `requirements` and loading this
-					-- extension from there instead of having the separate plugin definition as outlined
-					-- above.
-					y = require("telescope-undo.actions").yank_additions,
-					d = require("telescope-undo.actions").yank_deletions,
-					["<cr>"] = require("telescope-undo.actions").restore,
-				},
-			},
-		},
-
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,
@@ -52,7 +32,6 @@ telescope.setup(opts)
 telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("media_files")
-telescope.load_extension("undo")
 
 if wstatus then
 	opts = {

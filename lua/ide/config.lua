@@ -5,14 +5,51 @@ M.border = "rounded"
 M.format_on_save = true
 M.transparent = true
 
-M.mason_ensure = {
-	"jqls",
-	"lua_ls",
-	"emmet_ls",
-	"gopls",
-	"bashls",
-	"eslint",
-	"marksman",
+M.ensure = {
+	treesitter = {-- {{{
+    "regex",
+		"astro",
+		"css",
+		"glimmer",
+		"graphql",
+		"html",
+		"javascript",
+		"lua",
+		"nix",
+		"php",
+		"python",
+		"scss",
+		"svelte",
+		"tsx",
+		"twig",
+		"typescript",
+		"vim",
+		"vue",
+		"c",
+		"lua",
+		"vim",
+		"vimdoc",
+		"query",
+		"markdown",
+		"markdown_inline",
+		"html",
+		"nix",
+		"php",
+		"python",
+		"go",
+	},-- }}}
+	lsp = {
+		"jqls",
+		"lua_ls",
+		"emmet_ls",
+		"gopls",
+		"bashls",
+		"eslint",
+		"marksman",
+	},
+	nvim_dap = {
+		"delve",
+	},
 }
 
 -- Null-ls setup{{{ -- if ever felt need of linter
@@ -23,6 +60,7 @@ M.null_ls = {
 		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
 		goimports = {},
 		gofumpt = {},
+		golines = {},
 		jq = {},
 	},
 	linters = {
@@ -31,40 +69,9 @@ M.null_ls = {
 }
 -- }}}
 
-M.treesitter_ensure = {
-	"astro",
-	"css",
-	"glimmer",
-	"graphql",
-	"html",
-	"javascript",
-	"lua",
-	"nix",
-	"php",
-	"python",
-	"scss",
-	"svelte",
-	"tsx",
-	"twig",
-	"typescript",
-	"vim",
-	"vue",
-	"c",
-	"lua",
-	"vim",
-	"vimdoc",
-	"query",
-	"markdown",
-	"markdown_inline",
-	"html",
-	"nix",
-	"php",
-	"python",
-	"go",
-}
-
 M.colorizer = {
 	filetypes = {
+		"json",
 		"css",
 		"javascript",
 		"lua",
@@ -118,25 +125,6 @@ linters.zsh = {
 	"shellcheck",
 }
 
-servers.emmet_ls = {
-	filetypes = {
-		"html",
-		"typescriptreact",
-		"javascriptreact",
-		"css",
-		"sass",
-		"scss",
-		"less",
-	},
-	init_options = {
-		html = {
-			options = {
-				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-				["bem.enabled"] = true,
-			},
-		},
-	},
-}
 servers.gopls = {
 	completeUnimported = true,
 	usePlaceholders = true,
@@ -164,6 +152,8 @@ servers.emmet_ls = {
 		},
 	},
 }
+
+servers.tsserver = {}
 
 servers.pkgbuild_language_server = {
 	cmd = { "pkgbuild-language-server", "--stdio" },
