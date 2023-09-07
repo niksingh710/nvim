@@ -33,8 +33,10 @@ return {
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/nvim-cmp",
+				"hrsh7th/cmp-calc",
 				"L3MON4D3/LuaSnip",
 				"saadparwaiz1/cmp_luasnip",
+				{ "petertriho/cmp-git", config = true },
 			},
 		},
 
@@ -101,6 +103,7 @@ return {
 		-- },
 	},
 	{ --utils
+		{ "pocco81/auto-save.nvim", config = true, lazy = false },
 		{
 			"folke/zen-mode.nvim",
 			lazy = false,
@@ -144,7 +147,7 @@ return {
 		{ "christoomey/vim-tmux-navigator", lazy = false },
 		{
 			"kevinhwang91/nvim-ufo",
-			requires = "kevinhwang91/promise-async",
+			dependencies = "kevinhwang91/promise-async",
 			config = function()
 				vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 				vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
@@ -224,8 +227,27 @@ return {
 
 			dependencies = {
 				"nvim-lua/plenary.nvim",
+				{
+					"ThePrimeagen/git-worktree.nvim",
+					config = true,
+				},
+				{
+					"ThePrimeagen/harpoon",
+					opts = {
+						global_settings = {
+							mark_branch = true,
+						},
+					},
+				},
+
 				{ "folke/todo-comments.nvim", config = true },
-				{ "nvim-telescope/telescope-project.nvim", lazy = false },
+				{
+					"ahmedkhalf/project.nvim",
+					lazy = false,
+					config = function()
+						require("project_nvim").setup()
+					end,
+				},
 				"nvim-telescope/telescope-media-files.nvim",
 				-- "debugloop/telescope-undo.nvim",
 				{
@@ -264,36 +286,34 @@ return {
 				},
 			},
 		},
-		{
-			"rcarriga/nvim-notify",
-			config = function()
-				require("notify").setup({
-					background_colour = "#000000",
-					render = "compact",
-					stages = "fade_in_slide_out",
-					top_down = false,
-				})
-			end,
-		},
-
 		-- {
-		-- 	"folke/noice.nvim",
-		-- 	event = "VeryLazy",
-		-- 	dependencies = {
-		-- 		"MunifTanjim/nui.nvim",
-		-- 		{
-		-- 			"rcarriga/nvim-notify",
-		-- 			config = function()
-		-- 				require("notify").setup({
-		-- 					background_colour = "#000000",
-		-- 					render = "compact",
-		-- 					stages = "fade_in_slide_out",
-		-- 					top_down = false,
-		-- 				})
-		-- 			end,
-		-- 		},
-		-- 	},
+		-- 	"rcarriga/nvim-notify",
+		-- 	lazy = false,
+		-- 	config = function()
+		-- 		require("notify").setup({
+		-- 			background_colour = "#000000",
+		-- 			render = "compact",
+		-- 			stages = "fade_in_slide_out",
+		-- 			top_down = false,
+		-- 		})
+		-- 	end,
 		-- },
+
+		{
+			"folke/noice.nvim",
+			event = "VeryLazy",
+			"MunifTanjim/nui.nvim",
+			{
+				"rcarriga/nvim-notify",
+				config = function()
+					require("notify").setup({
+						background_colour = "#000000",
+						render = "compact",
+						stages = "fade_in_slide_out",
+					})
+				end,
+			},
+		},
 
 		{
 			"glacambre/firenvim",
@@ -359,7 +379,6 @@ return {
 			},
 			lazy = false,
 		},
-
 		{
 			"anuvyklack/windows.nvim",
 			lazy = false,

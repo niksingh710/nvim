@@ -1,6 +1,5 @@
 local opts = {
-	laststatus = 3, -- global statusline
-	showmode = false,
+	laststatus = 2, -- global statusline
 
 	clipboard = "unnamedplus",
 	cursorline = true,
@@ -66,6 +65,6 @@ vim.opt.listchars:append("space:·")
 vim.opt.fillchars:append("fold:•")
 
 vim.g.floating_window_options = {
-	border = "rounded",
+	border = config.border or "rounded",
 	winblend = 10,
 }

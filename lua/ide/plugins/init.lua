@@ -12,8 +12,11 @@ require("ide.plugins.theme")
 
 ---@diagnostic disable-next-line: lowercase-global
 wstatus, whichkey = pcall(require, "which-key")
+-- if pcall(require, "notify") then
+-- 	vim.notify = require("notify")
+-- end
 
--- require("ide.plugins.noice")
+require("ide.plugins.noice")
 require("ide.plugins.telescope")
 require("ide.plugins.nvim-tree")
 require("ide.plugins.alpha")

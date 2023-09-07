@@ -16,6 +16,37 @@ if not snipok then
 	return
 end
 
+local default_cmp_sources = {
+	{ name = "nvim_lsp" },
+	{ name = "luasnip" },
+	{ name = "buffer" },
+	{ name = "path" },
+	{ name = "git" },
+	{ name = "calc" },
+}
+
+local bufIsBig = function(bufnr)
+	local max_filesize = 100 * 1024 -- 100 KB
+	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+	if ok and stats and stats.size > max_filesize then
+		return true
+	else
+		return false
+	end
+end
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	callback = function(t)
+		local sources = default_cmp_sources
+		if not bufIsBig(t.buf) then
+			sources[#sources + 1] = { name = "treesitter", group_index = 2 }
+		end
+		cmp.setup.buffer({
+			sources = sources,
+		})
+	end,
+})
+
 -- vscode format
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
@@ -44,8 +75,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 local mappings = {
 	["<C-k>"] = cmp.mapping.select_prev_item(),
 	["<C-j>"] = cmp.mapping.select_next_item(),
-	["<Tab>"] = cmp.config.disable,
-	["<S-Tab>"] = cmp.config.disable,
 
 	["<c-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 	["<c-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -176,17 +205,35 @@ local opts = {
 			border = config.border or "rounded",
 		},
 	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-    { name = "path" },
-		{ name = "cmdline" },
-	},
+	sources = default_cmp_sources,
 	mapping = mappings,
 }
 
 cmp.setup(opts)
+
+local cmdline_opts = { cmd = {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{ name = "path" },
+		}, {
+			{
+				name = "cmdline",
+				option = {
+					ignore_cmds = { "Man", "!" },
+				},
+			},
+		}),
+	},
+	cmd_path = {
+		mapping = cmp.mapping.preset.cmdline(),
+
+		sources = {
+			{ name = "buffer" },
+		},
+	},
+}
+cmp.setup.cmdline(":", cmdline_opts.cmd)
+cmp.setup.cmdline("/", cmdline_opts.cmd_path)
 
 local aok, autopair = pcall(require, "autopair")
 if aok then

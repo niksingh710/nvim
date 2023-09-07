@@ -130,19 +130,6 @@ local on_attach = function(_, bufnr)
 				j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Prev Diagnostic" },
 				f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format file" },
 			},
-			g = {
-				name = "Goto",
-				d = { "<cmd>Lspsaga goto_definition<CR>", "Goto Definations" },
-				h = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
-				R = { "<cmd>Lspsaga rename ++project<CR>", "Rename" },
-				t = { "<cmd>Lspsaga goto_type_definition<CR>", "Type Definations" },
-				l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostics" },
-				p = {
-					name = "Preview",
-					d = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definations" },
-					t = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek Type Definations" },
-				},
-			},
 			["]e"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
 			["[e"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
 			["[E"] = {
@@ -227,4 +214,3 @@ mason_config.setup_handlers({
 		})
 	end,
 })
-

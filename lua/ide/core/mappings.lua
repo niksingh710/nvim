@@ -93,8 +93,8 @@ local movement = {
 
 map("n", movement, { expr = true })
 map("x", movement, { expr = true })
-
-vim.keymap.set("c", ":", "q:", {})
-vim.keymap.set("n", ":", "q:i", {})
-vim.keymap.set("c", "<c-j>", "<Tab>", {})
-vim.keymap.set("c", "<c-k>", "<s-Tab>", {})
+--
+-- vim.keymap.set("c", ":", "q:", {})
+-- vim.keymap.set("n", ":", "q:i", {})
+-- vim.keymap.set("c", "<c-j>", "<Tab>", {})
+-- vim.keymap.set("c", "<c-k>", "<s-Tab>", {})

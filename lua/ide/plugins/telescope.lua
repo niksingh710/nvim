@@ -30,8 +30,10 @@ local opts = {
 
 telescope.setup(opts)
 telescope.load_extension("fzf")
-telescope.load_extension("project")
+telescope.load_extension("projects")
 telescope.load_extension("media_files")
+telescope.load_extension("harpoon")
+telescope.load_extension("git_worktree")
 
 if wstatus then
 	opts = {
@@ -51,16 +53,20 @@ if wstatus then
 			h = { "<cmd>Telescope help_tags<cr>", "Search Help Tags" },
 			b = { "<cmd>Telescope buffers<cr>", "Search Buffers" },
 			c = { "<cmd>Telescope commands<cr>", "Search Commands" },
-			u = { "<cmd>Telescope undo<cr>", "Undo" },
 			m = { "<cmd>Telescope marks<cr>", "Search in Media Mode" },
 			M = { "<cmd>Telescope media_files<cr>", "Search Marks" },
 			o = { "<cmd>Telescope vim_options<cr>", "Search Vim Options" },
 			q = { "<cmd>Telescope quickfix<cr>", "Search Quickfix" },
 			l = { "<cmd>Telescope loclist<cr>", "Search Location List" },
-			p = { "<cmd>Telescope projects<cr>", "Comment" },
+			p = { "<cmd>Telescope project<cr>", "Comment" },
 			t = { "<cmd>TodoTelescope<cr>", "Comment" },
 			["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy Buffer Search" },
 		},
+    g = {
+      name = "Git",
+      w = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Search Git worktree" },
+      c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create Git worktree" },
+    },
 	}
 
 	whichkey.register(mapping, opts)
