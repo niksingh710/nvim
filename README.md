@@ -36,15 +36,15 @@ You've provided preview images for some of the plugins you've configured:
 
 #### Telescope
 
-![telescope](./extra/assets/telescope.png)
+![telescope](./.extra/assets/telescope.png)
 
 #### Alpha
 
-![alpha](./extra/assets/alpha.png)
+![alpha](./.extra/assets/alpha.png)
 
 #### Lualine
 
-![lualine](./extra/assets/lualine.png)
+![lualine](./.extra/assets/lualine.png)
 
 ## Keymaps
 
@@ -61,7 +61,7 @@ can you write the keymaps from the old Readme file?
 | `<leader> + lf` | Format               |
 | `<leader> + sk` | Keymap Search        |
 
-This much should get you going and extra is all what you discover (fire.nvim) 
+This much should get you going and .extra is all what you discover (fire.nvim) 
 
 ## Configuration Structure
 
