@@ -57,17 +57,15 @@ end
 
 local opts = {
 	on_attach = attach,
-	sync_root_with_cwd = true,
-	respect_buf_cwd = true,
-	update_focused_file = {
-		enable = true,
-		update_root = true,
-	},
 	disable_netrw = true,
 	hijack_netrw = true,
 	hijack_cursor = true,
 	hijack_unnamed_buffer_when_opening = false,
-
+	sync_root_with_cwd = true,
+	update_focused_file = {
+		enable = true,
+		update_root = true,
+	},
 	view = {
 		adaptive_size = false,
 		side = "left",

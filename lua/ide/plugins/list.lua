@@ -103,6 +103,8 @@ return {
 		-- },
 	},
 	{ --utils
+		{ "tpope/vim-fugitive", lazy = false },
+		{ "ziontee113/color-picker.nvim", config = true, lazy = false },
 		{ "pocco81/auto-save.nvim", config = true, lazy = false },
 		{
 			"folke/zen-mode.nvim",
@@ -241,13 +243,7 @@ return {
 				},
 
 				{ "folke/todo-comments.nvim", config = true },
-				{
-					"ahmedkhalf/project.nvim",
-					lazy = false,
-					config = function()
-						require("project_nvim").setup()
-					end,
-				},
+				{ "nvim-telescope/telescope-project.nvim", lazy = false },
 				"nvim-telescope/telescope-media-files.nvim",
 				-- "debugloop/telescope-undo.nvim",
 				{
@@ -310,6 +306,7 @@ return {
 						background_colour = "#000000",
 						render = "compact",
 						stages = "fade_in_slide_out",
+						top_down = false,
 					})
 				end,
 			},

@@ -31,6 +31,11 @@ if utils.check.vimcmd("ASToggle") then
 	mapping.u.a = { "<cmd>ASToggle<cr>", "Auto Save Toggle" }
 end
 
+if utils.check.vimcmd("PickColor") then
+	utils.map("n", { ["<c-c>"] = { "<cmd>PickColor<cr>", "Color Picker" } })
+	utils.map("i", { ["<c-c>"] = { "<cmd>PickColorInsert<cr>", "Color Picker" } })
+end
+
 if pcall(require, "gopher") then
 	mapping.L = {
 		g = {
