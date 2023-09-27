@@ -85,15 +85,10 @@ local visual = {
 	["<leader>x"] = '"+x',
 	["<leader>X"] = '"+',
 }
-local command = {
-	["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
-	["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
-}
 
 map("n", normal)
 map("i", insert)
 map("x", visual)
-map("c", command)
 
 local movement = {
 	["j"] = "v:count ? 'j' : 'gj'",
@@ -105,5 +100,5 @@ map("x", movement, { expr = true })
 
 -- vim.keymap.set("c", ":", "q:", {})
 -- vim.keymap.set("n", ":", "q:i", {})
--- vim.keymap.set("c", "<c-j>", "<Tab>", {})
--- vim.keymap.set("c", "<c-k>", "<s-Tab>", {})
+vim.keymap.set("c", "<c-j>", "<Tab>", {})
+vim.keymap.set("c", "<c-k>", "<s-Tab>", {})

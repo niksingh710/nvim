@@ -1,6 +1,9 @@
 local opts = {
 	laststatus = 2, -- global statusline
 
+  -- conceal
+  conceallevel = 2,
+
 	clipboard = "unnamedplus",
 	cursorline = true,
 	cmdwinheight = 1,

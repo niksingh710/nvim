@@ -2,8 +2,43 @@ return {
 	"tiagovla/tokyodark.nvim",
 	enabled = config.tokyodark,
 	opts = {
-		custom_highlights = function(_, palette)
+		custom_highlights = function(hl, palette)
+			local groups = {
+				"Normal",
+				"NormalFloat",
+				"NormalNC",
+				"Comment",
+				"Constant",
+				"Special",
+				"Identifier",
+				"Statement",
+				"PreProc",
+				"Type",
+				"Underlined",
+				"Todo",
+				"String",
+				"Function",
+				"Conditional",
+				"Repeat",
+				"Operator",
+				"Structure",
+				"LineNr",
+				"NonText",
+				"SignColumn",
+				"CursorLineNr",
+				"EndOfBuffer",
+			}
+			hl["Normal"].bg = palette.none
+			for _, group in ipairs(groups) do
+				if hl[group] ~= nil then
+					hl[group].bg = palette.none
+				end
+			end
+
 			return {
+				DapBreakpoint = { fg = "#993939" },
+				DapLogPoint = { fg = "#61afef" },
+				DapStopped = { fg = "#98c379" },
 				TelescopeMatching = { fg = palette.orange },
 				TelescopeSelection = { fg = palette.fg, bg = palette.bg1, bold = true },
 				TelescopePromptPrefix = { bg = palette.bg1 },
@@ -21,4 +56,8 @@ return {
 			}
 		end,
 	},
+	config = function(_, opts)
+		require("tokyodark").setup(opts)
+		require("tokyodark").colorscheme()
+	end,
 }

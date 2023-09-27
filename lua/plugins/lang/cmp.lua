@@ -1,5 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
+	lazy = false,
 	enabled = config.nvim_cmp,
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
@@ -186,7 +187,7 @@ return {
 
 					-- custom icons
 					if entry.source.name == "copilot" then
-						vim_item.kind = icons.git.Octoface
+						vim_item.kind = icons.kind.Copilot
 						vim_item.kind_hl_group = "CmpItemKindCopilot"
 					end
 					if entry.source.name == "cmp_tabnine" then

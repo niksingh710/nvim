@@ -35,7 +35,7 @@ return {
 		Unit = "",
 		Value = "",
 		Variable = "",
-		Copilot = "",
+		Copilot = "",
 		TabNine = "ﮧ",
 	},
 	git = {

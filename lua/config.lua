@@ -1,6 +1,7 @@
 M = {}
 
 M.border = "rounded"
+M.transparent = true
 
 M.null_ls = {
 	formatters = {
@@ -11,9 +12,11 @@ M.null_ls = {
 		gofumpt = {},
 		golines = {},
 		jq = {},
+		black = {},
 	},
 	linters = {
 		shellcheck = {},
+		commitlint = {},
 	},
 }
 M.ensure = {
@@ -101,6 +104,17 @@ linters.zsh = {
 	"shellcheck",
 }
 
+servers.pylsp = {
+	pylsp = {
+		plugins = {
+			pycodestyle = {
+				ignore = { "E501", "W503" },
+				maxLineLength = 100,
+			},
+		},
+	},
+}
+
 servers.gopls = {
 	completeUnimported = true,
 	usePlaceholders = true,
@@ -139,9 +153,13 @@ servers.pkgbuild_language_server = {
 servers.lua_ls = {
 	Lua = {
 		diagnostics = {
-			globals = { "vim", "config", "utils" },
+			globals = { "vim", "config", "utils", "icons" },
+			disable = {
+				"lowercase-global",
+			},
 		},
 		workspace = {
+			checkThirdParty = false,
 			library = {
 				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,

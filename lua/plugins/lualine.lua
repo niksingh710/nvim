@@ -182,7 +182,7 @@ return {
 					end
 				end
 				if copilot_active then
-					str = "%#SLGreen#" .. icons.git.Octoface
+					str = "%#SLGreen#" .. icons.kind.Copilot
 				end
 				return str
 			end,

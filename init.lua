@@ -87,4 +87,5 @@ require("lazy").setup("plugins", opts)
 utils.map("n", { ["<leader>iL"] = { "<cmd>Lazy<cr>", "Lazy" } })
 -- }}}
 
+-- vim.cmd("colorscheme tokyodark")
 vim.cmd("colorscheme tokyodark")
