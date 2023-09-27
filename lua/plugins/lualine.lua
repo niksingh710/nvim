@@ -47,7 +47,10 @@ return {
 
 		local components = {
 			require_noice_fix = require_noice_fix(),
-
+			-- location = {
+			--   "location",
+			--   color = { bg = "#000000", gui = "bold" },
+			-- },
 			mode = {
 				"mode",
 				color = function()
@@ -74,7 +77,7 @@ return {
 						["!"] = colors.red,
 						t = colors.red,
 					} -- }}}
-					return { bg = mode_color[vim.fn.mode()] }
+					return { bg = mode_color[vim.fn.mode()], fg= "#000000" }
 				end,
 				fmt = function()
 					return icons.misc.LualineFmt

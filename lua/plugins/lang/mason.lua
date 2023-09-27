@@ -5,6 +5,11 @@ return {
 	opts = {
 		ui = {
 			border = config.border or "rounded",
+			icons = {
+				package_installed = "",
+				package_pending = "",
+				package_uninstalled = "",
+			},
 		},
 	},
 	keys = {

@@ -74,9 +74,9 @@ local opts = {
 	},
 	install = {
 		colorscheme = { -- Will try to load the themes if available in this order
+			"material",
 			"tokyodark",
 			"catppuccin",
-			"material",
 			"tokyonight",
 			"habmax",
 		},
@@ -88,4 +88,4 @@ utils.map("n", { ["<leader>iL"] = { "<cmd>Lazy<cr>", "Lazy" } })
 -- }}}
 
 -- vim.cmd("colorscheme tokyodark")
-vim.cmd("colorscheme tokyodark")
+vim.cmd("colorscheme material")
