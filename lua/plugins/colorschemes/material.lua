@@ -26,7 +26,7 @@ return {
 				},
 				functions = { --[[ bold = true, undercurl = true ]]
 					bold = true,
-					undercurl = true,
+					-- undercurl = true,
 				},
 				variables = {},
 				operators = {},
