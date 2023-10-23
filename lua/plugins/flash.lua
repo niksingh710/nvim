@@ -2,7 +2,15 @@ return {
 	"folke/flash.nvim",
 	event = "VeryLazy",
 	opts = {
+    search = {
+      incremental = true,
+    },
 		modes = {
+			search = {
+        search = {
+          mode = "fuzzy",
+        },
+      },
 			char = {
 				highlight = {
 					backdrop = false,

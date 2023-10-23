@@ -74,7 +74,6 @@ M.colorizer = {
 		"lua",
 		"markdown",
 		"md",
-		"conf",
 		"tmux",
 		html = { mode = "foreground" },
 		cmp_docs = { always_update = true },
