@@ -39,9 +39,9 @@ return {
 		custom_dynamic_variables = {},
 		yank_dry_run = true,
 	},
-  keys = {
+	keys = {
 		{ "<leader>rr", "<plug>RestNvim<cr>", desc = "Rest run" },
 		{ "<leader>rp", "<plug>RestNvimPreview<cr>", desc = "Rest run" },
 		{ "<leader>rl", "<plug>RestNvimLast<cr>", desc = "Rest run" },
-  }
+	},
 }

@@ -39,7 +39,7 @@ M.ensure = {
 		"typescript",
 		"vim",
 		"vue",
-		"c",
+		"r",
 		"lua",
 		"vim",
 		"vimdoc",
