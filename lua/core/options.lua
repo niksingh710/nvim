@@ -51,6 +51,8 @@ local opts = {
 	foldmethod = "marker",
 	-- interval for writing swap file to disk, also used by gitsigns
 	updatetime = 250,
+
+  wrap = false,
 }
 
 vim.opt.whichwrap:append("<>[]hl")
