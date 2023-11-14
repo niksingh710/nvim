@@ -53,6 +53,9 @@ local opts = {
 	updatetime = 250,
 
   wrap = false,
+
+  virtualedit = "block",
+  inccommand = "split",
 }
 
 vim.opt.whichwrap:append("<>[]hl")
