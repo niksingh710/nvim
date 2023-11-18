@@ -92,6 +92,7 @@ return {
 					bg = colors.backgrounds.floating_windows,
 					fg = colors.backgrounds.floating_windows,
 				},
+				PMenu = { bg = "None" }, -- make cmp menu transparent
 				TelescopePromptTitle = { bg = colors.main.purple, fg = colors.backgrounds.floating_windows },
 				TelescopeResultsTitle = { fg = colors.backgrounds.floating_windows },
 				TelescopePreviewTitle = { bg = colors.main.green, fg = colors.backgrounds.floating_windows },

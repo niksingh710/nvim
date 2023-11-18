@@ -7,9 +7,7 @@ M.null_ls = {
 	formatters = {
 		stylua = {},
 		shfmt = {},
-		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
-		goimports = {},
-		gofumpt = {},
+		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }, goimports = {}, gofumpt = {},
 		golines = {},
 		jq = {},
 		black = {},

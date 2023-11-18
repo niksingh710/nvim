@@ -34,7 +34,7 @@ return {
 		},
 		{
 			"ahmedkhalf/project.nvim",
-      lazy = false,
+			lazy = false,
 			config = function()
 				require("project_nvim").setup({})
 			end,
@@ -42,7 +42,7 @@ return {
 		{
 			"ThePrimeagen/harpoon",
 			enabled = config.harpoon,
-      lazy = false,
+			lazy = false,
 			opts = {
 				global_settings = {
 					mark_branch = true,
@@ -109,6 +109,7 @@ return {
 		telescope.load_extension("undo")
 		telescope.load_extension("harpoon")
 		telescope.load_extension("projects")
+		telescope.load_extension("notify")
 	end,
 
 	keys = mappings,
