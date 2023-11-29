@@ -29,7 +29,6 @@ return {
 			S = "Session",
 			t = "Tab",
       v = "Split",
-      w = "vimwiki",
 			f = "Files",
 			b = "Buffer",
       g = "git",

@@ -42,6 +42,7 @@ local normal = {
 
 	["<leader>tq"] = { "<cmd>tabclose<cr>", "Close Tab" },
 	["<leader>tn"] = { "<cmd>tabnew<cr>", "New Tab" },
+	["<leader>ut"] = { "<c-a><c-x>", "Toggle" },
 
 	---@diagnostic disable-next-line: undefined-global
 	["<leader><leader>"] = { utils.filetypeSet, "Set Filetype" },

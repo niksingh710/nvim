@@ -7,9 +7,12 @@ M.null_ls = {
 	formatters = {
 		stylua = {},
 		shfmt = {},
-		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }, goimports = {}, gofumpt = {},
+		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
+		goimports = {},
+		gofumpt = {},
 		golines = {},
 		jq = {},
+		rustfmt = {},
 		black = {},
 	},
 	linters = {
@@ -44,6 +47,7 @@ M.ensure = {
 		"query",
 		"markdown",
 		"markdown_inline",
+		"rust",
 		"html",
 		"nix",
 		"php",
@@ -58,6 +62,7 @@ M.ensure = {
 		"bashls",
 		"eslint",
 		"marksman",
+		"rust_analyzer",
 	},
 	nvim_dap = {
 		"delve",
@@ -163,6 +168,14 @@ servers.lua_ls = {
 			},
 			maxPreload = 100000,
 			preloadFileSize = 10000,
+		},
+	},
+}
+
+servers.rust_analyzer = {
+	["rust-analyzer"] = {
+		diagnostics = {
+			enable = false,
 		},
 	},
 }
