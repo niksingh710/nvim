@@ -208,7 +208,6 @@ local M = {
 		build = "cd app && npm install",
 		ft = "markdown",
 		init = function()
-			vim.g.mkdp_auto_start = 1
 			utils.load.mappings("markdown")
 		end,
 	},
@@ -241,6 +240,11 @@ local M = {
 			utils.load.mappings("alpha")
 		end,
 		config = require("plugins.configs.alpha").config,
+	},
+	{
+		"3rd/image.nvim",
+		ft = { "markdown" },
+		opts = require("plugins.configs.others").image_opts,
 	},
 }
 

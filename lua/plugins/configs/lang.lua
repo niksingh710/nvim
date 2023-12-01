@@ -26,7 +26,7 @@ M.ensure_tree = {
 -- if lsp is not working precisely, try to set linters manually
 M.linters = {
 	-- lua = { "luacheck" },
-	markdown = { "vale" },
+	-- markdown = { "vale" },
 }
 
 M.formatters = {

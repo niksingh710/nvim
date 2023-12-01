@@ -163,6 +163,17 @@ M.rest_opts = {
 	yank_dry_run = true,
 }
 
+M.image_opts = {
+	backend = "ueberzug",
+	max_width = 50,
+	max_height = 50,
+	integrations = {
+		markdown = {
+			only_render_image_at_cursor = true,
+		},
+	},
+}
+
 M.firenvim = function()
 	vim.g.firenvim_config = {
 		localSettings = {
