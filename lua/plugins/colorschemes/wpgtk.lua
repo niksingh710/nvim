@@ -1,3 +1,0 @@
-return {
-  "deviantfero/wpgtk.vim",
-}
