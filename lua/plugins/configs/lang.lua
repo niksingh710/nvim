@@ -5,7 +5,8 @@ M.ensure_lsp = {
 	"lua_ls",
 	"gopls",
 	"rust_analyzer",
-  "bashls",
+	"bashls",
+	"cssls",
 }
 
 M.ensure_tree = {
@@ -20,6 +21,7 @@ M.ensure_tree = {
 	"rust",
 	"regex",
 	"bash",
+	"css",
 }
 
 -- TODO: Write a fn that will check formatters and linters and install them via using Mason
@@ -28,9 +30,9 @@ M.ensure_tree = {
 M.linters = {
 	-- lua = { "luacheck" },
 	-- markdown = { "vale" },
-  sh = { "shellcheck" },
-  bash = { "shellcheck" },
-  zsh = { "shellcheck" },
+	sh = { "shellcheck" },
+	bash = { "shellcheck" },
+	zsh = { "shellcheck" },
 }
 
 M.formatters = {
@@ -41,7 +43,8 @@ M.formatters = {
 	javascript = { { "prettierd", "prettier" } },
 	go = { "gofmt", "goimports" },
 	rust = { "rustfmt" },
-  sh = { "shfmt" },
+	sh = { "shfmt" },
+	css = { "prettierd" },
 }
 
 M.handlers = function()

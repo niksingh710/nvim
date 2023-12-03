@@ -52,6 +52,7 @@ M.check = {
 M.load = {}
 
 M.load.mappings = function(section, options)
+---@diagnostic disable-next-line: lowercase-global
 	mapping_data = require("core.mappings")[section]
 	if not mapping_data then
 		return

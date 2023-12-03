@@ -111,6 +111,13 @@ M.gitsigns = {
 
 M.ufo = function()
 	require("ufo").setup({
+		open_fold_hl_timeout = 0,
+		preview = {
+			win_config = {
+				border = border or "rounded",
+				winblend = 0,
+			},
+		},
 		provider_selector = function()
 			return { "lsp", "indent" }
 		end,
