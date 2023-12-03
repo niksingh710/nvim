@@ -41,7 +41,6 @@ M.config = function()
 	})
 	vim.api.nvim_create_autocmd("BufUnload", {
 		callback = function()
-			print("running this..")
 			vim.o.showtabline = 2
 		end,
 		group = toggle_bufferline,

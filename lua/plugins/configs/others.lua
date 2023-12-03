@@ -109,8 +109,17 @@ M.gitsigns = {
 	},
 }
 
+M.ufo = function()
+	require("ufo").setup({
+		provider_selector = function()
+			return { "lsp", "indent" }
+		end,
+	})
+end
+
 M.gitsigns_init = function()
 	-- load gitsigns only when a git file is opened
+	-- TODO: Fix this for softly linked directories.
 	vim.api.nvim_create_autocmd({ "BufRead" }, {
 		group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
 		callback = function()

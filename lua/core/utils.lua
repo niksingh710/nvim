@@ -67,4 +67,9 @@ M.load.mappings = function(section, options)
 	end
 end
 
+M.set_curdir = function()
+	local curdir = vim.fn.expand("%:p:h")
+	vim.api.nvim_set_current_dir(curdir)
+end
+
 return M

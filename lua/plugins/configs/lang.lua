@@ -5,6 +5,7 @@ M.ensure_lsp = {
 	"lua_ls",
 	"gopls",
 	"rust_analyzer",
+  "bashls",
 }
 
 M.ensure_tree = {
@@ -17,8 +18,8 @@ M.ensure_tree = {
 	"js",
 	"go",
 	"rust",
-  "regex",
-  "bash",
+	"regex",
+	"bash",
 }
 
 -- TODO: Write a fn that will check formatters and linters and install them via using Mason
@@ -27,6 +28,9 @@ M.ensure_tree = {
 M.linters = {
 	-- lua = { "luacheck" },
 	-- markdown = { "vale" },
+  sh = { "shellcheck" },
+  bash = { "shellcheck" },
+  zsh = { "shellcheck" },
 }
 
 M.formatters = {
@@ -37,12 +41,14 @@ M.formatters = {
 	javascript = { { "prettierd", "prettier" } },
 	go = { "gofmt", "goimports" },
 	rust = { "rustfmt" },
+  sh = { "shfmt" },
 }
 
 M.handlers = function()
 	local capabilities = require("plugins.configs.lsp").capabilities
 	local on_attach = require("plugins.configs.lsp").on_attach
 	local lspconfig = require("lspconfig")
+	local lsp_util = require("lspconfig/util")
 
 	return {
 
@@ -50,7 +56,7 @@ M.handlers = function()
 		-- and will be called for each installed server that doesn't have
 		-- a dedicated handler.
 		function(server_name) -- default handler (optional)
-			require("lspconfig")[server_name].setup({
+			lspconfig[server_name].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
@@ -64,6 +70,14 @@ M.handlers = function()
 					server = {
 						on_attach = on_attach,
 						capabilities = capabilities,
+						root_dir = lsp_util.root_pattern("Cargo.toml", "rust-project.json", ".git"),
+						settings = {
+							["rust-analyzer"] = {
+								cargo = {
+									allFeatures = true,
+								},
+							},
+						},
 					},
 				})
 			end

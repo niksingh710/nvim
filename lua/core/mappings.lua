@@ -27,10 +27,34 @@ M.general = {
 		["<a-j>"] = { "<cmd>m .+1<cr>==", "Move line Down" },
 		["<a-k>"] = { "<cmd>m .-2<cr>==", "Move line up" },
 
-		["<s-h>"] = { "<cmd>bprevious<cr>", "Buffer Previous" },
-		["<s-l>"] = { "<cmd>bnext<cr>", "Buffer Next" },
+		["<s-h>"] = {
+			function()
+				if utils.check.vimcmd("BufferLineCyclePrev") then
+					vim.cmd("BufferLineCyclePrev")
+				else
+					vim.cmd("bprev")
+				end
+			end,
+			"Buffer Previous",
+		},
+		["<s-l>"] = {
+			function()
+				if utils.check.vimcmd("BufferLineCycleNext") then
+					vim.cmd("BufferLineCycleNext")
+				else
+					vim.cmd("bnext")
+				end
+			end,
+			"Buffer Next",
+		},
 
 		["<leader>q"] = { "<cmd>quit!<cr>", "Quit!" },
+		["<leader><cr>"] = {
+			function()
+				utils.set_curdir()
+			end,
+			"Ch dir",
+		},
 
 		["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true, silent = true } },
 		["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true, silent = true } },
@@ -240,7 +264,22 @@ M.lspconfig_saga = {
 			"<cmd>lua require('lspsaga.diagnostic').goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>",
 			"Next Error",
 		},
-		["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
+		["K"] = {
+			function()
+				local uok, ufo = pcall(require, "ufo")
+				if uok then
+					local winid = ufo.peekFoldedLinesUnderCursor()
+					if not winid then
+						-- choose one of coc.nvim and nvim lsp
+						-- vim.lsp.buf.hover()
+						vim.cmd("Lspsaga hover_doc")
+					end
+				else
+					vim.cmd("Lspsaga hover_doc")
+				end
+			end,
+			"Hover Doc",
+		},
 		["gd"] = { "<cmd>Lspsaga goto_definition<CR>", "Goto Definations" },
 		["gh"] = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
 		["gR"] = { "<cmd>Lspsaga rename ++project<CR>", "Rename" },
@@ -308,6 +347,8 @@ M.bufferline = {
 		["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", "Buffer Sort by Tabs" },
 		["<leader>bL"] = { "<cmd>BufferLineCloseRight<cr>", "Buffer close all to right" },
 		["<leader>bH"] = { "<cmd>BufferLineCloseLeft<cr>", "Buffer close all to left" },
+		["<leader><s-h>"] = { "<cmd>BufferLineMovePrev<cr>", "Move buffer to left" },
+		["<leader><s-l>"] = { "<cmd>BufferLineMoveNext<cr>", "Move buffer to right" },
 	},
 }
 
@@ -366,6 +407,34 @@ M.dap_ui = {
 M.alpha = {
 	n = {
 		["<leader>;"] = { "<cmd>Alpha<CR>", desc = "Dashboard" },
+	},
+}
+
+M.ufo = {
+	n = {
+		["zR"] = {
+			function()
+				require("ufo").openAllFolds()
+			end,
+			"Open all folds",
+		},
+		["zM"] = {
+			function()
+				require("ufo").closeAllFolds()
+			end,
+			"Add Yaml Tags",
+		},
+		["zK"] = {
+			function()
+				local winid = require("ufo").peekFoldedLinesUnderCursor()
+				if not winid then
+					-- choose one of coc.nvim and nvim lsp
+					-- vim.fn.CocActionAsync("definitionHover") -- coc.nvim
+					vim.lsp.buf.hover()
+				end
+			end,
+			"Peek Folded Lines",
+		},
 	},
 }
 

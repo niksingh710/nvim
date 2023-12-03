@@ -1,5 +1,4 @@
 local M = {}
-
 M.options = {
 	options = {
 		left_trunc_marker = icons.ui.ArrowCircleLeft,

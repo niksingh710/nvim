@@ -39,7 +39,7 @@ local M = {
 			vim.o.timeoutlen = 300
 			utils.load.mappings("whichkey")
 		end,
-		opts = require("plugins.configs.whichkey").options,
+		config = require("plugins.configs.whichkey").config,
 	},
 
 	{
@@ -245,6 +245,22 @@ local M = {
 		"3rd/image.nvim",
 		ft = { "markdown" },
 		opts = require("plugins.configs.others").image_opts,
+	},
+	{
+		"gen740/SmoothCursor.nvim",
+		event = "VeryLazy",
+		opts = {
+			cursor = "",
+		},
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+    event = "VeryLazy",
+		init = function()
+			utils.load.mappings("ufo")
+		end,
+		config = require("plugins.configs.others").ufo,
+		dependencies = { "kevinhwang91/promise-async" },
 	},
 }
 

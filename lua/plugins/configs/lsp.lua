@@ -38,6 +38,8 @@ M.capabilities.textDocument.completion.completionItem = {
 	preselectSupport = true,
 	insertReplaceSupport = true,
 	labelDetailsSupport = true,
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 	deprecatedSupport = true,
 	commitCharactersSupport = true,
 	tagSupport = { valueSet = { 1 } },
@@ -97,7 +99,7 @@ M.config = function()
 
 	local handlers = lang.handlers() or {}
 
-	require("mason-lspconfig").setup_handlers(handlers)
+	mason_lsp.setup_handlers(handlers)
 end
 
 M.saga_conf = function()

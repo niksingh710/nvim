@@ -1,4 +1,5 @@
 local opt = vim.opt
+local o = vim.o
 local g = vim.g
 
 g.mapleader = " "
@@ -27,6 +28,7 @@ opt.cmdheight = 0
 
 -- Numbers
 opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 2
 opt.ruler = false
 
@@ -76,7 +78,11 @@ opt.fillchars = {
 	eob = " ",
 }
 
--- opt.foldmethod = "indent"
+o.foldcolumn = "1" -- '0' is not bad
+o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+o.foldlevelstart = 99
+o.foldenable = true
+o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 if vim.fn.has("nvim-0.10") == 1 then
 	opt.smoothscroll = true
@@ -108,3 +114,19 @@ vim.g.floating_window_options = {
 -- Example for configuring Neovim to load user-installed installed Lua rocks:
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
+local fcs = vim.opt.fillchars:get()
+
+-- Stolen from Akinsho --fixes folding columns numbers
+local function get_fold(lnum)
+	if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+		return " "
+	end
+	return vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
+end
+
+_G.get_statuscol = function()
+	return "%s%l " .. get_fold(vim.v.lnum) .. " "
+end
+
+vim.o.statuscolumn = "%!v:lua.get_statuscol()"
