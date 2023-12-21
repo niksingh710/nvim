@@ -19,7 +19,6 @@ return {
 			},
 			config = function(_, opts)
 				require("nvim-autopairs").setup(opts)
-
 				-- setup cmp for autopairs
 				local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 				---@diagnostic disable-next-line: different-requires
@@ -35,6 +34,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 		},
 	},
 

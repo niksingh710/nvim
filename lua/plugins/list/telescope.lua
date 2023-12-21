@@ -23,10 +23,12 @@ return {
 			end,
 		},
 		{
-			"ThePrimeagen/harpoon",
+			-- "ThePrimeagen/harpoon",
+			"willothy/harpoon",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
+			branch = "fix-ui",
 			init = function()
 				utils.load.mappings("harpoon")
 			end,

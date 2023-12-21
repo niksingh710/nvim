@@ -6,3 +6,4 @@ vim.cmd("colorscheme material")
 
 -- TODO: Lsp Semantics token solution
 -- TODO: Nerog
+

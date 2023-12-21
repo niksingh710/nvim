@@ -7,6 +7,7 @@ M.ensure_lsp = {
 	"rust_analyzer",
 	"bashls",
 	"cssls",
+	"pylsp",
 }
 
 M.ensure_tree = {
@@ -21,7 +22,13 @@ M.ensure_tree = {
 	"rust",
 	"regex",
 	"bash",
+	"vimdoc",
+	"vim",
+	"query",
+	"c",
+	"lua",
 	"css",
+	"python",
 }
 
 -- TODO: Write a fn that will check formatters and linters and install them via using Mason
@@ -41,10 +48,11 @@ M.formatters = {
 	python = { "isort", "black" },
 	-- Use a sub-list to run only the first available formatter
 	javascript = { { "prettierd", "prettier" } },
+	html = { { "prettierd", "prettier" } },
+	css = { { "prettierd", "prettier" } },
 	go = { "gofmt", "goimports" },
 	rust = { "rustfmt" },
 	sh = { "shfmt" },
-	css = { "prettierd" },
 }
 
 M.handlers = function()

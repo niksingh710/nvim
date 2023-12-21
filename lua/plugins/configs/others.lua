@@ -23,6 +23,14 @@ M.noice_config = function()
 				help = { pattern = "^:%s*tab he?l?p?%s+", icon = "" },
 			},
 		},
+		popupmenu = {
+			enabled = true, -- enables the Noice popupmenu UI
+			---@type 'nui'|'cmp'
+			backend = "cmp", -- backend to use to show regular cmdline completions
+			---@type NoicePopupmenuItemKind|false
+			-- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
+			kind_icons = {}, -- set to `false` to disable icons
+		},
 		presets = {
 			bottom_search = false, -- use a classic bottom cmdline for search
 			long_message_to_split = true, -- long messages will be sent to a split
@@ -32,7 +40,7 @@ M.noice_config = function()
 				views = {
 					cmdline_popup = {
 						position = {
-							row = 60,
+							row = 10,
 							col = "50%",
 						},
 						size = {
@@ -121,6 +129,19 @@ M.ufo = function()
 		provider_selector = function()
 			return { "lsp", "indent" }
 		end,
+	})
+end
+
+M.auto_save = function()
+	require("auto-save").setup({
+		execution_message = {
+			enabled = false,
+			message = function() -- message to print on save
+				return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+			end,
+			dim = 0.18, -- dim the color of `message`
+			cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+		},
 	})
 end
 

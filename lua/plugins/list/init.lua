@@ -109,8 +109,8 @@ local M = {
 		opts = require("plugins.configs.nvim-colorizer").options,
 	},
 	{
-		"pocco81/auto-save.nvim",
-		config = true,
+		"okuuva/auto-save.nvim",
+		config = require("plugins.configs.others").auto_save,
 		event = "VeryLazy",
 	},
 	{
@@ -255,12 +255,20 @@ local M = {
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-    event = "VeryLazy",
+		event = "VeryLazy",
 		init = function()
 			utils.load.mappings("ufo")
 		end,
 		config = require("plugins.configs.others").ufo,
 		dependencies = { "kevinhwang91/promise-async" },
+	},
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		cmd = { "Neorg" },
+		ft = { "norg" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = require("plugins.configs.neorg").config,
 	},
 }
 

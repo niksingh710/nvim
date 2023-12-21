@@ -152,10 +152,15 @@ M.notify = {
 
 M.harpoon = {
 	n = {
-		["<leader>fm"] = { ":lua require('harpoon.mark').add_file()<cr>", "Mark file to harpoon" },
-		["<leader>fu"] = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Ui" },
+		["<leader>fm"] = { ":lua require('harpoon'):list():append()<cr>", "Mark file to harpoon" },
+		["<leader>fu"] = { ":lua require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())<cr>", "Harpoon Ui" },
 		["<leader>ff"] = { ":Telescope harpoon marks<cr>", "Harpoon Telescope" },
 	},
+	-- n = {
+	-- 	["<leader>fm"] = { ":lua require('harpoon.mark').add_file()<cr>", "Mark file to harpoon" },
+	-- 	["<leader>fu"] = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon Ui" },
+	-- 	["<leader>ff"] = { ":Telescope harpoon marks<cr>", "Harpoon Telescope" },
+	-- },
 }
 
 M.nvimtree = {
