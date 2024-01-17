@@ -59,6 +59,7 @@ end
 
 M.blankline_config = function()
 	local config = require("ibl.config").default_config
+	config.scope.show_start = false
 	local highlight = {
 		"RainbowRed",
 		"RainbowYellow",

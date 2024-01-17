@@ -42,13 +42,13 @@ return {
 				default_action = "system",
 			},
 		},
-		{
-			"olimorris/persisted.nvim",
-			init = function()
-				utils.load.mappings("persisted")
-			end,
-			config = require("plugins.configs.telescope").persisted,
-		},
+		-- { -- TODO:FIX !important  https://github.com/gennaro-tedesco/nvim-possession
+		-- 	"olimorris/persisted.nvim",
+		-- 	init = function()
+		-- 		utils.load.mappings("persisted")
+		-- 	end,
+		-- 	config = require("plugins.configs.telescope").persisted,
+		-- },
 	},
 	cmd = "Telescope",
 	init = function()

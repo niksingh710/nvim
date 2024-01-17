@@ -27,7 +27,6 @@ M.noice_config = function()
 			enabled = true, -- enables the Noice popupmenu UI
 			---@type 'nui'|'cmp'
 			backend = "cmp", -- backend to use to show regular cmdline completions
-			---@type NoicePopupmenuItemKind|false
 			-- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
 			kind_icons = {}, -- set to `false` to disable icons
 		},
@@ -229,5 +228,48 @@ M.firenvim = function()
 		end,
 	})
 end
+
+M.flash_keys = {
+	{
+		"s",
+		mode = { "n", "x", "o" },
+		function()
+			require("flash").jump()
+		end,
+		desc = "Flash",
+	},
+	{
+		"S",
+		mode = { "n", "x", "o" },
+		function()
+			require("flash").treesitter()
+		end,
+		desc = "Flash Treesitter",
+	},
+	{
+		"r",
+		mode = "o",
+		function()
+			require("flash").remote()
+		end,
+		desc = "Remote Flash",
+	},
+	{
+		"R",
+		mode = { "o", "x" },
+		function()
+			require("flash").treesitter_search()
+		end,
+		desc = "Treesitter Search",
+	},
+	{
+		"<c-s>",
+		mode = { "c" },
+		function()
+			require("flash").toggle()
+		end,
+		desc = "Toggle Flash Search",
+	},
+}
 
 return M

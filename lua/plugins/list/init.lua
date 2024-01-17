@@ -42,14 +42,25 @@ local M = {
 		config = require("plugins.configs.whichkey").config,
 	},
 
-	{
-		"stevearc/conform.nvim",
-		config = require("plugins.configs.conform").config,
-	},
-	{
-		"mfussenegger/nvim-lint",
-		lazy = false,
-		config = require("plugins.configs.nvim-lint").config,
+	-- {
+	-- 	"stevearc/conform.nvim",
+	-- 	config = require("plugins.configs.conform").config,
+	-- },
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	lazy = false,
+	-- 	config = require("plugins.configs.nvim-lint").config,
+	-- },
+	{ -- for null-ls{{{
+		"nvimtools/none-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"jay-babu/mason-null-ls.nvim",
+		},
+		init = function()
+			utils.load.mappings("none_ls")
+		end,
+		config = require("plugins.configs.none-ls").config,
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -153,6 +164,7 @@ local M = {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		lazy = false,
 		ft = { "gitcommit", "diff" },
 		init = require("plugins.configs.others").gitsigns_init,
 		opts = require("plugins.configs.others").gitsigns,
@@ -251,6 +263,7 @@ local M = {
 		event = "VeryLazy",
 		opts = {
 			cursor = "",
+			disable_float_win = true,
 		},
 	},
 	{
@@ -269,6 +282,40 @@ local M = {
 		ft = { "norg" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = require("plugins.configs.neorg").config,
+	},
+	-- {
+	-- 	"m4xshen/hardtime.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+ --    opts = {
+ --      restriction_mode = "hint",
+ --    },
+	-- },
+	{
+		"luukvbaal/statuscol.nvim",
+		event = "VeryLazy",
+		config = function()
+			local builtin = require("statuscol.builtin")
+			require("statuscol").setup({
+				-- relculright = true,
+				segments = {
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+					{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+					{ text = { "%s" }, click = "v:lua.ScSa" },
+				},
+			})
+		end,
+	},
+	{
+		"Shatur/neovim-session-manager",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		event = "VeryLazy",
+		config = true,
+		init = function()
+			utils.load.mappings("nvim_session_manager")
+		end,
 	},
 }
 

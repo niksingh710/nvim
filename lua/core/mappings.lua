@@ -48,7 +48,7 @@ M.general = {
 			"Buffer Next",
 		},
 
-		["<leader>q"] = { "<cmd>quit!<cr>", "Quit!" },
+		["<leader>q"] = { "<cmd>quitall!<cr>", "Quit!" },
 		["<leader><cr>"] = {
 			function()
 				utils.set_curdir()
@@ -141,6 +141,25 @@ M.telescope = {
 M.notify = {
 	n = {
 		["<leader>sn"] = { "<cmd>Telescope notify<cr>", "Notifications" },
+		["<leader>uN"] = {
+			function()
+				local notify = require("notify")
+
+				local lines = {}
+				for _, notif in ipairs(notify.history()) do
+					table.insert(
+						lines,
+						("%s %s: %s"):format(notif.title[1], notif.title[2], table.concat(notif.message, "\n"))
+					)
+				end
+				local buf = vim.api.nvim_create_buf(false, true)
+				vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+				vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+				vim.cmd("vsplit")
+				vim.api.nvim_win_set_buf(0, buf)
+			end,
+			"Notifications",
+		},
 		["<leader>un"] = {
 			function()
 				return require("notify").dismiss()
@@ -197,6 +216,12 @@ M.mason = {
 M.lazy = {
 	n = {
 		["<leader>iL"] = { "<cmd>Lazy<cr>", "Lazy" },
+	},
+}
+
+M.none_ls = {
+	n = {
+		["<leader>iN"] = { "<cmd>NullLsInfo<cr>", "NullLsInfo" },
 	},
 }
 
@@ -329,6 +354,9 @@ M.copilot = {
 	n = {
 		["<leader>C"] = {
 			function()
+				if vim.g.copilot_status == nil then
+					vim.g.copilot_status = "running"
+				end
 				if vim.g.copilot_status == "running" then
 					vim.g.copilot_status = "stopped"
 					vim.cmd("Copilot disable")
@@ -365,12 +393,51 @@ M.rest = {
 	},
 }
 
+M.nvim_session_manager = {
+	n = {
+		["<leader>S."] = { "<cmd>SessionManager load_last_session<CR>", "Last Session" },
+		["<leader>Sl"] = { "<cmd>SessionManager load_session<CR>", "List Session" },
+		["<leader>Sd"] = { "<cmd>SessionManager load_current_dir_session<CR>", "Curr Dir load" },
+		["<leader>Ss"] = { "<cmd>SessionManager save_current_session<CR>", "Save Session" },
+		["<leader>SD"] = { "<cmd>SessionManager delete_session<CR>", "Delete sessions" },
+	},
+}
+
 M.persisted = {
 	n = {
 		["<leader>Sd"] = { "<cmd>SessionLoad<CR>", "Dir Session" },
 		["<leader>Sq"] = { "<cmd>SessionDelete<CR>", "Session Delete" },
 		["<leader>S."] = { "<cmd>SessionLoadLast<CR>", "Last Session" },
 		["<leader>Ss"] = { "<cmd>Telescope persisted<CR>", "Telescope sessions" },
+	},
+}
+
+M.possession = {
+	n = {
+		["<leader>Sl"] = {
+			function()
+				require("nvim-possession").list()
+			end,
+			"List Session",
+		},
+		["<leader>Sn"] = {
+			function()
+				require("nvim-possession").new()
+			end,
+			"List Session",
+		},
+		["<leader>Su"] = {
+			function()
+				require("nvim-possession").update()
+			end,
+			"List Session",
+		},
+		["<leader>Sd"] = {
+			function()
+				require("nvim-possession").delete()
+			end,
+			"List Session",
+		},
 	},
 }
 
@@ -427,7 +494,7 @@ M.ufo = {
 			function()
 				require("ufo").closeAllFolds()
 			end,
-			"Add Yaml Tags",
+			"Close All Folds",
 		},
 		["zK"] = {
 			function()

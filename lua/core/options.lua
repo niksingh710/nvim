@@ -4,12 +4,13 @@ local g = vim.g
 
 g.mapleader = " "
 
-opt.laststatus = 3
+opt.laststatus = 0
 opt.showmode = false
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 opt.cursorlineopt = "number"
+-- opt.eventignore = "all"
 
 -- Indentation
 opt.expandtab = true
@@ -78,6 +79,7 @@ opt.fillchars = {
 	eob = " ",
 }
 
+o.updatetime = 1000
 o.foldcolumn = "1" -- '0' is not bad
 o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 o.foldlevelstart = 99
@@ -114,19 +116,3 @@ vim.g.floating_window_options = {
 -- Example for configuring Neovim to load user-installed installed Lua rocks:
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
-local fcs = vim.opt.fillchars:get()
-
--- Stolen from Akinsho --fixes folding columns numbers
-local function get_fold(lnum)
-	if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
-		return " "
-	end
-	return vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
-end
-
-_G.get_statuscol = function()
-	return "%s%l " .. get_fold(vim.v.lnum) .. " "
-end
-
-vim.o.statuscolumn = "%!v:lua.get_statuscol()"

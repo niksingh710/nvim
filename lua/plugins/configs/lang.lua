@@ -1,6 +1,24 @@
 local M = {}
 M.ensure_dap = {}
 
+M.none_ls = {
+	formatters = {
+		stylua = {},
+		shfmt = {},
+		prettierd = { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
+		goimports = {},
+		gofumpt = {},
+		golines = {},
+		jq = {},
+		rustfmt = {},
+		black = {},
+	},
+	linters = {
+		shellcheck = {},
+		commitlint = {},
+	},
+}
+
 M.ensure_lsp = {
 	"lua_ls",
 	"gopls",
@@ -8,6 +26,7 @@ M.ensure_lsp = {
 	"bashls",
 	"cssls",
 	"pylsp",
+	"jsonls",
 }
 
 M.ensure_tree = {
@@ -84,6 +103,9 @@ M.handlers = function()
 						root_dir = lsp_util.root_pattern("Cargo.toml", "rust-project.json", ".git"),
 						settings = {
 							["rust-analyzer"] = {
+								check = {
+									command = "clippy",
+								},
 								cargo = {
 									allFeatures = true,
 								},

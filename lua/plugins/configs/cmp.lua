@@ -167,7 +167,7 @@ M.config = function()
 	options.mapping = mappings
 	options.formatting = formatting
 	options.fields = { "kind", "abbr", "menu" }
-	cmp.setup(options)
+	options.preselect = cmp.PreselectMode.None, cmp.setup(options)
 
 	cmp.setup.cmdline("/", {
 		mapping = cmp.mapping.preset.cmdline(),

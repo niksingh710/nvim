@@ -114,3 +114,4 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 		vim.fn.jobstart('notify-send "Neovim"', { detach = true })
 	end,
 })
+

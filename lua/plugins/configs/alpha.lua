@@ -24,9 +24,9 @@ table.insert(entries, { "f", icons.ui.Watches .. "  Find file", ":Telescope find
 table.insert(entries, { "g", icons.ui.FindFile .. "  Find text", ":Telescope live_grep <CR>" })
 table.insert(entries, { "p", icons.ui.Folder .. "  Find project", ":Telescope projects <CR>" })
 table.insert(entries, { "r", icons.ui.History .. "  Recently used files", ":Telescope oldfiles <CR>" })
-table.insert(entries, { ".", "  Last Session", "<cmd>SessionLoadLast<cr>" })
-table.insert(entries, { "d", "  Last Session of Dir", "<cmd>SessionLoad<cr>" })
-table.insert(entries, { "s", "  Session List", "<cmd>Telescope persisted<cr>" })
+table.insert(entries, { ".", "  Last Session", "<cmd>SessionManager load_last_session<cr>" })
+table.insert(entries, { "d", "  Last Session of Dir", "<cmd>SessionManger load_current_dir_session<cr>" })
+table.insert(entries, { "s", "  Session List", "<cmd>SessionManager load_session<cr>" })
 
 table.insert(entries, { "q", icons.ui.BoldClose .. "  Quit Neovim", ":qa<CR>" })
 
@@ -35,6 +35,7 @@ M.config = function()
 	vim.api.nvim_create_autocmd("User", {
 		callback = function()
 			vim.o.showtabline = 0
+			vim.o.laststatus = 0
 		end,
 		group = toggle_bufferline,
 		pattern = "AlphaReady",
@@ -42,6 +43,7 @@ M.config = function()
 	vim.api.nvim_create_autocmd("BufUnload", {
 		callback = function()
 			vim.o.showtabline = 2
+			vim.o.laststatus = 2
 		end,
 		group = toggle_bufferline,
 		pattern = "*",

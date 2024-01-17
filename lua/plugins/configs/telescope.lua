@@ -5,8 +5,9 @@ M.persisted = function()
 	local rtimedir = os.getenv("XDG_RUNTIME_DIR")
 	local opts = {
 		autosave = true,
-    use_git_branch = true,
-    follow_cwd = true,
+		use_git_branch = false,
+		default_branch = "master",
+		follow_cwd = true,
 		should_autosave = function()
 			-- do not autosave if the alpha dashboard is the current filetype
 			if vim.bo.filetype == "alpha" or vim.bo.filetype == "" or vim.bo.filetype == "NvimTree" then
@@ -87,7 +88,7 @@ M.config = function()
 		"harpoon",
 		"projects",
 		"git_worktree",
-		"persisted",
+		-- "persisted",
 	}
 
 	-- load extensions
