@@ -111,7 +111,7 @@ vim.api.nvim_create_autocmd("QuitPre", {
 -- Fix for assert error
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	callback = function()
-		vim.fn.jobstart('notify-send "Neovim"', { detach = true })
+		vim.fn.jobstart('notify-send "Neovim is Closed!"', { detach = true })
 	end,
 })
 

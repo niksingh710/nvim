@@ -21,6 +21,12 @@ local M = {
 		config = true,
 	},
 	{
+		"mskelton/termicons.nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+		config = true,
+	},
+	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle" },
 		dependencies = {
@@ -85,12 +91,24 @@ local M = {
 			utils.load.mappings("copilot")
 		end,
 		opts = {
+			filetypes = {
+				yaml = false,
+				markdown = true,
+				help = false,
+				gitcommit = false,
+				gitrebase = false,
+				hgcommit = false,
+				svn = false,
+				cvs = false,
+				["."] = false,
+			},
 			suggestion = {
 				enable = true,
 				auto_trigger = true,
 			},
 		},
 	},
+
 	{
 		"itchyny/calendar.vim",
 		cmd = { "Calendar" },
@@ -283,14 +301,18 @@ local M = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = require("plugins.configs.neorg").config,
 	},
-	-- {
-	-- 	"m4xshen/hardtime.nvim",
-	-- 	event = "VeryLazy",
-	-- 	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
- --    opts = {
- --      restriction_mode = "hint",
- --    },
-	-- },
+	{
+		"m4xshen/hardtime.nvim",
+		event = "VeryLazy",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		opts = {
+			restriction_mode = "hint",
+			restricted_keys = {
+				["j"] = {},
+				["k"] = {},
+			},
+		},
+	},
 	{
 		"luukvbaal/statuscol.nvim",
 		event = "VeryLazy",
