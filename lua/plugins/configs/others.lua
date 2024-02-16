@@ -85,13 +85,13 @@ M.gitsigns = {
 	signs = {
 		add = {
 			hl = "GitSignsAdd",
-			text = icons.ui.BoldLineLeft,
+			text = icons.ui.LineLeft,
 			numhl = "GitSignsAddNr",
 			linehl = "GitSignsAddLn",
 		},
 		change = {
 			hl = "GitSignsChange",
-			text = icons.ui.BoldLineLeft,
+			text = icons.ui.LineLeft,
 			numhl = "GitSignsChangeNr",
 			linehl = "GitSignsChangeLn",
 		},

@@ -3,8 +3,11 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		{
-			-- snippet plugin
 			"L3MON4D3/LuaSnip",
+			-- follow latest release.
+			version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+			-- install jsregexp (optional!).
+			build = "make install_jsregexp",
 			dependencies = "rafamadriz/friendly-snippets",
 			opts = { history = true, updateevents = "TextChanged,TextChangedI" },
 			config = require("plugins.configs.cmp").luasnip,
@@ -30,6 +33,7 @@ return {
 		{
 			"onsails/lspkind.nvim", -- for icons
 			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",

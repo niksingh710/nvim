@@ -108,6 +108,10 @@ M.saga_conf = function()
 			scroll_down = "<C-d>",
 			scroll_up = "<C-u>",
 		},
+		lightbulb = {
+			enable = false, -- disables both
+			virtual_text = false, -- disables just the one at the end of the line
+		},
 		ui = {
 			border = border or "rounded",
 		},

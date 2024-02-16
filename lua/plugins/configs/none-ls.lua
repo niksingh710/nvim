@@ -9,9 +9,9 @@ M.config = function()
 
 	local null_ensure = {}
 	for key, _ in pairs(lang.none_ls.formatters or {}) do
-    if key ~= "rustfmt" then -- This to avoid installing rustfmt via mason as it is already installed via rustup and deprecated in mason
-      table.insert(null_ensure, key)
-    end
+		-- if key ~= "rustfmt" then -- This to avoid installing rustfmt via mason as it is already installed via rustup and deprecated in mason
+		table.insert(null_ensure, key)
+		-- end
 	end
 
 	for key, _ in pairs(lang.none_ls.linters or {}) do

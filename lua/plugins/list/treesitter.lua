@@ -2,6 +2,11 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = false,
 	dependencies = {
+		{
+			"huy-hng/anyline.nvim",
+			config = true,
+			event = "VeryLazy",
+		},
 		"RRethy/nvim-treesitter-textsubjects",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		{

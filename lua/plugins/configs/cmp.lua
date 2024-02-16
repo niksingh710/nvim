@@ -51,11 +51,13 @@ local options = {
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{ name = "path" }, -- file paths
+		{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
+		{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+		{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
 		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
+		{ name = "buffer", keyword_length = 2 }, -- source current buffer
+		{ name = "cmp_tabnine" },
 		{ name = "crates" },
 	},
 }
@@ -78,8 +80,9 @@ M.config = function()
 					vim_item.kind = icons.kind.Copilot
 					vim_item.kind_hl_group = "CmpItemKindCopilot"
 				end
+
 				if entry.source.name == "cmp_tabnine" then
-					vim_item.kind = icons.misc.Robot
+					vim_item.kind = icons.kind.TabNine
 					vim_item.kind_hl_group = "CmpItemKindTabnine"
 				end
 

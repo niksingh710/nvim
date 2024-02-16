@@ -321,9 +321,9 @@ local M = {
 			require("statuscol").setup({
 				-- relculright = true,
 				segments = {
-					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-					{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-					{ text = { "%s" }, click = "v:lua.ScSa" },
+          { text = { "%s" }, click = "v:lua.ScSa" },
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
 				},
 			})
 		end,
@@ -338,6 +338,18 @@ local M = {
 		init = function()
 			utils.load.mappings("nvim_session_manager")
 		end,
+	},
+	-- {
+	-- 	"codota/tabnine-nvim",
+	-- 	build = "./dl_binaries.sh",
+	-- 	config = require("plugins.configs.tabnine").config,
+	-- },
+	{
+		"tzachar/cmp-tabnine",
+		build = "./install.sh",
+		event = "InsertEnter",
+		dependencies = "hrsh7th/nvim-cmp",
+		config = require("plugins.configs.tabnine").config,
 	},
 }
 

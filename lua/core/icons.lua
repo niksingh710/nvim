@@ -36,7 +36,7 @@ return {
 		Value = "",
 		Variable = "",
 		Copilot = "",
-		TabNine = "ﮧ",
+		TabNine = "⌬",
 	},
 	git = {
 		LineAdded = "",
@@ -55,7 +55,7 @@ return {
 		Branch = "",
 	},
 	ui = {
-    lazy = {
+		lazy = {
 			ft = "",
 			lazy = "󰂠 ",
 			loaded = "",
@@ -159,20 +159,20 @@ return {
 		Smiley = "",
 		Package = "",
 		CircuitBoard = "",
-    LualineFmt = "",
+		LualineFmt = "",
 	},
-  nvtree_chad = {
-    default = "󰈚",
-    symlink = "",
-    folder = {
-      default = "",
-      empty = "",
-      empty_open = "",
-      open = "",
-      symlink = "",
-      symlink_open = "",
-      arrow_open = "",
-      arrow_closed = "",
-    },
-  },
+	nvtree_chad = {
+		default = "󰈚",
+		symlink = "",
+		folder = {
+			default = "",
+			empty = "",
+			empty_open = "",
+			open = "",
+			symlink = "",
+			symlink_open = "",
+			arrow_open = "",
+			arrow_closed = "",
+		},
+	},
 }

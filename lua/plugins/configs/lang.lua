@@ -70,7 +70,7 @@ M.formatters = {
 	html = { { "prettierd", "prettier" } },
 	css = { { "prettierd", "prettier" } },
 	go = { "gofmt", "goimports" },
-	rust = { "rustfmt" },
+	-- rust = { "rustfmt" },
 	sh = { "shfmt" },
 }
 
@@ -103,10 +103,19 @@ M.handlers = function()
 						root_dir = lsp_util.root_pattern("Cargo.toml", "rust-project.json", ".git"),
 						settings = {
 							["rust-analyzer"] = {
+								imports = {
+									granularity = {
+										group = "module",
+									},
+									prefix = "self",
+								},
 								check = {
 									command = "clippy",
 								},
 								cargo = {
+									buildScripts = {
+										enable = true,
+									},
 									allFeatures = true,
 								},
 							},

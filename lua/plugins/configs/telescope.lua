@@ -27,6 +27,11 @@ M.config = function()
 	local telescope = require("telescope")
 
 	local opts = {
+		pickers = {
+			find_files = {
+				follow = true,
+			},
+		},
 		extensions = {
 			fzf = {
 				fuzzy = true,
