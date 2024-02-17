@@ -4,7 +4,7 @@ return {
   config = true,
   dependencies = {
     { "kevinhwang91/promise-async" },
-    {
+    { -- TODO: Fix session not saving folds
       "luukvbaal/statuscol.nvim",
       config = function()
         local builtin = require("statuscol.builtin")
