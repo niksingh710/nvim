@@ -1,0 +1,6 @@
+{
+    "diagnostics.disable": [
+        "unused-local",
+        "lowercase-global"
+    ]
+}
