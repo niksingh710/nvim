@@ -83,4 +83,5 @@ local opts = {
 require("lazy").setup({
   { import = "plugins" },
   { import = "plugins.languages" },
+  { import = "plugins.themes" },
 }, opts) -- importing will allow to have all the files in the dir as plugin

@@ -2,6 +2,7 @@ return {
   "goolord/alpha-nvim",
   enabled = false,
   event = { "WinEnter", "BufEnter" },
+
   config = function()
     local entries = {
       { "c", icons.ui.Gear .. " Configuration", ":Telescope find_files cwd=~/.config/nvim<cr>" },

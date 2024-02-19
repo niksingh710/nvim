@@ -1,6 +1,8 @@
 return {
   {
     "tiagovla/tokyodark.nvim",
+    -- enabled = false,
+    priority = 1000,
     lazy = false,
     opts = {
       -- custom options here
@@ -19,6 +21,7 @@ return {
           TelescopePromptTitle = { bg = colors.purple, fg = colors.bg0 },
           TelescopeResultsTitle = { fg = colors.bg0 },
           TelescopePreviewTitle = { bg = colors.green, fg = colors.bg0 },
+
 
           PMenu = { bg = "none" }, -- make cmp menu transparent
         }

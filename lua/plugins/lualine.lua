@@ -147,6 +147,18 @@ return {
       end,
     }
 
+    components.indicator = function()
+      local ok, noice = pcall(require, "noice")
+      if not ok then
+        return ""
+      end
+      return {
+        noice.api.statusline.mode.get,
+        cond = noice.api.statusline.mode.has,
+        color = { fg = "#ff9e64" },
+      }
+    end
+
     components.copilot = function()
       local lsp_clients = vim.lsp.get_active_clients()
       local copilot_active = false
@@ -176,7 +188,12 @@ return {
       lualine_a = { components.mode },
       lualine_b = { components.fileformat, "encoding" },
       lualine_c = { components.branch, components.diff },
-      lualine_x = { components.diagnostics, components.filetype, components.lsp },
+      lualine_x = {
+        components.indicator(),
+        components.diagnostics,
+        components.filetype,
+        components.lsp,
+      },
       lualine_y = { "progress" },
       lualine_z = { components.location, components.copilot },
     }

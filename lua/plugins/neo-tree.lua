@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   branch = "v3.x",
   event = "BufWinEnter",
   dependencies = {
@@ -8,10 +9,21 @@ return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
+  init = function()
+    vim.cmd([[
+      highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
+      highlight! link NeoTreeDirectoryName NvimTreeFolderName
+      highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
+      highlight! link NeoTreeRootName NvimTreeRootFolder
+      highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
+      highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
+    ]])
+  end,
   opts = {
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-    enable_normal_mode_for_inputs = true, -- Enable normal mode for input dialogs.
+    enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
     popup_border_style = "rounded",
+
     filesystem = {
       follow_current_file = {
         enabled = true,
@@ -24,7 +36,7 @@ return {
           staged = icons.git.FileStaged,
           unmerged = icons.git.FileUnmerged,
           renamed = icons.git.FileRenamed,
-          untracked = icons.git.FileUntracked,
+          untracked = icons.ui.lazy.not_loaded or icons.git.FileUntracked,
           deleted = icons.git.FileDeleted,
           ignored = icons.git.FileIgnored,
         },

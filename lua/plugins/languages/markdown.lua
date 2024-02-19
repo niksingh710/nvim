@@ -16,6 +16,20 @@ return {
     },
   },
   {
+    "ixru/nvim-markdown",
+    ft = "markdown",
+    init = function()
+      vim.cmd([[
+      let g:vim_markdown_conceal = 2
+      ]])
+    end,
+  },
+  {
+    "prurigro/vim-markdown-concealed",
+    enabled = false,
+    ft = "markdown",
+  },
+  {
     "yaocccc/nvim-hl-mdcodeblock.lua",
     after = "nvim-treesitter",
     ft = "markdown",

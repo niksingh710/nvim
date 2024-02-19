@@ -42,6 +42,9 @@ opt.splitkeep = "screen"
 opt.termguicolors = true
 opt.timeoutlen = 400
 
+-- concelaing
+opt.conceallevel = 2
+
 opt.undofile = true
 
 opt.wrap = false

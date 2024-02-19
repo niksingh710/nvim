@@ -71,7 +71,7 @@ return {
       end,
       desc = "Buffer Next",
     },
-    { "<leader>bc", "<cmd>bd<cr>", desc = "Buffer Delete" },
+    { "<leader>bc", "<cmd>:bp | bd #<cr>", desc = "Buffer Delete" },
     { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
     { "<leader>bP", "<cmd>BufferLineTogglePin<cr>", desc = "Buffer Pin" },
     { "<leader>bd", "<cmd>BufferLineSortByDirectory<cr>", desc = "Buffer Sort by dir" },

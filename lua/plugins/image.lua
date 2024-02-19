@@ -2,9 +2,13 @@ return {
   "3rd/image.nvim",
   ft = { "markdown", "vimwiki" },
   opts = {
-    backend = "ueberzugpp",
+    backend = "ueberzug",
+    max_width = 50,
+    max_height = 50,
     integrations = {
-      only_render_image_at_cursor = true,
+      markdown = {
+        only_render_image_at_cursor = true,
+      },
     },
   },
 }
