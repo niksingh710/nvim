@@ -46,9 +46,6 @@ opt.undofile = true
 
 opt.wrap = false
 
-opt.pumblend = 0
-opt.pumheight = 10
-
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
 opt.smartindent = true

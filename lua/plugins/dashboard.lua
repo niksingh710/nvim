@@ -6,7 +6,7 @@ return {
       tabline = false,
     },
     disable_move = true,
-    shortcut_type = "number",
+    -- shortcut_type = "number",
     config = {
       center = {},
       disable_move = true,
