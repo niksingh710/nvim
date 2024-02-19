@@ -37,6 +37,7 @@ M.server = {
     "html",
     "cssls",
     "bashls",
+    "tailwindcss",
   },
   configs = function(args)
     local capabilities = args.capabilities

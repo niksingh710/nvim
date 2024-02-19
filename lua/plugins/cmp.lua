@@ -11,7 +11,8 @@ return {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
+        -- "hrsh7th/cmp-path",
+        "FelipeLema/cmp-async-path",
         "hrsh7th/cmp-cmdline",
       },
       {
@@ -58,9 +59,9 @@ return {
         end,
       },
       sources = vim.tbl_deep_extend("force", {
-        { name = "path" }, -- file paths
-        { name = "nvim_lsp", keyword_length = 3 }, -- from language server
+        { name = "path_async" }, -- file paths
         { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+        { name = "nvim_lsp", keyword_length = 3 }, -- from language server
         { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
         { name = "luasnip" },
         { name = "buffer", keyword_length = 2 }, -- source current buffer
@@ -190,7 +191,7 @@ return {
         }
       end
 
-      opts.fields = { "kind", "abbr", "menu" }
+      opts.formatting.fields = { "kind", "abbr", "menu" }
       opts.mapping = mappings
       cmp.setup(opts)
     end,

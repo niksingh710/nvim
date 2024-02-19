@@ -15,4 +15,11 @@ return {
       { "<leader>ump", "<cmd>Glow<cr>", desc = "Markdwon Preview" },
     },
   },
+  {
+    "yaocccc/nvim-hl-mdcodeblock.lua",
+    after = "nvim-treesitter",
+    ft = "markdown",
+    main = "hl-mdcodeblock",
+    opts = {},
+  },
 }
