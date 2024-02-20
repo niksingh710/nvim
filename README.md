@@ -44,15 +44,15 @@ You've provided preview images for some of the plugins you've configured:
 
 #### Telescope
 
-![telescope](./.extra/assets/telescope.png)
+![telescope](./assets/telescope.png)
 
-#### Alpha
+#### Dashboard
 
-![alpha](./.extra/assets/alpha.png)
+![Dashboard](./assets/dashboard.png)
 
 #### Lualine
 
-![lualine](./.extra/assets/lualine.png)
+![lualine](./assets/lualine.png)
 
 ## Keymaps
 
