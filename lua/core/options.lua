@@ -11,7 +11,7 @@ opt.cursorlineopt = "number"
 
 -- disabling the startup screen
 opt.shortmess:append("sI")
-vim.go.statusline = '%#Normal#'
+vim.go.statusline = "%#Normal#"
 
 opt.pumblend = 0
 opt.pumheight = 10
@@ -22,7 +22,6 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
-
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
@@ -62,7 +61,7 @@ opt.fileencoding = "utf-8"
 opt.list = true
 
 if vim.fn.has("nvim-0.10") == 1 then
-	opt.smoothscroll = true
+  opt.smoothscroll = true
 end
 
 -- interval for writing swap file to disk, also used by gitsigns
@@ -75,11 +74,16 @@ opt.whichwrap:append("<>[]hl")
 opt.listchars:append("space:·")
 
 vim.g.floating_window_options = {
-	border = border or "rounded",
-	winblend = 10,
+  border = border or "rounded",
+  winblend = 10,
 }
 
 -- Example for configuring Neovim to load user-installed installed Lua rocks:
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
+-- options for neovide
+vim.g.neovide_cursor_trail_length = 0.05
+vim.g.neovide_cursor_animation_length = 0.05
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_transparency = 0.8

@@ -85,3 +85,5 @@ require("lazy").setup({
   { import = "plugins.languages" },
   { import = "plugins.themes" },
 }, opts) -- importing will allow to have all the files in the dir as plugin
+
+vim.keymap.set("n", "<leader>iL", "<cmd>Lazy<CR>", { noremap = true, silent = true })

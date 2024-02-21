@@ -59,6 +59,7 @@ return {
 
   opts = {
     filters = { custom = { "^.git$" } },
+    hijack_cursor = false,
     view = {
       adaptive_size = true,
       side = "left",

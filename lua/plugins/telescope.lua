@@ -48,15 +48,6 @@ return {
       main = "project_nvim",
       config = true,
     },
-    {
-      "axieax/urlview.nvim",
-      opts = {
-        default_title = "Links:",
-        default_picker = "telescope",
-        default_prefix = "https://",
-        default_action = "system",
-      },
-    },
   },
   opts = {
     pickers = {
@@ -122,11 +113,11 @@ return {
     end
   end,
   keys = {
-    { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Search Diagnostics" },
+    { "<leader>sd", "<cmd>Telescope diagnostics theme=ivy<cr>", desc = "Search Diagnostics" },
     { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Search Find files" },
     { "<leader>sF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find files Hidden Also" },
     { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Search Recent files" },
-    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Search Keymaps" },
+    { "<leader>sk", "<cmd>Telescope keymaps theme=dropdown<cr>", desc = "Search Keymaps" },
     { "<leader>ss", "<cmd>Telescope builtin<cr>", desc = "Search Telescope" },
     { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Search Live Grep" },
     { "<leader>sH", "<cmd>Telescope help_tags<cr>", desc = "Search Help Tags" },
@@ -139,8 +130,5 @@ return {
     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Search Projects" },
     { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Search undo" },
     { "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy Buffer Search" },
-
-    { "<leader>sU", "<cmd>UrlView buffer<cr>", desc = "Search Links" },
-    { "<leader>sC", "<cmd>UrlView buffer action=clipboard<cr>", desc = "Copy Links" },
   },
 }

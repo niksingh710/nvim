@@ -12,7 +12,7 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         -- "hrsh7th/cmp-path",
-        "FelipeLema/cmp-async-path",
+        "https://codeberg.org/FelipeLema/cmp-async-path",
         "hrsh7th/cmp-cmdline",
       },
       {
@@ -59,7 +59,13 @@ return {
         end,
       },
       sources = vim.tbl_deep_extend("force", {
-        { name = "path_async" }, -- file paths
+        {
+          name = "async_path",
+          option = {
+            trailing_slash = true,
+            show_hidden_files_by_default = true,
+          },
+        }, -- file paths
         { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
         { name = "nvim_lsp", keyword_length = 3 }, -- from language server
         { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*

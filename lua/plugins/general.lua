@@ -28,6 +28,7 @@ return {
   "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
   {
     "mskelton/termicons.nvim",
+    enabled = false,
     requires = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     config = true,
@@ -56,5 +57,17 @@ return {
     config = function()
       require("drop").setup()
     end,
+  },
+  {
+    "axieax/urlview.nvim",
+    opts = {
+      default_title = "Links:",
+      default_prefix = "https://",
+      default_action = "system",
+    },
+    keys = {
+      { "<leader>sU", "<cmd>UrlView buffer<cr>", desc = "Search Links" },
+      { "<leader>sC", "<cmd>UrlView buffer action=clipboard<cr>", desc = "Copy Links" },
+    },
   },
 }
