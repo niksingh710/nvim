@@ -9,7 +9,7 @@ return {
         highlight = {
           enable = true,
           use_languagetree = true,
-          additional_vim_regex_highlighting = false,
+          additional_vim_regex_highlighting = true,
         },
         indent = { enable = true },
         auto_install = true,
