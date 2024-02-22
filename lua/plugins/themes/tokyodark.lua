@@ -7,6 +7,16 @@ return {
     opts = {
       -- custom options here
       transparent_background = true,
+      gamma = 1.00,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        identifiers = { italic = true },
+        functions = {},
+        strings = {},
+        variables = {},
+      },
+      terminal_colors = true,
       custom_highlights = function(highlights, colors)
         return {
           TelescopeMatching = { fg = colors.orange },
@@ -21,7 +31,6 @@ return {
           TelescopePromptTitle = { bg = colors.purple, fg = colors.bg0 },
           TelescopeResultsTitle = { fg = colors.bg0 },
           TelescopePreviewTitle = { bg = colors.green, fg = colors.bg0 },
-
 
           PMenu = { bg = "none" }, -- make cmp menu transparent
         }

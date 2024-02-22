@@ -31,7 +31,6 @@ M.cmp = {
 M.server = {
   list = {
     "lua_ls",
-    "rust_analyzer",
     "tsserver",
     "eslint",
     "html",

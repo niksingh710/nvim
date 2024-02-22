@@ -73,9 +73,9 @@ local opts = {
     colorscheme = { -- Will try to load the themes if available in this order
       "tokyodark",
       "material",
-      "catppuccin",
       "tokyonight",
-      "habmax",
+      "catppuccin",
+      "habamax",
     },
   },
 }
