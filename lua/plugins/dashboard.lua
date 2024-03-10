@@ -1,6 +1,7 @@
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
+  enable = not dashboard_or_alpha,
   opts = {
     hide = {
       tabline = false,

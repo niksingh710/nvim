@@ -13,18 +13,6 @@ return {
     -- disable netrw at the very start of your init.lua
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
-    -- autocommand to fix weird size fix in session
-    vim.api.nvim_create_autocmd({ "BufEnter" }, {
-      pattern = "NvimTree*",
-      callback = function()
-        local api = require("nvim-tree.api")
-        local view = require("nvim-tree.view")
-
-        if not view.is_visible() then
-          api.tree.open()
-        end
-      end,
-    })
     -- auto cmd for last window
     vim.api.nvim_create_autocmd("BufEnter", {
       nested = true,
@@ -60,15 +48,27 @@ return {
   opts = {
     filters = { custom = { "^.git$" } },
     hijack_cursor = false,
+
+    actions = {
+      open_file = {
+        quit_on_open = true,
+      },
+    },
     view = {
       adaptive_size = true,
-      side = "left",
+      side = "right",
       width = 30,
-      preserve_window_proportions = false,
+      float = {
+        enable = true,
+        quit_on_focus_loss = false,
+      },
     },
     git = {
       enable = true,
       ignore = false,
+    },
+    system_open = {
+      cmd = "xdg-open",
     },
     renderer = {
       root_folder_label = ":t",
@@ -114,7 +114,8 @@ return {
       show_on_open_dirs = false,
       debounce_delay = 50,
       severity = {
-        min = vim.diagnostic.severity.WARNING,
+        -- min = vim.diagnostic.severity.WARNING, -- I don't like warning in my file explorer
+        min = vim.diagnostic.severity.ERROR,
         max = vim.diagnostic.severity.ERROR,
       },
       icons = {
@@ -128,6 +129,19 @@ return {
 
   config = function(_, opts)
     local api = require("nvim-tree.api")
+
+    local gwidth = vim.api.nvim_list_uis()[1].width
+    local gheight = vim.api.nvim_list_uis()[1].height
+    local width = 100
+    local height = 40
+    opts.view.width = width
+    opts.view.float.open_win_config = {
+      relative = "editor",
+      width = width,
+      height = height,
+      row = (gheight - height) * 0.4,
+      col = (gwidth - width) * 0.5,
+    }
 
     local function attach(bufnr)
       -- This will make sure that newly created file get's open to edit
@@ -160,7 +174,7 @@ return {
         v = { api.node.open.vertical, options("Open: Vertical Split") },
         s = { api.node.open.horizontal, options("Open: Horizontal Split") },
         C = { api.tree.change_root_to_node, options("CD") },
-        Z = { api.node.run.system, options("Run System") },
+        O = { api.node.run.system, options("Run System") },
         y = { api.fs.copy.node, options("Copy") },
         c = { api.fs.copy.filename, options("Copy Name") },
         ["?"] = { api.tree.toggle_help, options("Help") },

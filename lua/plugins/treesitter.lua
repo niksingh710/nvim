@@ -98,6 +98,23 @@ return {
     },
     config = true,
   },
+  {
+    "razak17/tailwind-fold.nvim",
+    opts = {
+      ft = {
+        "html",
+        "svelte",
+        "astro",
+        "vue",
+        "tsx",
+        "php",
+        "blade",
+        "jsx",
+      },
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "html", "svelte", "astro", "vue", "javascriptreact", "typescriptreact", "php", "blade" },
+  },
 
   {
     "echasnovski/mini.indentscope",

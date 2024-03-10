@@ -1,6 +1,6 @@
 return {
   "goolord/alpha-nvim",
-  enabled = false,
+  enabled = dashboard_or_alpha,
   event = { "WinEnter", "BufEnter" },
 
   config = function()

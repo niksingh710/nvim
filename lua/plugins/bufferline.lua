@@ -4,7 +4,9 @@ return {
   version = "*",
   dependencies = "nvim-tree/nvim-web-devicons",
   opts = {
+
     options = {
+      diagnostics = "nvim_lsp",
       left_trunc_marker = icons.ui.ArrowCircleLeft,
       right_trunc_marker = icons.ui.ArrowCircleRight,
       truncate_names = true,

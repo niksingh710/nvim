@@ -11,15 +11,41 @@ M.colorizer = {
   html = { mode = "foreground" },
   cmp_docs = { always_update = true },
 }
-
 M.none_ls = {
   list = {
     "stylua",
-    "prettierd",
+    -- "prettierd",
     "shfmt",
+    "eslint",
     "shellcheck",
+    "ruff",
+    "biome",
   },
-  handlers = {},
+  handlers = {
+    prettierd = function(source_name, methods)
+      local null_ls = require("null-ls")
+      null_ls.register(null_ls.builtins.formatting.prettierd.with({
+        filetypes = {
+          -- "javascript", -- now done by biome
+          -- "javascriptreact", -- now done by biome
+          -- "typescript", -- now done by biome
+          -- "typescriptreact", -- now done by biome
+          -- "json", -- now done by biome
+          -- "jsonc", -- now done by biome
+          "vue",
+          "css",
+          "scss",
+          "less",
+          "html",
+          "yaml",
+          "markdown",
+          "markdown.mdx",
+          "graphql",
+          "handlebars",
+        },
+      }))
+    end,
+  },
 }
 
 M.cmp = {
@@ -31,9 +57,11 @@ M.cmp = {
 M.server = {
   list = {
     "lua_ls",
+    "ruff_lsp",
     "tsserver",
     "eslint",
     "html",
+    "biome",
     "cssls",
     "bashls",
     "tailwindcss",
@@ -78,6 +106,18 @@ M.server = {
         end
       end,
 
+      ["sourcery"] = function()
+        lspconfig.sourcery.setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+          init_options = {
+            token = "user_EVkX_az4UdPgzHdn86HylE_RiOFKiesYPor53OO0xxFe9jVPBT0y06RDQ78",
+            extension_version = "vim.lsp",
+            editor_version = "vim",
+          },
+        })
+      end,
+
       ["lua_ls"] = function()
         lspconfig.lua_ls.setup({
           on_attach = on_attach,
@@ -116,6 +156,14 @@ M.server = {
               disableSuggestions = true,
             },
           },
+        })
+      end,
+
+      ["eslint"] = function()
+        lspconfig.eslint.setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {},
         })
       end,
 

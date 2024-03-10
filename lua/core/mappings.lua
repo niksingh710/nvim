@@ -32,6 +32,7 @@ local maps = {
     ["<s-h>"] = { "<esc>:bprev<cr>", "Buffer Previous" },
     ["<s-l>"] = { "<esc>:bnext<cr>", "Buffer Next" },
     ["<leader>c"] = { "<esc>:bp | bd #<cr>", "Buffer Close" },
+    ["<leader>C"] = { "<esc>:q<cr>", "Window Close" },
 
     ["<leader>q"] = { "<cmd>quitall!<cr>", "Quit!" },
     ["<leader><cr>"] = {

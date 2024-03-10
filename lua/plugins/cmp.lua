@@ -13,8 +13,8 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         {
-          -- "https://codeberg.org/FelipeLema/cmp-async-path",
-          dir = "/home/niksingh710/repos/cmp-async-path",
+          "https://codeberg.org/FelipeLema/cmp-async-path",
+          -- dir = "/home/niksingh710/repos/cmp-async-path",
         },
         "hrsh7th/cmp-cmdline",
       },

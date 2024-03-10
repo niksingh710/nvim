@@ -6,10 +6,12 @@ return {
     { "kevinhwang91/promise-async" },
     {
       "luukvbaal/statuscol.nvim",
+      lazy = false,
       config = function()
         local builtin = require("statuscol.builtin")
         require("statuscol").setup({
           relculright = true,
+          ft_ignore = { "alpha" },
           segments = {
             { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
             { text = { "%s" }, click = "v:lua.ScSa" },

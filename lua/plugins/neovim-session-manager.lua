@@ -3,8 +3,11 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  event = "VeryLazy",
-  config = true,
+  -- event = "VeryLazy",
+  lazy = false,
+  opts = {
+    autoload_mode = false,
+  },
   keys = {
     { "<leader>S.", "<cmd>SessionManager load_last_session<CR>", desc = "Last Session" },
     { "<leader>Sl", "<cmd>SessionManager load_session<CR>", desc = "List Session" },
