@@ -5,7 +5,7 @@ return {
 
   config = function()
     local entries = {
-      { "c", icons.ui.Gear .. " Configuration", ":Telescope find_files cwd=~/.config/nvim<cr>" },
+      { "c", icons.ui.Gear .. "  Configuration", ":Telescope find_files cwd=~/.config/nvim<cr>" },
     }
 
     if utils.check.file_exists(os.getenv("HOME") .. "/.config/hypr/hyprland.conf") then

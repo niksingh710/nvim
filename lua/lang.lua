@@ -159,14 +159,6 @@ M.server = {
         })
       end,
 
-      ["eslint"] = function()
-        lspconfig.eslint.setup({
-          on_attach = on_attach,
-          capabilities = capabilities,
-          settings = {},
-        })
-      end,
-
       ["jsonls"] = function()
         lspconfig.jsonls.setup({
           settings = {
