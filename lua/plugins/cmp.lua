@@ -62,14 +62,8 @@ return {
         end,
       },
       sources = vim.tbl_deep_extend("force", {
-        {
-          name = "async_path",
-          option = {
-            trailing_slash = true,
-            show_hidden_files_by_default = true,
-          },
-        }, -- file paths
-        { name = "path" },
+        { name = "async_path" }, -- file paths
+        -- { name = "path" },
         { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
         { name = "nvim_lsp", keyword_length = 3 }, -- from language server
         { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*

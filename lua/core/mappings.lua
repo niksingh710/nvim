@@ -22,7 +22,6 @@ local maps = {
     ["<c-a-k>"] = { "<cmd>resize +1<cr>", "Resize up" },
     ["<c-a-l>"] = { "<cmd>vertical resize -1<cr>", "Resize right" },
     ["<c-a-h>"] = { "<cmd>vertical resize +1<cr>", "Resize left" },
-
     ["<c-a-=>"] = { "<C-a>", "Increase Number" },
     ["<c-a-->"] = { "<C-x>", "Decrease Number" },
 

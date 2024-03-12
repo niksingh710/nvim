@@ -113,6 +113,11 @@ return {
     end
   end,
   keys = {
+    -- Git
+    { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+    { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+    { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+
     { "<leader>sd", "<cmd>Telescope diagnostics theme=ivy<cr>", desc = "Search Diagnostics" },
     { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Search Find files" },
     { "<leader>sF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find files Hidden Also" },
