@@ -61,7 +61,7 @@ return {
           require("luasnip").lsp_expand(args.body)
         end,
       },
-      sources = vim.tbl_deep_extend("force", {
+      sources = vim.tbl_deep_extend("force", lang.cmp.sources or {}, {
         { name = "async_path" }, -- file paths
         -- { name = "path" },
         { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
@@ -70,7 +70,7 @@ return {
         { name = "luasnip" },
         { name = "buffer", keyword_length = 2 }, -- source current buffer
         { name = "cmp_tabnine" },
-      }, lang.cmp.sources or {}),
+      }),
     },
     config = function(_, opts)
       local cmp = require("cmp")

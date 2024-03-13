@@ -7,7 +7,7 @@ return {
   opts = {
     aggressive_mode = true,
     -- grace_period = 3,
-    ignore_ft = {
+    excluded_filetypes = {
       "NvimTree",
     },
   },
