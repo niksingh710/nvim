@@ -4,6 +4,56 @@ return {
   cmd = { "NvimTreeToggle" },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    {
+      "antosha417/nvim-lsp-file-operations",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-tree.lua",
+      },
+      config = function()
+        require("lsp-file-operations").setup()
+      end,
+    },
+    {
+      "JMarkin/nvim-tree.lua-float-preview",
+      lazy = true,
+      -- default
+      opts = {
+        window = {
+          wrap = false,
+          trim_height = false,
+          open_win_config = function()
+            HEIGHT_PADDING = 10
+            WIDTH_PADDING = 15
+            local screen_w = vim.opt.columns:get()
+            local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+            local window_w_f = (screen_w - WIDTH_PADDING * 2 - 1) / 2
+            local window_w = math.floor(window_w_f)
+            local window_h = screen_h - HEIGHT_PADDING * 2
+            local center_x = window_w_f + WIDTH_PADDING + 2
+            local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+
+            return {
+              style = "minimal",
+              relative = "editor",
+              border = "single",
+              row = center_y,
+              col = center_x,
+              width = window_w,
+              height = window_h,
+            }
+          end,
+        },
+        mapping = {
+          -- scroll down float buffer
+          down = { "<C-d>" },
+          -- scroll up float buffer
+          up = { "<C-e>", "<C-u>" },
+          -- enable/disable float windows
+          toggle = { "'" },
+        },
+      },
+    },
   },
   keys = {
     { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
@@ -132,7 +182,7 @@ return {
 
     local gwidth = vim.api.nvim_list_uis()[1].width
     local gheight = vim.api.nvim_list_uis()[1].height
-    local width = 100
+    local width = 120
     local height = 40
     opts.view.width = width
     opts.view.float.open_win_config = {
@@ -140,10 +190,38 @@ return {
       width = width,
       height = height,
       row = (gheight - height) * 0.4,
-      col = (gwidth - width) * 0.5,
+      col = (gwidth - width) * 0.5 + (gwidth - width) * 0.1,
     }
+    HEIGHT_PADDING = 10
+    WIDTH_PADDING = 15
 
+    opts.view.float.open_win_config = function()
+      local screen_w = vim.opt.columns:get()
+      local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+      local window_w_f = (screen_w - WIDTH_PADDING * 2) / 2
+      local window_w = math.floor(window_w_f)
+      local window_h = screen_h - HEIGHT_PADDING * 2
+      local center_x = WIDTH_PADDING - 1
+      local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+
+      return {
+        border = "single",
+        relative = "editor",
+        row = center_y,
+        col = center_x,
+        width = window_w,
+        height = window_h,
+      }
+    end
+    opts.view.width = function()
+      return vim.opt.columns:get() - WIDTH_PADDING * 2
+    end
     local function attach(bufnr)
+      local FloatPreview = require("float-preview")
+
+      FloatPreview.attach_nvimtree(bufnr)
+      local close_wrap = FloatPreview.close_wrap
+
       -- This will make sure that newly created file get's open to edit
       api.events.subscribe(api.events.Event.FileCreated, function(file)
         vim.cmd("edit " .. file.fname)
@@ -167,17 +245,18 @@ return {
       end
 
       local normal = {
-        h = { api.node.navigate.parent_close, options("Close Directory") },
-        l = { api.node.open.edit, options("Open") },
-        H = { api.tree.collapse_all, options("Close Directory") },
-        L = { api.tree.expand_all, options("Expand All") },
-        v = { api.node.open.vertical, options("Open: Vertical Split") },
-        s = { api.node.open.horizontal, options("Open: Horizontal Split") },
-        C = { api.tree.change_root_to_node, options("CD") },
-        O = { api.node.run.system, options("Run System") },
-        y = { api.fs.copy.node, options("Copy") },
-        c = { api.fs.copy.filename, options("Copy Name") },
-        ["?"] = { api.tree.toggle_help, options("Help") },
+        h = { close_wrap(api.node.navigate.parent_close), options("Close Directory") },
+        l = { close_wrap(api.node.open.edit), options("Open") },
+        H = { close_wrap(api.tree.collapse_all), options("Close Directory") },
+        L = { close_wrap(api.tree.expand_all), options("Expand All") },
+        v = { close_wrap(api.node.open.vertical), options("Open: Vertical Split") },
+        s = { close_wrap(api.node.open.horizontal), options("Open: Horizontal Split") },
+        C = { close_wrap(api.tree.change_root_to_node), options("CD") },
+        O = { close_wrap(api.node.run.system), options("Run System") },
+        y = { close_wrap(api.fs.copy.node), options("Copy") },
+        c = { close_wrap(api.fs.copy.filename), options("Copy Name") },
+        K = { FloatPreview.toggle, options("Copy Name") },
+        ["?"] = { close_wrap(api.tree.toggle_help), options("Help") },
       }
 
       api.config.mappings.default_on_attach(bufnr)

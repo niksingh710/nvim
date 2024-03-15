@@ -3,6 +3,16 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
+      {
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        lazy = false,
+        -- optionally, override the default options:
+        config = function()
+          require("tailwindcss-colorizer-cmp").setup({
+            color_square_width = 2,
+          })
+        end,
+      },
       -- cmp sources plugins
       {
         "onsails/lspkind.nvim", -- for icons
@@ -62,13 +72,13 @@ return {
         end,
       },
       sources = vim.tbl_deep_extend("force", lang.cmp.sources or {}, {
-        { name = "async_path" }, -- file paths
+        { name = "async_path" },                   -- file paths
         -- { name = "path" },
-        { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-        { name = "nvim_lsp", keyword_length = 3 }, -- from language server
-        { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+        { name = "nvim_lsp_signature_help" },      -- display function signatures with current parameter emphasized
+        { name = "nvim_lsp",               keyword_length = 3 }, -- from language server
+        { name = "nvim_lua",               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
         { name = "luasnip" },
-        { name = "buffer", keyword_length = 2 }, -- source current buffer
+        { name = "buffer",                 keyword_length = 2 }, -- source current buffer
         { name = "cmp_tabnine" },
       }),
     },
@@ -155,11 +165,11 @@ return {
 
         opts.formatting = {
           format = lspkind.cmp_format({
-            mode = "symbol", -- show only symbol annotations
+            -- mode = "symbol", -- show only symbol annotations
             maxwidth = 80, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             -- can also be a function to dynamically calculate max width such as
             -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
-            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            ellipsis_char = "...",    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 
             -- The function below will be called before any actual modifications from lspkind
@@ -189,13 +199,19 @@ return {
                 vim_item.kind = icons.misc.Smiley
                 vim_item.kind_hl_group = "CmpItemKindEmoji"
               end
+              ---@diagnostic disable-next-line: redefined-local
+              local ok, tw = pcall(require, "tailwindcss-colorizer-cmp")
+              if ok then
+                vim_item = tw.formatter(entry, vim_item)
+              end
+
               return vim_item
             end,
           }),
         }
       end
 
-      opts.formatting.fields = { "kind", "abbr", "menu" }
+      opts.formatting.fields = { "abbr", "menu", "kind" }
       opts.mapping = mappings
       cmp.setup(opts)
     end,

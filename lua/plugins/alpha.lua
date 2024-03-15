@@ -12,7 +12,7 @@ return {
       table.insert(entries, {
         "h",
         icons.ui.Target .. "  Hyprland Config",
-        ":Telescope find_files cwd=~/.config/hypr/hyprland.conf <CR>",
+        ":Telescope find_files cwd=~/.config/hypr <CR>",
       })
     end
 

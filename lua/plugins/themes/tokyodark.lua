@@ -6,16 +6,8 @@ return {
     lazy = false,
     opts = {
       -- custom options here
-      transparent_background = true,
-      gamma = 1.00,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        identifiers = { italic = true },
-        functions = {},
-        strings = {},
-        variables = {},
-      },
+      -- transparent_background = true,
+
       terminal_colors = true,
       custom_highlights = function(highlights, colors)
         return {
@@ -31,10 +23,11 @@ return {
           TelescopePromptTitle = { bg = colors.purple, fg = colors.bg0 },
           TelescopeResultsTitle = { fg = colors.bg0 },
           TelescopePreviewTitle = { bg = colors.green, fg = colors.bg0 },
+          CmpItemKindField = { bg = colors.red, fg = colors.bg0 },
 
           PMenu = { bg = "none" }, -- make cmp menu transparent
         }
-      end, -- extend highlights
+      end,                         -- extend highlights
     },
     config = function(_, opts)
       require("tokyodark").setup(opts) -- calling setup is optional

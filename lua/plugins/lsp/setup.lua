@@ -55,9 +55,9 @@ M.capabilities.textDocument.completion.completionItem = {
 M.on_attach = function(client, bufnr)
   vim.g.diagnostics_visible = true
 
-  client.server_capabilities.semanticTokensProvider = nil
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  -- client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.documentFormattingProvider = false
+  -- client.server_capabilities.documentRangeFormattingProvider = false
   local maps = require("plugins.lsp.mappings")
   utils.mappings(maps)
 end

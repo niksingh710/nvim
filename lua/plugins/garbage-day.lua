@@ -5,8 +5,8 @@ return {
   dependencies = "neovim/nvim-lspconfig",
   event = "BufEnter",
   opts = {
-    aggressive_mode = true,
-    -- grace_period = 3,
+    -- aggressive_mode = true,
+    grace_period = 60 * 10,
     excluded_filetypes = {
       "NvimTree",
     },

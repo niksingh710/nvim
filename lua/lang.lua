@@ -3,6 +3,7 @@ local M = {}
 M.colorizer = {
   "json",
   "css",
+  "javascriptreact",
   "javascript",
   "lua",
   "markdown",
@@ -20,6 +21,7 @@ M.none_ls = {
     "shellcheck",
     "ruff",
     "biome",
+    "eslint_d",
   },
   handlers = {
     prettierd = function(source_name, methods)
@@ -156,14 +158,6 @@ M.server = {
               disableSuggestions = true,
             },
           },
-        })
-      end,
-
-      ["eslint"] = function()
-        lspconfig.eslint.setup({
-          on_attach = on_attach,
-          capabilities = capabilities,
-          settings = {},
         })
       end,
 

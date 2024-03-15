@@ -37,7 +37,7 @@ return {
             },
             selection_modes = {
               ["@parameter.outer"] = "v", -- charwise
-              ["@function.outer"] = "V", -- linewise
+              ["@function.outer"] = "V",  -- linewise
               ["@class.outer"] = "<c-v>", -- blockwise
             },
             include_surrounding_whitespace = true,
@@ -72,7 +72,9 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
     main = "ibl",
-    opts = {},
+    opts = {
+      indent = { char = "│" },
+    },
   },
 
   {

@@ -5,7 +5,7 @@ return {
     main = "null-ls",
     opts = {},
     keys = {
-      { "<leader>in", ":NullLsInfo<cr>", desc = "Mason" },
+      { "<leader>in", ":NullLsInfo<cr>", desc = "Null Ls Info" },
     },
   },
   {
