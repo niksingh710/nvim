@@ -6,7 +6,7 @@ return {
     lazy = false,
     opts = {
       -- custom options here
-      -- transparent_background = true,
+      transparent_background = true,
 
       terminal_colors = true,
       custom_highlights = function(highlights, colors)

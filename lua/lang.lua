@@ -24,6 +24,17 @@ M.none_ls = {
     "eslint_d",
   },
   handlers = {
+    shfmt = function(source_name, methods)
+      local null_ls = require("null-ls")
+      null_ls.register(null_ls.builtins.formatting.shfmt.with({
+        filetypes = { "sh" },
+        generator_opts = {
+          command = "shfmt",
+          args = { "-filename", "$FILENAME", "-i", "2" },
+          to_stdin = true,
+        },
+      }))
+    end,
     prettierd = function(source_name, methods)
       local null_ls = require("null-ls")
       null_ls.register(null_ls.builtins.formatting.prettierd.with({
