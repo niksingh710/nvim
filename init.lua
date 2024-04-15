@@ -5,7 +5,6 @@ border = "rounded"
 ---@diagnostic disable-next-line: lowercase-global
 icons = require("core.icons")
 utils = require("core.utils")
-
 math.randomseed(os.time())
 dashboard_or_alpha = math.random() < 0.5
 

@@ -1,6 +1,6 @@
 return {
   -- TODO: if fork merged fix the url
-  "niksingh710/garbage-day.nvim",
+  "Zeioth/garbage-day.nvim",
   -- dir = "~/repos/garbage-day.nvim/",
   dependencies = "neovim/nvim-lspconfig",
   event = "BufEnter",

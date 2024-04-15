@@ -3,6 +3,6 @@ return {
   build = "make",
   cmd = { "CodeSnapPreviewOn" },
   opts = {
-    watermark = "niksingh710",
+    watermark = "",
   },
 }

@@ -41,7 +41,7 @@ return {
         background_colour = "#000000",
         render = "compact",
         stages = "fade_in_slide_out",
-        top_down = true,
+        top_down = false,
       },
       keys = {
         { "<leader>sn", "<cmd>Telescope notify<cr>", desc = "Notifications" },

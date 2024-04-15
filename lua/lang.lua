@@ -84,41 +84,17 @@ M.server = {
     local on_attach = args.on_attach
     local lspconfig = args.lspconfig
     local lsputil = args.lsp_util
+
+    vim.g.rustaceanvim = { -- Comes from a plugin of rust rustaceanvim
+      -- This avoids setting up lsp in mason and uses system's rust-analyzer
+      server = {
+        on_attach = on_attach,
+      },
+    }
+
     local conf = {
 
       -- Next, you can provide targeted overrides for specific servers.
-      ["rust_analyzer"] = function()
-        local rok, rust_tools = pcall(require, "rust-tools")
-        if rok then
-          rust_tools.setup({
-            server = {
-              on_attach = on_attach,
-              capabilities = capabilities,
-              root_dir = lsputil.root_pattern("Cargo.toml", "rust-project.json", ".git"),
-              settings = {
-                ["rust-analyzer"] = {
-                  imports = {
-                    granularity = {
-                      group = "module",
-                    },
-                    prefix = "self",
-                  },
-                  check = {
-                    command = "clippy",
-                  },
-                  cargo = {
-                    buildScripts = {
-                      enable = true,
-                    },
-                    allFeatures = true,
-                  },
-                },
-              },
-            },
-          })
-        end
-      end,
-
       ["sourcery"] = function()
         lspconfig.sourcery.setup({
           on_attach = on_attach,

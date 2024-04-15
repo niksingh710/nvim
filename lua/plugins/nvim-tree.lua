@@ -101,11 +101,12 @@ return {
 
     actions = {
       open_file = {
+        eject = false,
         quit_on_open = true,
       },
     },
     view = {
-      adaptive_size = true,
+      adaptive_size = false,
       side = "right",
       width = 30,
       float = {
@@ -180,18 +181,6 @@ return {
   config = function(_, opts)
     local api = require("nvim-tree.api")
 
-    local gwidth = vim.api.nvim_list_uis()[1].width
-    local gheight = vim.api.nvim_list_uis()[1].height
-    local width = 120
-    local height = 40
-    opts.view.width = width
-    opts.view.float.open_win_config = {
-      relative = "editor",
-      width = width,
-      height = height,
-      row = (gheight - height) * 0.4,
-      col = (gwidth - width) * 0.5 + (gwidth - width) * 0.1,
-    }
     HEIGHT_PADDING = 10
     WIDTH_PADDING = 15
 
