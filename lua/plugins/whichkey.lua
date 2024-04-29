@@ -16,4 +16,24 @@ return {
       },
     },
   },
+  config = function(opts)
+    local wk = require("which-key")
+    wk.setup(opts)
+    wk.register({
+      f = "Files/Harpoon",
+      b = "Buffers",
+      g = "Git",
+      i = "Info",
+      l = "Lsp",
+      r = "Rest/API",
+      S = "Session",
+      s = "Search/Telescope",
+      t = "Tabs/Tex",
+      u = "Utils",
+      v = "Splits",
+    }, {
+      mode = "n",
+      prefix = "<leader>",
+    })
+  end,
 }
