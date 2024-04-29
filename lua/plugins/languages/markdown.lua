@@ -17,6 +17,7 @@ return {
   },
   {
     "ixru/nvim-markdown",
+    enabled = false,
     ft = "markdown",
     init = function()
       vim.cmd([[
