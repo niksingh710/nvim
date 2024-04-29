@@ -23,6 +23,9 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
+      vim.filetype.add({
+        pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+      })
       require("nvim-treesitter.configs").setup({
         textobjects = {
           select = {

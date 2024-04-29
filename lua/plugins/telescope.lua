@@ -25,7 +25,7 @@ return {
           ":lua require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())<cr>",
           desc = "Harpoon Ui",
         },
-        { "<leader>ff", ":Telescope harpoon marks<cr>", desc = "Harpoon Telescope" },
+        { "<leader>ff", ":Telescope harpoon marks<cr>",                desc = "Harpoon Telescope" },
       },
     },
     { --TODO: Check about the worktree
@@ -80,6 +80,11 @@ return {
         v = action.select_vertical,
       },
     }
+    opts.pickers = {
+      colorscheme = {
+        enable_preview = true,
+      },
+    }
 
     opts.extensions.undo = {
       mappings = {
@@ -114,26 +119,27 @@ return {
   end,
   keys = {
     -- Git
-    { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
-    { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-    { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+    { "<leader>go", "<cmd>Telescope git_status<cr>",                desc = "Open changed file" },
+    { "<leader>gb", "<cmd>Telescope git_branches<cr>",              desc = "Checkout branch" },
+    { "<leader>gc", "<cmd>Telescope git_commits<cr>",               desc = "Checkout commit" },
 
-    { "<leader>sd", "<cmd>Telescope diagnostics theme=ivy<cr>", desc = "Search Diagnostics" },
-    { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Search Find files" },
-    { "<leader>sF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find files Hidden Also" },
-    { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Search Recent files" },
-    { "<leader>sk", "<cmd>Telescope keymaps theme=dropdown<cr>", desc = "Search Keymaps" },
-    { "<leader>ss", "<cmd>Telescope builtin<cr>", desc = "Search Telescope" },
-    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Search Live Grep" },
-    { "<leader>sH", "<cmd>Telescope help_tags<cr>", desc = "Search Help Tags" },
-    { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Search Buffers" },
-    { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Search Commands" },
-    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Search in Media Mode" },
-    { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Search Vim Options" },
-    { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Search Quickfix" },
-    { "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Search Location List" },
-    { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Search Projects" },
-    { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Search undo" },
+    { "<leader>sd", "<cmd>Telescope diagnostics theme=ivy<cr>",     desc = "Search Diagnostics" },
+    { "<leader>sf", "<cmd>Telescope find_files<cr>",                desc = "Search Find files" },
+    { "<leader>sF", "<cmd>Telescope find_files hidden=true<cr>",    desc = "Find files Hidden Also" },
+    { "<leader>sr", "<cmd>Telescope oldfiles<cr>",                  desc = "Search Recent files" },
+    { "<leader>sk", "<cmd>Telescope keymaps theme=dropdown<cr>",    desc = "Search Keymaps" },
+    { "<leader>ss", "<cmd>Telescope builtin<cr>",                   desc = "Search Telescope" },
+    { "<leader>sg", "<cmd>Telescope live_grep<cr>",                 desc = "Search Live Grep" },
+    { "<leader>sH", "<cmd>Telescope help_tags<cr>",                 desc = "Search Help Tags" },
+    { "<leader>sb", "<cmd>Telescope buffers<cr>",                   desc = "Search Buffers" },
+    { "<leader>sc", "<cmd>Telescope commands<cr>",                  desc = "Search Commands" },
+    { "<leader>sm", "<cmd>Telescope marks<cr>",                     desc = "Search in Media Mode" },
+    { "<leader>so", "<cmd>Telescope vim_options<cr>",               desc = "Search Vim Options" },
+    { "<leader>sq", "<cmd>Telescope quickfix<cr>",                  desc = "Search Quickfix" },
+    { "<leader>sl", "<cmd>Telescope loclist<cr>",                   desc = "Search Location List" },
+    { "<leader>sp", "<cmd>Telescope projects<cr>",                  desc = "Search Projects" },
+    { "<leader>sP", "<cmd>Telescope colorscheme<cr>",               desc = "Search ColorScheme with previews" },
+    { "<leader>su", "<cmd>Telescope undo<cr>",                      desc = "Search undo" },
     { "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy Buffer Search" },
   },
 }

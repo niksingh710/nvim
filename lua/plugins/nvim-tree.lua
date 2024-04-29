@@ -213,6 +213,10 @@ return {
 
       -- This will make sure that newly created file get's open to edit
       api.events.subscribe(api.events.Event.FileCreated, function(file)
+        local win_id = api.tree.winid()
+        if win_id ~= nil then
+          vim.cmd([[NvimTreeClose]])
+        end
         vim.cmd("edit " .. file.fname)
       end)
 

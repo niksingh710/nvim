@@ -72,7 +72,7 @@ return {
         end,
       },
       sources = vim.tbl_deep_extend("force", lang.cmp.sources or {}, {
-        { name = "async_path" },                   -- file paths
+        { name = "async_path" }, -- file paths
         -- { name = "path" },
         { name = "nvim_lsp_signature_help" },      -- display function signatures with current parameter emphasized
         { name = "nvim_lsp",               keyword_length = 3 }, -- from language server
