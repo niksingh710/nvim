@@ -1,7 +1,6 @@
 return {
   "marko-cerovac/material.nvim",
   lazy = false,
-  enabled = false, -- to disable this theme in favour of using other theme
   config = function()
     vim.g.material_style = "deep ocean"
     local material = require("material")
@@ -104,6 +103,5 @@ return {
       }, -- Overwrite highlights with your own
     }
     material.setup(options)
-    vim.cmd("colorscheme material")
   end
 }

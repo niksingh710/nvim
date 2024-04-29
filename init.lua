@@ -89,3 +89,5 @@ require("lazy").setup({
 }, opts) -- importing will allow to have all the files in the dir as plugin
 
 vim.keymap.set("n", "<leader>iL", "<cmd>Lazy<CR>", { noremap = true, silent = true })
+
+vim.cmd([[ silent! colorscheme tokyodark ]]) -- set's colorscheme silently so if it doesn't exists it doesn't throw an error
