@@ -71,6 +71,7 @@ M.server = {
   list = {
     "lua_ls",
     "ruff_lsp",
+    "pyright",
     "tsserver",
     "eslint",
     "html",
