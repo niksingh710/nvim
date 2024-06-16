@@ -1,3 +1,7 @@
+
+>[!WARNING]
+> **⚠️ This repository is archived and no longer maintained. Please visit [nvix](https://github.com/niksingh710/nvix).**
+
 # Nvim
 
 [![License](https://img.shields.io/github/license/niksingh710/nvim?color=blue)](LICENSE)
